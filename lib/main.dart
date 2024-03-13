@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: scarletColor,
         appBar: AppBar(
-          title: Text('GONDER GELSIN'),
+          title: Text('GONDER GELSIN  '),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
