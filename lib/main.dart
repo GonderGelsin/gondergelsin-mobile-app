@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
             children: [
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: 'Kullanıcı Adı',
+                  labelText: 'Kullanıcı Adı:',
                   labelStyle: TextStyle(
                     fontSize: 18,
                     color: yellowColor, // Sarı rengi burada ayarlayın
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
               SizedBox(height: 16),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: 'Şifre',
+                  labelText: 'Şifre:',
                   labelStyle: TextStyle(
                     fontSize: 18,
                     color: yellowColor, // Sarı rengi burada ayarlayın
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
                 onPressed: () {
                   // Kullanıcı adı ve şifre doğrulaması yapılabilir
                 },
-                child: Text('Giriş Yap'),
+                child: Text('Giriş Yap:'),
               ),
             ],
           ),
