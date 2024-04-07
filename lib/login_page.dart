@@ -1,22 +1,16 @@
-//import 'dart:html';
-
 import 'dart:ui';
-
+import 'services/authentication.dart' as authentication;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/components/my_textField.dart';
 import 'package:flutter_application_1/components/square_tile.dart';
-import 'package:flutter_application_1/my_button.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
-  //Text Editing Controllers
-  final usernameController = TextEditingController();
-  final PasswordController = TextEditingController();
-
-  //Sign user in method
-  void signUserIn() {}
+  //
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -73,25 +67,25 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 10),
 
-              //Kullanici Adi
+              //Kullanici Adi kısmı
               MyTextField(
-                controller: usernameController,
+                controller: _usernameController,
                 hintText: 'E-mail',
                 obscureText: false,
               ),
 
               const SizedBox(height: 10),
 
-              //Sifre
+              //Sifre kısmı
               MyTextField(
-                controller: PasswordController,
+                controller: _passwordController,
                 hintText: 'Sifre',
                 obscureText: true,
               ),
 
               const SizedBox(height: 10),
 
-              //Sifremi Unuttum
+              //Sifremi Unuttum kısmı
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Row(
@@ -105,15 +99,19 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 10),
 
-              //Giriş Yap
+              //Giriş Yap kısmı
               const SizedBox(height: 10),
+
               MyButton(
-                onTap: signUserIn,
+                onTap: () {
+                  authentication.signUserIn(
+                      _usernameController, _passwordController);
+                },
               ),
 
               const SizedBox(height: 25),
 
-              //ya da
+              //ya da kısmı
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -173,6 +171,38 @@ class LoginPage extends StatelessWidget {
                 ],
               )
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class MyButton extends StatelessWidget {
+  final VoidCallback onTap;
+
+  const MyButton({Key? key, required this.onTap}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap:
+          onTap, // onTap parametresini kullanarak signUserIn fonksiyonunu tetikler
+      child: Container(
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        margin: EdgeInsets.symmetric(horizontal: 20),
+        child: const Center(
+          child: Text(
+            'Giriş Yap',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
           ),
         ),
       ),
