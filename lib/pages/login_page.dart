@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/components/my_textField.dart';
 import 'package:flutter_application_1/components/square_tile.dart';
+import 'package:flutter_application_1/pages/register_page.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -164,11 +165,23 @@ class LoginPage extends StatelessWidget {
                     style: TextStyle(color: Colors.grey[700]),
                   ),
                   const SizedBox(width: 8),
-                  const Text(
-                    'Kayıt Ol',
-                    style: TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.bold),
-                  )
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RegisterPage()));
+                    },
+                    child: Container(
+                      child: Center(
+                        child: const Text(
+                          'Kayıt Ol',
+                          style: TextStyle(
+                              color: Colors.blue, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               )
             ],
