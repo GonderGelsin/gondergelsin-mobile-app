@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/components/Pages/Welcome_page.dart';
-import 'package:flutter_application_1/components/login_page.dart'; // login_page.dart dosyası components klasöründe
+import 'package:flutter_application_1/pages/welcome_page.dart';
+import 'package:flutter_application_1/pages/login_page.dart';
 
 void main() {
   runApp(const MyApp());

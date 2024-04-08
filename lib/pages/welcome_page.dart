@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_application_1/components/Pages/register_page.dart';
-import 'package:flutter_application_1/components/login_page.dart';
+import 'package:flutter_application_1/pages/register_page.dart';
+import 'package:flutter_application_1/pages/login_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
