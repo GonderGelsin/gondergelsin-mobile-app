@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//facebook ve google logosu
 class SquareTile extends StatelessWidget {
   final String imagePath;
   const SquareTile({super.key, required this.imagePath});

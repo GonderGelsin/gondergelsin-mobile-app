@@ -1,5 +1,6 @@
 import 'dart:ui';
-import 'services/authentication.dart' as authentication;
+import 'package:flutter_application_1/services/authentication.dart'
+    as authentication;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/components/my_textField.dart';
