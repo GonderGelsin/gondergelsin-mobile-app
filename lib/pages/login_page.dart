@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/components/my_textField.dart';
 import 'package:flutter_application_1/components/square_tile.dart';
 import 'package:flutter_application_1/pages/register_page.dart';
+import 'package:flutter_application_1/pages/welcome_page.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -23,20 +24,36 @@ class LoginPage extends StatelessWidget {
           child: Column(
             children: [
               //LOGO
-
-              Container(
-                height: 300,
-                alignment: Alignment.topCenter,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.elliptical(40, 30),
-                    bottomRight: Radius.elliptical(40, 30),
+              Stack(
+                alignment: Alignment.topLeft,
+                children: [
+                  Container(
+                    height: 300,
+                    alignment: Alignment.topCenter,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.elliptical(40, 30),
+                        bottomRight: Radius.elliptical(40, 30),
+                      ),
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/login_pack2.png'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/login_pack2.png'),
-                    fit: BoxFit.cover,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(5.0, 20.0, 0.0, 0.0),
+                    child: IconButton(
+                      icon: Icon(arrow_back_ios_rounded, color: Colors.black),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => WelcomePage()));
+                      },
+                    ),
                   ),
-                ),
+                ],
               ),
 
               const SizedBox(height: 50),
