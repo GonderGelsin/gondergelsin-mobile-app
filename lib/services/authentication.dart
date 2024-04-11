@@ -35,6 +35,7 @@ Future<Response> signUserIn(usernameController, passwordController) async {
           'password': password,
         },
       );
+      print(cevap.body);
       if (cevap.statusCode == 200) {
         // Başarılı bir yanıt aldığınızda, bu yanıtı işleyerek Response nesnesini oluşturun.
         return Response.fromJson(json.decode(cevap.body));
@@ -60,7 +61,7 @@ Future<Response> register(
   passwordController,
 ) async {
   final url = Uri.parse(
-      'https://gondergelsin.pythonanywhere.com/authentication/login/');
+      'https://gondergelsin.pythonanywhere.com/authentication/register/');
   try {
     final name = nameController.text;
     final surname = surnameController.text;
@@ -68,21 +69,22 @@ Future<Response> register(
     final email = emailController.text;
     final password = passwordController.text;
 
-    if (name != null &&
-        surname != null &&
-        phoneNumber != null &&
-        email != null &&
-        password != null) {
+    if (name.isNotEmpty &&
+        surname.isNotEmpty &&
+        phoneNumber.isNotEmpty &&
+        email.isNotEmpty &&
+        password.isNotEmpty) {
       final cevap = await http.post(
         url,
         body: {
-          'name': name,
-          'surname': surname,
-          'phoneNumber': phoneNumber,
+          'first_name': name,
+          'last_name': surname,
           'email': email,
+          'username': phoneNumber, // Telefon numarasını da gönder
           'password': password,
         },
       );
+      print(cevap.body);
       if (cevap.statusCode == 200) {
         // Başarılı bir yanıt aldığınızda, bu yanıtı işleyerek Response nesnesini oluşturun.
         return Response.fromJson(json.decode(cevap.body));
@@ -91,7 +93,7 @@ Future<Response> register(
         throw Exception('Kullanıcı adı veya şifre hatalı.');
       }
     } else {
-      throw Exception('Kullanıcı adı veya şifre boş.');
+      throw Exception('Boş alanları doldurun.');
     }
   } catch (e) {
     // Hata durumunda kullanıcıya bir hata mesajı gösterilebilir.
