@@ -80,8 +80,9 @@ Future<Response> register(
           'first_name': name,
           'last_name': surname,
           'email': email,
-          'username': phoneNumber, // Telefon numarasını da gönder
+          'phone_number': phoneNumber, // Telefon numarasını da gönder
           'password': password,
+          'turkish_id_number': '57097496018',
         },
       );
       print(cevap.body);
