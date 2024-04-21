@@ -124,7 +124,7 @@ class MyButton extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 20),
         child: const Center(
           child: Text(
-            'Giriş Yap',
+            'Kayıt Ol',
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
