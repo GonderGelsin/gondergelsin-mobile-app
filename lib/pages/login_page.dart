@@ -9,6 +9,8 @@ import 'package:flutter_application_1/pages/register_page.dart';
 import 'package:flutter_application_1/pages/welcome_page.dart';
 
 class LoginPage extends StatelessWidget {
+  static const String routeName = "/login";
+
   LoginPage({super.key});
 
   //
@@ -124,7 +126,7 @@ class LoginPage extends StatelessWidget {
               MyButton(
                 onTap: () {
                   authentication.signUserIn(
-                      _usernameController, _passwordController);
+                      context, _usernameController, _passwordController);
                 },
               ),
 
