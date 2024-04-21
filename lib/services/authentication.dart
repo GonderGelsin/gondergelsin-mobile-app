@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/login_succes/login_succes_screen.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -20,7 +22,8 @@ class Response {
 }
 
 //Login olma fonksiyonu
-Future<Response> signUserIn(usernameController, passwordController) async {
+Future<Response> signUserIn(
+    BuildContext context, usernameController, passwordController) async {
   final url = Uri.parse(
       'https://gondergelsin.pythonanywhere.com/authentication/login/');
   try {
@@ -38,6 +41,7 @@ Future<Response> signUserIn(usernameController, passwordController) async {
       print(cevap.body);
       if (cevap.statusCode == 200) {
         // Başarılı bir yanıt aldığınızda, bu yanıtı işleyerek Response nesnesini oluşturun.
+        Navigator.pushNamed(context, LoginSuccesScreen.routName);
         return Response.fromJson(json.decode(cevap.body));
       } else {
         // Başarısız bir yanıt durumunda hata mesajını döndürün.
