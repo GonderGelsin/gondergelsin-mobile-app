@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/home/components/home_screen.dart'; // HomePage widget'ının bulunduğu yer
+import 'package:flutter_application_1/pages/home/home_screen.dart'; // HomePage widget'ının bulunduğu yer
 
 class BodySucces extends StatelessWidget {
   static String routName = "/body_succes";
