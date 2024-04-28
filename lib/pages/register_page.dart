@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/my_textField.dart';
-import 'package:flutter_application_1/pages/welcome_page.dart';
+import 'package:flutter_application_1/pages/login_page.dart';
 import 'package:flutter_application_1/services/authentication.dart'
     as authentication;
 
@@ -34,10 +34,8 @@ class RegisterPage extends StatelessWidget {
                   IconButton(
                     icon: Icon(arrow_back_ios_rounded),
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => WelcomePage()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => LoginPage()));
                     },
                   ),
                 ],
