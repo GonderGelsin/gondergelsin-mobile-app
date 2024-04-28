@@ -9,5 +9,5 @@ final Map<String, WidgetBuilder> routes = {
   LoginPage.routeName: (context) => LoginPage(),
   LoginSuccesScreen.routName: (context) => LoginSuccesScreen(),
   HomePage.routName: (context) => HomePage(),
-  BodySucces.routName: (contest) => Body()
+  BodySucces.routName: (contest) => Body(),
 };
