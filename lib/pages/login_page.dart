@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter_application_1/pages/splash/splash_screen.dart';
 import 'package:flutter_application_1/services/authentication.dart'
     as authentication;
 import 'package:flutter/material.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/components/my_textField.dart';
 import 'package:flutter_application_1/components/square_tile.dart';
 import 'package:flutter_application_1/pages/register_page.dart';
-import 'package:flutter_application_1/pages/welcome_page.dart';
 
 class LoginPage extends StatelessWidget {
   static const String routeName = "/login";
@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => WelcomePage()));
+                                builder: (context) => SplashScreen()));
                       },
                     ),
                   ),

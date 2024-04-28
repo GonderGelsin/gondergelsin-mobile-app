@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/splash/splash_screen.dart';
@@ -19,15 +17,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: Colors.blueGrey,
         fontFamily: "Mali",
         textTheme: TextTheme(
-          bodyText1: TextStyle(color: kTextColor),
-          bodyText2: TextStyle(color: kTextColor),
+          bodyLarge: TextStyle(
+              color: kTextColor,
+              fontSize:
+                  16.0), // Örnek olarak font büyüklüğünü 16 olarak ayarladım
         ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SplashScreen(),
+      // home: SplashScreen(),
+      initialRoute: SplashScreen.routeName,
       routes: routes,
     );
   }
