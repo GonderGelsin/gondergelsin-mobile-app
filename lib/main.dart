@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_application_1/pages/home/components/home_screen.dart';
-import 'package:flutter_application_1/pages/welcome_page.dart';
-
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/splash/splash_screen.dart';
 // import 'package:flutter_application_1/pages/welcome_page.dart';
@@ -21,8 +17,6 @@ class MyApp extends StatelessWidget {
     SizeConfig().init(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
-
 
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.blueGrey,
