@@ -42,20 +42,32 @@ class _BodyState extends State<Body> {
                 children: [
                   ProfileTextField(
                     icon: "assets/icons/Arturo-Wibawa-Akar-Person.512.png",
-                    text: "Full Name",
-                    initialValue: userInfo?['first_name'] ?? "xxx",
+                    text: "Ad",
+                    initialValue: userInfo?['first_name'] ?? "",
+                    onChanged: (value) {},
+                  ),
+                  ProfileTextField(
+                    icon: "assets/icons/Arturo-Wibawa-Akar-Person.512.png",
+                    text: "Soyad",
+                    initialValue: userInfo?['last_name'] ?? "",
                     onChanged: (value) {},
                   ),
                   ProfileTextField(
                     icon: "assets/icons/Arturo-Wibawa-Akar-Bell.512.png",
-                    text: "Phone Number",
-                    initialValue: userInfo?['last_name'] ?? "yyy",
+                    text: "TC Kimlik",
+                    initialValue: userInfo?['turkish_id_number'] ?? "",
+                    onChanged: (value) {},
+                  ),
+                  ProfileTextField(
+                    icon: "assets/icons/Arturo-Wibawa-Akar-Person.512.png",
+                    text: "Telefon Numarası",
+                    initialValue: userInfo?['phone_number'] ?? "",
                     onChanged: (value) {},
                   ),
                   ProfileTextField(
                     icon: "assets/icons/Colebemis-Feather-Settings.512.png",
                     text: "Email",
-                    initialValue: userInfo?['phone_number'] ?? "zzz",
+                    initialValue: userInfo?['email'] ?? "",
                     onChanged: (value) {},
                   ),
                 ],
