@@ -10,7 +10,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   Map<String, dynamic>? userInfo;
-  bool isLoading = true; // Yükleme durumu kontrolü için değişken
+  bool isLoading = true; 
 
   @override
   void initState() {
@@ -19,12 +19,12 @@ class _BodyState extends State<Body> {
     profile.getUserInfo().then((data) {
       setState(() {
         userInfo = data;
-        isLoading = false; // Veri geldi, yükleme durumu bitmiş
+        isLoading = false; 
         print(userInfo?['first_name'] ?? "xxx");
       });
     }).catchError((error) {
       setState(() {
-        isLoading = false; // Hata oluştu, yükleme durumu bitmiş
+        isLoading = false; 
       });
       print('Error: $error');
     });
@@ -36,39 +36,44 @@ class _BodyState extends State<Body> {
       children: [
         ProfilePic(),
         SizedBox(height: getProportionateScreenHeight(20)),
-        isLoading // isLoading true ise, yükleme durumunu göster
-            ? CircularProgressIndicator() // Yükleme göstergesi
+        isLoading 
+            ? CircularProgressIndicator() 
             : Column(
                 children: [
                   ProfileTextField(
-                    icon: "assets/icons/Arturo-Wibawa-Akar-Person.512.png",
+                    leftIcon: "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "Ad",
                     initialValue: userInfo?['first_name'] ?? "",
                     onChanged: (value) {},
+                    
                   ),
                   ProfileTextField(
-                    icon: "assets/icons/Arturo-Wibawa-Akar-Person.512.png",
+                    leftIcon: "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "Soyad",
                     initialValue: userInfo?['last_name'] ?? "",
                     onChanged: (value) {},
+                    
                   ),
                   ProfileTextField(
-                    icon: "assets/icons/Arturo-Wibawa-Akar-Bell.512.png",
+                    leftIcon: "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "TC Kimlik",
                     initialValue: userInfo?['turkish_id_number'] ?? "",
                     onChanged: (value) {},
+                    
                   ),
                   ProfileTextField(
-                    icon: "assets/icons/Arturo-Wibawa-Akar-Person.512.png",
+                    leftIcon: "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "Telefon Numarası",
                     initialValue: userInfo?['phone_number'] ?? "",
                     onChanged: (value) {},
+                    rightIcon: "assets/icons/Arturo-Wibawa-Akar-Arrow-left.512.png", // rightIcon ekleyin
                   ),
                   ProfileTextField(
-                    icon: "assets/icons/Colebemis-Feather-Settings.512.png",
+                    leftIcon: "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "Email",
                     initialValue: userInfo?['email'] ?? "",
                     onChanged: (value) {},
+                    rightIcon: "assets/icons/Arturo-Wibawa-Akar-Arrow-left.512.png", // rightIcon ekleyin
                   ),
                 ],
               ),
@@ -78,17 +83,19 @@ class _BodyState extends State<Body> {
 }
 
 class ProfileTextField extends StatelessWidget {
-  final String icon;
+  final String leftIcon;
   final String text;
   final String initialValue;
   final ValueChanged<String>? onChanged;
+  final String? rightIcon;
 
   const ProfileTextField({
     Key? key,
-    required this.icon,
+    required this.leftIcon,
     required this.text,
     required this.initialValue,
     this.onChanged,
+    this.rightIcon,
   }) : super(key: key);
 
   @override
@@ -98,7 +105,7 @@ class ProfileTextField extends StatelessWidget {
       child: Row(
         children: [
           Image.asset(
-            icon,
+            leftIcon,
             width: 24,
             height: 24,
           ),
@@ -110,6 +117,14 @@ class ProfileTextField extends StatelessWidget {
               decoration: InputDecoration(
                 labelText: text,
                 border: OutlineInputBorder(),
+                suffixIcon: rightIcon != null ? IconButton(
+                  onPressed: () {}, // onPressed özelliğini ekleyin
+                  icon: Image.asset(
+                    rightIcon!,
+                    width: 24,
+                    height: 24,
+                  ),
+                ) : null,
               ),
             ),
           ),
