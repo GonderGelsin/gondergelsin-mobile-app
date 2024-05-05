@@ -13,9 +13,9 @@ Future<Map<String, dynamic>> getUserInfo() async {
   );
 
   if (response.statusCode == 200) {
-    Map<String, dynamic> data = json.decode(response.body);
-    print(data);
-    return data;
+    Map<String, dynamic> responseData = json.decode(response.body);
+    Map<String, dynamic> profileData = responseData['data']['profile'];
+    return profileData;
   } else {
     throw Exception('Failed to load user info');
   }
