@@ -43,7 +43,9 @@ Widget buildErrorWithIcon(String errorMessage) {
   return Row(
     children: [
       errorIcon,
-      SizedBox(width: 5), // İkon ile hata mesajı arasında boşluk bırakmak için
+      SizedBox(
+          width: getProportionateScreenWidth(
+              20)), // İkon ile hata mesajı arasında boşluk bırakmak için
       Text(
         errorMessage,
         style: TextStyle(color: Colors.red),
