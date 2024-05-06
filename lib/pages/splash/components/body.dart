@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/components/default_button.dart';
 import 'package:flutter_application_1/constants.dart';
-import 'package:flutter_application_1/pages/login_page.dart';
+//import 'package:flutter_application_1/pages/login_page.dart';
+import 'package:flutter_application_1/pages/sign_in/sign_in_screen.dart';
 import 'package:flutter_application_1/pages/splash/components/splash_content.dart';
 import 'package:flutter_application_1/size_config.dart';
 
@@ -70,14 +71,9 @@ class _BodyState extends State<Body> {
                       ),
                       Spacer(flex: 2),
                       DefaultButton(
-                        key: UniqueKey(),
                         text: "Devam Et",
                         press: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginPage()),
-                          );
+                          Navigator.pushNamed(context, SignInScreen.routeName);
                         },
                       ),
                       Spacer(),
