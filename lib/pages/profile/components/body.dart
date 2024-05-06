@@ -10,7 +10,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   Map<String, dynamic>? userInfo;
-  bool isLoading = true; 
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -19,12 +19,12 @@ class _BodyState extends State<Body> {
     profile.getUserInfo().then((data) {
       setState(() {
         userInfo = data;
-        isLoading = false; 
+        isLoading = false;
         print(userInfo?['first_name'] ?? "xxx");
       });
     }).catchError((error) {
       setState(() {
-        isLoading = false; 
+        isLoading = false;
       });
       print('Error: $error');
     });
@@ -36,8 +36,8 @@ class _BodyState extends State<Body> {
       children: [
         ProfilePic(),
         SizedBox(height: getProportionateScreenHeight(20)),
-        isLoading 
-            ? CircularProgressIndicator() 
+        isLoading
+            ? CircularProgressIndicator()
             : Column(
                 children: [
                   ProfileTextField(
@@ -45,40 +45,77 @@ class _BodyState extends State<Body> {
                     text: "Ad",
                     initialValue: userInfo?['first_name'] ?? "",
                     onChanged: (value) {},
-                    
+                    enabled: false,
                   ),
                   ProfileTextField(
                     leftIcon: "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "Soyad",
                     initialValue: userInfo?['last_name'] ?? "",
                     onChanged: (value) {},
-                    
+                    enabled: false,
                   ),
                   ProfileTextField(
                     leftIcon: "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "TC Kimlik",
                     initialValue: userInfo?['turkish_id_number'] ?? "",
                     onChanged: (value) {},
-                    
+                    enabled: false,
                   ),
                   ProfileTextField(
                     leftIcon: "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "Telefon Numarası",
                     initialValue: userInfo?['phone_number'] ?? "",
                     onChanged: (value) {},
-                    rightIcon: "assets/icons/Arturo-Wibawa-Akar-Arrow-left.512.png", // rightIcon ekleyin
+                    rightIcon: "assets/icons/Arturo-Wibawa-Akar-Arrow-left.512.png",
+                    onTapIcon: () => _editUserInfo('phone_number'),
+                    
                   ),
                   ProfileTextField(
                     leftIcon: "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "Email",
                     initialValue: userInfo?['email'] ?? "",
                     onChanged: (value) {},
-                    rightIcon: "assets/icons/Arturo-Wibawa-Akar-Arrow-left.512.png", // rightIcon ekleyin
+                    rightIcon: "assets/icons/Arturo-Wibawa-Akar-Arrow-left.512.png",
+                    onTapIcon: () => _editUserInfo('email'),
+                    
                   ),
                 ],
               ),
       ],
     );
+  }
+
+  void _editUserInfo(String field) async {
+    final newValue = await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        String currentValue = userInfo?[field] ?? "";
+        return AlertDialog(
+          title: Text('Bilgiyi Düzenle'),
+          content: TextFormField(
+            initialValue: currentValue,
+            onChanged: (newValue) {
+              currentValue = newValue;
+            },
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(currentValue);
+              },
+              child: Text('Tamam'),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (newValue != null) {
+      setState(() {
+        userInfo?[field] = newValue;
+      });
+      // Kullanıcı bilgilerini güncelleme işlemleri burada yapılabilir
+    }
   }
 }
 
@@ -88,6 +125,8 @@ class ProfileTextField extends StatelessWidget {
   final String initialValue;
   final ValueChanged<String>? onChanged;
   final String? rightIcon;
+  final VoidCallback? onTapIcon;
+  final bool enabled;
 
   const ProfileTextField({
     Key? key,
@@ -96,6 +135,8 @@ class ProfileTextField extends StatelessWidget {
     required this.initialValue,
     this.onChanged,
     this.rightIcon,
+    this.onTapIcon,
+    this.enabled = true,
   }) : super(key: key);
 
   @override
@@ -112,19 +153,22 @@ class ProfileTextField extends StatelessWidget {
           SizedBox(width: 20),
           Expanded(
             child: TextFormField(
+              enabled: enabled,
               initialValue: initialValue,
               onChanged: onChanged,
               decoration: InputDecoration(
                 labelText: text,
                 border: OutlineInputBorder(),
-                suffixIcon: rightIcon != null ? IconButton(
-                  onPressed: () {}, // onPressed özelliğini ekleyin
-                  icon: Image.asset(
-                    rightIcon!,
-                    width: 24,
-                    height: 24,
-                  ),
-                ) : null,
+                suffixIcon: rightIcon != null
+                    ? GestureDetector(
+                        onTap: onTapIcon,
+                        child: Image.asset(
+                          rightIcon!,
+                          width: 24,
+                          height: 24,
+                        ),
+                      )
+                    : null,
               ),
             ),
           ),
