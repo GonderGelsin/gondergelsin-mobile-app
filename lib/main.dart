@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/splash/splash_screen.dart';
-// import 'package:flutter_application_1/pages/welcome_page.dart';
-
 import 'package:flutter_application_1/routes.dart';
 import 'package:flutter_application_1/size_config.dart';
+import 'package:flutter_application_1/theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,18 +15,7 @@ class MyApp extends StatelessWidget {
     SizeConfig().init(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.blueGrey,
-        fontFamily: "Mali",
-        textTheme: TextTheme(
-          bodyLarge: TextStyle(
-              color: kTextColor,
-              fontSize:
-                  16.0), // Örnek olarak font büyüklüğünü 16 olarak ayarladım
-        ),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      theme: theme(),
       // home: SplashScreen(),
       initialRoute: SplashScreen.routeName,
 

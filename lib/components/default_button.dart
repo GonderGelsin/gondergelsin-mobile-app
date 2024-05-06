@@ -4,13 +4,15 @@ import 'package:flutter_application_1/size_config.dart';
 
 class DefaultButton extends StatelessWidget {
   const DefaultButton({
-    required Key key,
+    Key? key,
     required this.text,
     required this.press,
+    this.isLoading = false, // isLoading parametresi eklendi
   }) : super(key: key);
 
   final String text;
-  final VoidCallback press; // VoidCallback olarak değiştirildi
+  final void Function()? press; // press parametresinin türü belirlendi
+  final bool isLoading; // Yeni isLoading parametresi
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +20,24 @@ class DefaultButton extends StatelessWidget {
       width: double.infinity,
       height: getProportionateScreenHeight(56),
       child: TextButton(
-        style: TextButton.styleFrom(
-          backgroundColor: kPrimaryColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
           ),
+          backgroundColor: MaterialStateProperty.all<Color>(kPrimaryColor),
         ),
-        onPressed: press, // onPressed özelliği press fonksiyonunu alacak
-        child: Text(
-          text,
-          style: TextStyle(
-            fontSize: getProportionateScreenWidth(18),
-            color: Colors.white,
-          ),
-        ),
+        onPressed: isLoading ? null : press, // isLoading kontrol ediliyor
+        child: isLoading
+            ? CircularProgressIndicator() // isLoading true ise progress indicator göster
+            : Text(
+                text,
+                style: TextStyle(
+                  fontSize: getProportionateScreenWidth(18),
+                  color: Colors.white,
+                ),
+              ),
       ),
     );
   }

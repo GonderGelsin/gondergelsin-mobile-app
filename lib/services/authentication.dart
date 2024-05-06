@@ -8,15 +8,17 @@ class Response {
   //alınacak değişkenler
   final String refresh;
   final String access;
+  final String status;
 
   //gelen veriden alınacak değerleri çekme
-  Response({required this.refresh, required this.access});
+  Response({required this.refresh, required this.access, required this.status});
 
   //json gelen verileri istenen formata dönüştürme
   factory Response.fromJson(Map<String, dynamic> json) {
     return Response(
       refresh: json['refresh'],
       access: json['access'],
+      status: json['status'],
     );
   }
 }
@@ -38,10 +40,9 @@ Future<Response> signUserIn(
           'password': password,
         },
       );
-      print(cevap.body);
       if (cevap.statusCode == 200) {
         // Başarılı bir yanıt aldığınızda, bu yanıtı işleyerek Response nesnesini oluşturun.
-        Navigator.pushNamed(context, LoginSuccesScreen.routName);
+        Navigator.pushNamed(context, LoginSuccesScreen.routeName);
         return Response.fromJson(json.decode(cevap.body));
       } else {
         // Başarısız bir yanıt durumunda hata mesajını döndürün.

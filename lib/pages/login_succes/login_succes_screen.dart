@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/pages/login_succes/components/body.dart';
+import 'package:flutter_application_1/size_config.dart';
 
 class LoginSuccesScreen extends StatelessWidget {
-  static String routName = "/login_succes";
+  static String routeName = "/login_succes";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: SizedBox(),
+        centerTitle: true,
         title: Text(
           "Giriş Tamamlandı",
           style: TextStyle(
-            color: Colors.black54, // Başlık rengi
-            fontSize: 20, // Başlık font boyutu
+            color: Colors.black54,
+            fontSize: getProportionateScreenWidth(16),
           ),
-        ),
-        centerTitle: true, // Başlığı ortalamak için
+        ), //
       ),
       body: BodySucces(),
     );
