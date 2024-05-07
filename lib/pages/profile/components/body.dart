@@ -10,24 +10,27 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   Map<String, dynamic>? userInfo;
+  late Future<Map<String, dynamic>> userInfoFuture;
   bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
+    userInfoFuture = _refreshUserInfo();
+  }
 
-    profile.getUserInfo().then((data) {
+  Future<Map<String, dynamic>> _refreshUserInfo() async {
+    try {
+      final data = await profile.getUserInfo();
       setState(() {
         userInfo = data;
         isLoading = false;
-        print(userInfo?['first_name'] ?? "xxx");
       });
-    }).catchError((error) {
-      setState(() {
-        isLoading = false;
-      });
-      print('Error: $error');
-    });
+      return data;
+    } catch (error) {
+      print('Error refreshing user info: $error');
+      throw error;
+    }
   }
 
   @override
@@ -36,51 +39,66 @@ class _BodyState extends State<Body> {
       children: [
         ProfilePic(),
         SizedBox(height: getProportionateScreenHeight(20)),
-        isLoading
-            ? CircularProgressIndicator()
-            : Column(
+        FutureBuilder<Map<String, dynamic>>(
+          future: userInfoFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CircularProgressIndicator();
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else {
+              final data = snapshot.data!;
+              return Column(
                 children: [
                   ProfileTextField(
-                    leftIcon: "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
+                    leftIcon:
+                        "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "Ad",
-                    initialValue: userInfo?['first_name'] ?? "",
+                    initialValue: data['first_name'],
                     onChanged: (value) {},
                     enabled: false,
                   ),
                   ProfileTextField(
-                    leftIcon: "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
+                    leftIcon:
+                        "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "Soyad",
-                    initialValue: userInfo?['last_name'] ?? "",
+                    initialValue: data['last_name'],
                     onChanged: (value) {},
                     enabled: false,
                   ),
                   ProfileTextField(
-                    leftIcon: "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
+                    leftIcon:
+                        "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "TC Kimlik",
-                    initialValue: userInfo?['turkish_id_number'] ?? "",
+                    initialValue: data['turkish_id_number'],
                     onChanged: (value) {},
                     enabled: false,
                   ),
                   ProfileTextField(
-                    leftIcon: "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
+                    leftIcon:
+                        "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "Telefon Numarası",
-                    initialValue: userInfo?['phone_number'] ?? "",
+                    initialValue: data['phone_number'],
                     onChanged: (value) {},
-                    rightIcon: "assets/icons/Arturo-Wibawa-Akar-Arrow-left.512.png",
+                    rightIcon:
+                        "assets/icons/Arturo-Wibawa-Akar-Arrow-left.512.png",
                     onTapIcon: () => _editUserInfo('phone_number'),
-                    
                   ),
                   ProfileTextField(
-                    leftIcon: "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
+                    leftIcon:
+                        "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "Email",
-                    initialValue: userInfo?['email'] ?? "",
+                    initialValue: data['email'],
                     onChanged: (value) {},
-                    rightIcon: "assets/icons/Arturo-Wibawa-Akar-Arrow-left.512.png",
+                    rightIcon:
+                        "assets/icons/Arturo-Wibawa-Akar-Arrow-left.512.png",
                     onTapIcon: () => _editUserInfo('email'),
-                    
                   ),
                 ],
-              ),
+              );
+            }
+          },
+        ),
       ],
     );
   }
@@ -114,7 +132,11 @@ class _BodyState extends State<Body> {
       setState(() {
         userInfo?[field] = newValue;
       });
-      // Kullanıcı bilgilerini güncelleme işlemleri burada yapılabilir
+      await profile.updateUserInfo(userInfo!);
+      // Yenileme işlemi
+      setState(() {
+        userInfoFuture = _refreshUserInfo();
+      });
     }
   }
 }
