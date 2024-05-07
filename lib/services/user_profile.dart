@@ -20,3 +20,27 @@ Future<Map<String, dynamic>> getUserInfo() async {
     throw Exception('Failed to load user info');
   }
 }
+
+Future<void> updateUserInfo(Map<String, dynamic> updatedUserInfo) async {
+  String apiUrl = 'https://gondergelsin.pythonanywhere.com/user/';
+
+  String authToken = '51df4ef237575b3b7981f5facc124961c34c2a03';
+
+  String requestBody = json.encode(updatedUserInfo);
+  print(updatedUserInfo);
+
+  http.Response response = await http.put(
+    Uri.parse(apiUrl),
+    headers: {
+      'Authorization': 'Token $authToken',
+      'Content-Type': 'application/json',
+    },
+    body: requestBody,
+  );
+
+  if (response.statusCode == 200) {
+    print('Kullanıcı bilgileri güncellendi');
+  } else {
+    throw Exception('Kullanıcı bilgileri güncellenirken bir hata oluştu');
+  }
+}
