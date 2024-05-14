@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: theme(),
       // home: SplashScreen(),
-      initialRoute: SplashScreen.routeName,
+      initialRoute: HomePage.routName,
 
       routes: routes,
     );
