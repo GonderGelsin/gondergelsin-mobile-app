@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
+import 'package:flutter_application_1/pages/sign_up/sign_up_screen.dart';
 import 'package:flutter_application_1/size_config.dart';
 
 class NoAccountText extends StatelessWidget {
@@ -21,7 +22,7 @@ class NoAccountText extends StatelessWidget {
           width: getProportionateScreenWidth(10),
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: () => Navigator.pushNamed(context, SignUpScreen.routeName),
           child: Text(
             "Kayıt Ol",
             style: TextStyle(
@@ -29,7 +30,7 @@ class NoAccountText extends StatelessWidget {
                 color: kPrimaryColor,
                 fontFamily: "Mali"),
           ),
-        )
+        ),
       ],
     );
   }

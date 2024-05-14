@@ -59,6 +59,7 @@ Future<Response> signUserIn(
 }
 
 Future<Response> register(
+  tcController,
   nameController,
   surnameController,
   phoneNumberController,
@@ -73,21 +74,23 @@ Future<Response> register(
     final phoneNumber = phoneNumberController.text;
     final email = emailController.text;
     final password = passwordController.text;
+    final tcNumber = tcController.text;
 
     if (name.isNotEmpty &&
         surname.isNotEmpty &&
         phoneNumber.isNotEmpty &&
         email.isNotEmpty &&
-        password.isNotEmpty) {
+        password.isNotEmpty &&
+        tcNumber.isNotEmpty) {
       final cevap = await http.post(
         url,
         body: {
           'first_name': name,
           'last_name': surname,
           'email': email,
-          'phone_number': phoneNumber, // Telefon numarasını da gönder
+          'phone_number': phoneNumber,
           'password': password,
-          'turkish_id_number': '57097496018',
+          'turkish_id_number': tcNumber,
         },
       );
       print(cevap.body);
