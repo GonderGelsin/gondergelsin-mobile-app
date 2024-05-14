@@ -4,7 +4,7 @@ import 'package:flutter_application_1/components/default_button.dart';
 import 'package:flutter_application_1/components/form_error.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/forgot_password/forgot_password_screen.dart';
-import 'package:flutter_application_1/pages/login_succes/login_succes_screen.dart'; // Değişiklik burada
+import 'package:flutter_application_1/pages/home/home_screen.dart';
 import 'package:flutter_application_1/size_config.dart';
 import 'package:flutter_application_1/services/authentication.dart'
     as authentication;
@@ -100,13 +100,15 @@ class _SignFormState extends State<SignForm> {
               // Burada SnackBar'ı göstermeden önce yeni sayfaya geçiş yapabilirsiniz
               Navigator.pushNamed(
                 context,
-                LoginSuccesScreen.routeName,
+                HomePage.routeName,
               ).then((value) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Giriş Başarılı.'),
-                  ),
-                );
+                if (value != null && value == true) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Giriş Başarılı.'),
+                    ),
+                  );
+                }
               });
             }
           },
