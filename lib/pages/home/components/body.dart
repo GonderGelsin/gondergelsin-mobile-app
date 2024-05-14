@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/home/components/notif_screen.dart';
 import 'package:flutter_application_1/pages/home/components/profile_screen.dart';
 import 'package:flutter_application_1/pages/home/home_screen.dart';
+import 'package:flutter_application_1/pages/settings/components/body.dart';
+import 'package:flutter_application_1/pages/settings/settings_screen.dart';
 import 'package:flutter_application_1/size_config.dart';
 
 class Body extends StatefulWidget {
@@ -14,13 +17,21 @@ class _BodyState extends State<Body> {
 
   final List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    Text('Settings'), // Buraya Settings ekranını yerleştirin
+    SettingsPage(), // SettingsPage eklendi
   ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+
+    // BottomNavigationBar'ın seçilen öğesine göre sayfa değiştirme işlemi
+    if (_selectedIndex == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SettingsPage()),
+      );
+    }
   }
 
   @override
@@ -132,14 +143,18 @@ class _BodyState extends State<Body> {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.transparent,
-          items: const <BottomNavigationBarItem>[
+          backgroundColor: kPrimaryColor,
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Anasayfa',
             ),
             BottomNavigationBarItem(
-              icon: SizedBox.shrink(), // İkon olmayacak
+              icon: Image.asset(
+                'assets/icons/Arturo-Wibawa-Akar-Plus.512.png',
+                width: 24, // Genişlik
+                height: 24, // Yükseklik
+              ),
               label: '', // Boş label
             ),
             BottomNavigationBarItem(
@@ -153,12 +168,12 @@ class _BodyState extends State<Body> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // FAB'a basıldığında yapılacak işlem
+            // "chat" FAB'a basıldığında yapılacak işlem
           },
-          child: Icon(Icons.add),
-          backgroundColor: Colors.white,
+          child: Icon(Icons.chat), // "chat" simgesi
+          backgroundColor: kPrimaryColor, // "chat" FAB'ın arka plan rengi
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
     );
   }
