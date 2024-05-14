@@ -4,9 +4,9 @@ import 'package:flutter_application_1/components/custom_surfix_icon.dart';
 import 'package:flutter_application_1/components/default_button.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/login_succes/login_succes_screen.dart';
-import 'package:flutter_application_1/size_config.dart';
 import 'package:flutter_application_1/services/authentication.dart'
     as authentication;
+import 'package:flutter_application_1/size_config.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -133,25 +133,17 @@ class _SignUpFormState extends State<SignUpForm> {
           setState(() {
             isLoading = false;
           });
-          if (response.status == "NOK") {
+          // Burada SnackBar'ı göstermeden önce yeni sayfaya geçiş yapabilirsiniz
+          Navigator.pushNamed(
+            context,
+            LoginSuccesScreen.routeName,
+          ).then((value) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Kayıt başarısız. Lütfen tekrar deneyin.'),
+                content: Text('Kayıt Başarılı.'),
               ),
             );
-          } else {
-            // Burada SnackBar'ı göstermeden önce yeni sayfaya geçiş yapabilirsiniz
-            Navigator.pushNamed(
-              context,
-              LoginSuccesScreen.routeName,
-            ).then((value) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Kayıt Başarılı.'),
-                ),
-              );
-            });
-          }
+          });
         }).catchError((error) {
           setState(() {
             isLoading = false;

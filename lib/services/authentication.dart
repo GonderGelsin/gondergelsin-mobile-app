@@ -1,21 +1,22 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/login_succes/login_succes_screen.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 //Response dönüş tipi
-class Response {
+class SignInResponse {
   //alınacak değişkenler
   final String refresh;
   final String access;
   final String status;
 
   //gelen veriden alınacak değerleri çekme
-  Response({required this.refresh, required this.access, required this.status});
+  SignInResponse({required this.refresh, required this.access, required this.status});
 
   //json gelen verileri istenen formata dönüştürme
-  factory Response.fromJson(Map<String, dynamic> json) {
-    return Response(
+  factory SignInResponse.fromJson(Map<String, dynamic> json) {
+    return SignInResponse(
       refresh: json['refresh'],
       access: json['access'],
       status: json['status'],
@@ -23,8 +24,20 @@ class Response {
   }
 }
 
+class SignUpResponse {
+  final String status;
+
+  SignUpResponse({required this.status});
+
+  factory SignUpResponse.fromJson(Map<String, dynamic> json) {
+    return SignUpResponse(
+      status: json['status'],
+    );
+  }
+}
+
 //Login olma fonksiyonu
-Future<Response> signUserIn(
+Future<SignInResponse> signUserIn(
     BuildContext context, usernameController, passwordController) async {
   final url = Uri.parse(
       'https://gondergelsin.pythonanywhere.com/authentication/login/');
@@ -43,7 +56,7 @@ Future<Response> signUserIn(
       if (cevap.statusCode == 200) {
         // Başarılı bir yanıt aldığınızda, bu yanıtı işleyerek Response nesnesini oluşturun.
         Navigator.pushNamed(context, LoginSuccesScreen.routeName);
-        return Response.fromJson(json.decode(cevap.body));
+        return SignInResponse.fromJson(json.decode(cevap.body));
       } else {
         // Başarısız bir yanıt durumunda hata mesajını döndürün.
         throw Exception('Kullanıcı adı veya şifre hatalı.');
@@ -58,7 +71,7 @@ Future<Response> signUserIn(
   }
 }
 
-Future<Response> register(
+Future<SignUpResponse> register(
   tcController,
   nameController,
   surnameController,
@@ -82,7 +95,7 @@ Future<Response> register(
         email.isNotEmpty &&
         password.isNotEmpty &&
         tcNumber.isNotEmpty) {
-      final cevap = await http.post(
+      final request = await http.post(
         url,
         body: {
           'first_name': name,
@@ -93,19 +106,13 @@ Future<Response> register(
           'turkish_id_number': tcNumber,
         },
       );
-      print(cevap.body);
-      if (cevap.statusCode == 200) {
-        // Başarılı bir yanıt aldığınızda, bu yanıtı işleyerek Response nesnesini oluşturun.
-        return Response.fromJson(json.decode(cevap.body));
-      } else {
-        // Başarısız bir yanıt durumunda hata mesajını döndürün.
-        throw Exception('Kullanıcı adı veya şifre hatalı.');
-      }
+
+      final response = SignUpResponse.fromJson(json.decode(request.body));
+      return response;
     } else {
       throw Exception('Boş alanları doldurun.');
     }
   } catch (e) {
-    // Hata durumunda kullanıcıya bir hata mesajı gösterilebilir.
     print('Hata oluştu: $e');
     throw e;
   }
