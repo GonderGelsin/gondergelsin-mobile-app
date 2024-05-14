@@ -1,7 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/login_succes/login_succes_screen.dart';
+import 'package:flutter_application_1/pages/home/home_screen.dart';
 import 'package:http/http.dart' as http;
 
 //Response dönüş tipi
@@ -12,7 +11,8 @@ class SignInResponse {
   final String status;
 
   //gelen veriden alınacak değerleri çekme
-  SignInResponse({required this.refresh, required this.access, required this.status});
+  SignInResponse(
+      {required this.refresh, required this.access, required this.status});
 
   //json gelen verileri istenen formata dönüştürme
   factory SignInResponse.fromJson(Map<String, dynamic> json) {
@@ -55,7 +55,7 @@ Future<SignInResponse> signUserIn(
       );
       if (cevap.statusCode == 200) {
         // Başarılı bir yanıt aldığınızda, bu yanıtı işleyerek Response nesnesini oluşturun.
-        Navigator.pushNamed(context, LoginSuccesScreen.routeName);
+        Navigator.pushNamed(context, HomePage.routeName);
         return SignInResponse.fromJson(json.decode(cevap.body));
       } else {
         // Başarısız bir yanıt durumunda hata mesajını döndürün.
@@ -108,6 +108,8 @@ Future<SignUpResponse> register(
       );
 
       final response = SignUpResponse.fromJson(json.decode(request.body));
+      print(response);
+      print(request);
       return response;
     } else {
       throw Exception('Boş alanları doldurun.');

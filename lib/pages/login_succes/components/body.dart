@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/components/default_button.dart';
-import 'package:flutter_application_1/pages/home/home_screen.dart';
+import 'package:flutter_application_1/pages/sign_in/sign_in_screen.dart';
 import 'package:flutter_application_1/size_config.dart'; // HomePage widget'ının bulunduğu yer
 
 class BodySucces extends StatelessWidget {
@@ -21,7 +21,7 @@ class BodySucces extends StatelessWidget {
             height: SizeConfig.screenHeight * 0.08,
           ),
           Text(
-            "Giriş Tamamlandı",
+            "Kayıt Tamamlandı",
             style: TextStyle(
               fontSize: getProportionateScreenWidth(30),
               fontWeight: FontWeight.bold,
@@ -33,9 +33,9 @@ class BodySucces extends StatelessWidget {
           SizedBox(
             width: SizeConfig.screenWidth * 0.6,
             child: DefaultButton(
-              text: "Ana Sayfaya Dön",
+              text: "Giriş Sayfasına Dön",
               press: () {
-                Navigator.pushNamed(context, HomePage.routName);
+                Navigator.pushNamed(context, SignInScreen.routeName);
               },
             ),
           ),

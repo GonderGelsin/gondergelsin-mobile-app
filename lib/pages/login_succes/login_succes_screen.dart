@@ -12,7 +12,7 @@ class LoginSuccesScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Giriş Tamamlandı",
+          "Kayıt Tamamlandı",
           style: TextStyle(
             color: Colors.black54,
             fontSize: getProportionateScreenWidth(16),

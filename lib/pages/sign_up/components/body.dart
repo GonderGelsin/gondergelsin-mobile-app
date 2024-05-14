@@ -133,8 +133,9 @@ class _SignUpFormState extends State<SignUpForm> {
           setState(() {
             isLoading = false;
           });
+
           // Burada SnackBar'ı göstermeden önce yeni sayfaya geçiş yapabilirsiniz
-          Navigator.pushNamed(
+          Navigator.pushReplacementNamed(
             context,
             LoginSuccesScreen.routeName,
           ).then((value) {
