@@ -5,9 +5,9 @@ import 'package:flutter_application_1/components/form_error.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/forgot_password/forgot_password_screen.dart';
 import 'package:flutter_application_1/pages/home/home_screen.dart';
-import 'package:flutter_application_1/size_config.dart';
 import 'package:flutter_application_1/services/authentication.dart'
     as authentication;
+import 'package:flutter_application_1/size_config.dart';
 
 class SignForm extends StatefulWidget {
   const SignForm({Key? key});
@@ -77,52 +77,43 @@ class _SignFormState extends State<SignForm> {
 
   void _handleSignIn() {
     final form = _formKey.currentState;
-    if (form != null) {
-      if (form.validate()) {
-        form.save();
+    if (form != null && form.validate()) {
+      form.save();
+      setState(() {
+        isLoading = true;
+      });
+
+      authentication
+          .signUserIn(context, _emailController, _passwordController)
+          .then((response) {
         setState(() {
-          isLoading = true;
+          isLoading = false;
         });
-        authentication
-            .signUserIn(context, _emailController, _passwordController)
-            .then(
-          (response) {
-            setState(() {
-              isLoading = false;
-            });
-            if (response.status == "NOK") {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Giriş başarısız. Lütfen tekrar deneyin.'),
-                ),
-              );
-            } else {
-              // Burada SnackBar'ı göstermeden önce yeni sayfaya geçiş yapabilirsiniz
-              Navigator.pushNamed(
-                context,
-                HomePage.routeName,
-              ).then((value) {
-                if (value != null && value == true) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Giriş Başarılı.'),
-                    ),
-                  );
-                }
-              });
-            }
-          },
-        ).catchError((error) {
-          setState(() {
-            isLoading = false;
-          });
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Giriş sırasında bir hata oluştu.'),
-            ),
-          );
+        Navigator.pushNamed(context, HomePage.routeName).then((value) {
+          if (value != null && value == true) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Giriş Başarılı.'),
+              ),
+            );
+          }
         });
-      }
+      }).catchError((error) {
+        setState(() {
+          isLoading = false;
+        });
+        String errorMessage;
+        if (error is authentication.SignInException) {
+          errorMessage = error.message;
+        } else {
+          errorMessage = 'Bilinmeyen bir hata oluştu.';
+        }
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(errorMessage),
+          ),
+        );
+      });
     }
   }
 
