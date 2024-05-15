@@ -1,6 +1,6 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/home/home_screen.dart';
 import 'package:http/http.dart' as http;
 
 //Response dönüş tipi
@@ -36,39 +36,12 @@ class SignUpResponse {
   }
 }
 
-//Login olma fonksiyonu
-Future<SignInResponse> signUserIn(
-    BuildContext context, usernameController, passwordController) async {
-  final url = Uri.parse(
-      'https://gondergelsin.pythonanywhere.com/authentication/login/');
-  try {
-    final username = usernameController.text;
-    final password = passwordController.text;
+class SignInException implements Exception {
+  final String message;
+  SignInException(this.message);
 
-    if (username != null && password != null) {
-      final cevap = await http.post(
-        url,
-        body: {
-          'username': username,
-          'password': password,
-        },
-      );
-      if (cevap.statusCode == 200) {
-        // Başarılı bir yanıt aldığınızda, bu yanıtı işleyerek Response nesnesini oluşturun.
-        Navigator.pushNamed(context, HomePage.routeName);
-        return SignInResponse.fromJson(json.decode(cevap.body));
-      } else {
-        // Başarısız bir yanıt durumunda hata mesajını döndürün.
-        throw Exception('Kullanıcı adı veya şifre hatalı.');
-      }
-    } else {
-      throw Exception('Kullanıcı adı veya şifre boş.');
-    }
-  } catch (e) {
-    // Hata durumunda kullanıcıya bir hata mesajı gösterilebilir.
-    print('Hata oluştu: $e');
-    throw e;
-  }
+  @override
+  String toString() => "SignInException: $message";
 }
 
 Future<SignUpResponse> register(
@@ -117,5 +90,34 @@ Future<SignUpResponse> register(
   } catch (e) {
     print('Hata oluştu: $e');
     throw e;
+  }
+}
+
+Future<Null> signUserIn(
+    BuildContext context,
+    TextEditingController usernameController,
+    TextEditingController passwordController) async {
+  final url = Uri.parse(
+      'https://gondergelsin.pythonanywhere.com/authentication/login/');
+  try {
+    final username = usernameController.text;
+    final password = passwordController.text;
+
+    if (username.isNotEmpty && password.isNotEmpty) {
+      final response = await http.post(
+        url,
+        body: {
+          'username': username,
+          'password': password,
+        },
+      );
+      if (response.statusCode != 200) {
+        throw SignInException('Kullanıcı adı veya şifre hatalı.');
+      }
+    } else {
+      throw SignInException('Kullanıcı adı veya şifre boş.');
+    }
+  } catch (e) {
+    throw Exception('Giriş sırasında bir hata oluştu.');
   }
 }
