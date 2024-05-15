@@ -88,8 +88,6 @@ Future<SignUpResponse> register(
       );
 
       final response = SignUpResponse.fromJson(json.decode(request.body));
-      print(response);
-      print(request);
       return response;
     } else {
       throw Exception('Boş alanları doldurun.');
@@ -136,4 +134,10 @@ Future<Null> signUserIn(
   } catch (e) {
     throw Exception('Giriş sırasında bir hata oluştu: $e');
   }
+}
+
+Future<bool> signOut(BuildContext context) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.remove('auth_token');
+  return true;
 }
