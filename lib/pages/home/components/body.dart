@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/home/components/notif_screen.dart';
-import 'package:flutter_application_1/pages/home/components/profile_screen.dart';
 import 'package:flutter_application_1/pages/home/home_screen.dart';
+import 'package:flutter_application_1/pages/profile/profile_pages.dart';
 import 'package:flutter_application_1/pages/settings/components/body.dart';
-import 'package:flutter_application_1/pages/settings/settings_screen.dart';
 import 'package:flutter_application_1/size_config.dart';
 
 class Body extends StatefulWidget {
@@ -188,7 +187,7 @@ class _BodyState extends State<Body> {
   void _navigateToProfilePage(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ProfilePage()),
+      MaterialPageRoute(builder: (context) => ProfileScreen()),
     );
   }
 }
