@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/components/default_button.dart';
 import 'package:flutter_application_1/constants.dart';
-import 'package:flutter_application_1/pages/login_page.dart';
+import 'package:flutter_application_1/pages/sign_in/sign_in_screen.dart';
 import 'package:flutter_application_1/pages/splash/components/splash_content.dart';
 import 'package:flutter_application_1/size_config.dart';
 
@@ -14,6 +14,8 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   int currentPage = 0;
+  PageController _pageController = PageController();
+
   List<Map<String, String>> splashData = [
     {
       "text": "Hoşgeldiniz, Hadi İlerleyelim!",
@@ -32,6 +34,22 @@ class _BodyState extends State<Body> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      setState(() {
+        currentPage = _pageController.page!.round();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: SizedBox(
@@ -41,11 +59,7 @@ class _BodyState extends State<Body> {
             Expanded(
               flex: 3,
               child: PageView.builder(
-                onPageChanged: (value) {
-                  setState(() {
-                    currentPage = value;
-                  });
-                },
+                controller: _pageController,
                 itemCount: splashData.length,
                 itemBuilder: (context, index) => SplashContent(
                   image: splashData[index]["image"]!,
@@ -69,17 +83,14 @@ class _BodyState extends State<Body> {
                         ),
                       ),
                       Spacer(flex: 2),
-                      DefaultButton(
-                        key: UniqueKey(),
-                        text: "Devam Et",
-                        press: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginPage()),
-                          );
-                        },
-                      ),
+                      if (currentPage == splashData.length - 1)
+                        DefaultButton(
+                          text: "Devam Et",
+                          press: () {
+                            Navigator.pushNamed(
+                                context, SignInScreen.routeName);
+                          },
+                        ),
                       Spacer(),
                     ],
                   ),

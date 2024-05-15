@@ -110,6 +110,8 @@ class MyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold();
+
     return GestureDetector(
       onTap:
           onTap, // onTap parametresini kullanarak signUserIn fonksiyonunu tetikler

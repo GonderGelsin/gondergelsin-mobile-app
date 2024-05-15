@@ -1,61 +1,48 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/home/home_screen.dart'; // HomePage widget'ının bulunduğu yer
+import 'package:flutter/widgets.dart';
+import 'package:flutter_application_1/components/default_button.dart';
+import 'package:flutter_application_1/pages/sign_in/sign_in_screen.dart';
+import 'package:flutter_application_1/size_config.dart'; // HomePage widget'ının bulunduğu yer
 
 class BodySucces extends StatelessWidget {
-  static String routName = "/body_succes";
+  static String routeName = "/body_succes";
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Giriş Tamamlandı",
-          style: TextStyle(
-            fontSize: 30,
-            color: Colors.black,
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        children: [
+          SizedBox(
+            height: SizeConfig.screenHeight * 0.02,
           ),
-        ),
-        SizedBox(height: 200), // Araya bir boşluk ekleyelim
-        MyButton(
-          onTap: () {
-            // Ana sayfaya dönme işlemi
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );
-          },
-        ),
-      ],
-    );
-  }
-}
-
-class MyButton extends StatelessWidget {
-  final VoidCallback onTap;
-
-  const MyButton({Key? key, required this.onTap}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        margin: EdgeInsets.symmetric(horizontal: 20),
-        child: Center(
-          child: Text(
-            'Ana Sayfaya Dön',
+          Image.asset("assets/images/Adsız tasarım (2).png"),
+          SizedBox(
+            height: SizeConfig.screenHeight * 0.08,
+          ),
+          Text(
+            "Kayıt Tamamlandı",
             style: TextStyle(
-              color: Colors.white,
+              fontSize: getProportionateScreenWidth(30),
               fontWeight: FontWeight.bold,
-              fontSize: 16,
             ),
           ),
-        ),
+          Spacer(
+            flex: 1,
+          ),
+          SizedBox(
+            width: SizeConfig.screenWidth * 0.6,
+            child: DefaultButton(
+              text: "Giriş Sayfasına Dön",
+              press: () {
+                Navigator.pushNamed(context, SignInScreen.routeName);
+              },
+            ),
+          ),
+          Spacer(
+            flex: 2,
+          ),
+        ],
       ),
     );
   }
