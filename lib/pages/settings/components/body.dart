@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
+import 'package:flutter_application_1/pages/sign_in/sign_in_screen.dart';
+import 'package:flutter_application_1/services/authentication.dart'
+    as authentication;
 import 'package:flutter_application_1/size_config.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -255,12 +258,21 @@ class SettingsPage extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Çıkış Yap",
-                      style: TextStyle(
-                          fontSize: SizeConfig.screenWidth * 0.07,
-                          fontWeight: FontWeight.bold),
-                    ),
+                    GestureDetector(
+                      onTap: () {
+                        authentication.signOut(context);
+                        Navigator.pushReplacementNamed(
+                          context,
+                          SignInScreen.routeName,
+                        );
+                      },
+                      child: Text(
+                        "Çıkış Yap",
+                        style: TextStyle(
+                            fontSize: SizeConfig.screenWidth * 0.07,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )
                   ],
                 ),
                 Spacer(),
