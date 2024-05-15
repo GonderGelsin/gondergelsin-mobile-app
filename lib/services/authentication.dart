@@ -2,6 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+Future<String> getStoredData(String key) async {
+  final prefs = await SharedPreferences.getInstance();
+  final data = prefs.getString(key);
+  return data ?? '';
+}
 
 //Response dönüş tipi
 class SignInResponse {
@@ -111,13 +118,22 @@ Future<Null> signUserIn(
           'password': password,
         },
       );
-      if (response.statusCode != 200) {
+      if (response.statusCode == 200) {
+        final responseData = json.decode(response.body);
+        final token = responseData['data']['token'];
+        if (token != null) {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setString('auth_token', token);
+        } else {
+          throw SignInException('Token alınamadı.');
+        }
+      } else {
         throw SignInException('Kullanıcı adı veya şifre hatalı.');
       }
     } else {
       throw SignInException('Kullanıcı adı veya şifre boş.');
     }
   } catch (e) {
-    throw Exception('Giriş sırasında bir hata oluştu.');
+    throw Exception('Giriş sırasında bir hata oluştu: $e');
   }
 }

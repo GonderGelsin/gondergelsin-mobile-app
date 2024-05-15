@@ -1,12 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/no_account_text.dart';
 import 'package:flutter_application_1/pages/sign_in/components/social_card.dart';
+import 'package:flutter_application_1/services/authentication.dart'
+    as authentication;
 import 'package:flutter_application_1/size_config.dart';
 
 import 'sign_form.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({Key? key});
+
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    checkToken();
+  }
+
+  Future<void> checkToken() async {
+    final token = await authentication.getStoredData('auth_token');
+    if (token != '') {
+      Navigator.pushReplacementNamed(context, '/home');
+    } else {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +59,7 @@ class Body extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
-                SignForm(),
+                isLoading ? CircularProgressIndicator() : SignForm(),
                 SizedBox(height: SizeConfig.screenHeight * 0.04),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
