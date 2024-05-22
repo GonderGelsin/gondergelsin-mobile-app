@@ -3,7 +3,7 @@ import 'package:flutter_application_1/pages/forgot_password/components/body.dart
 
 class Settingspage extends StatelessWidget {
   Settingspage({super.key});
-  static String routName = "/settings";
+  static String routeName = "/settings";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
