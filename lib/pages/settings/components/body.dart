@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
+import 'package:flutter_application_1/pages/home/home_screen.dart';
 import 'package:flutter_application_1/pages/sign_in/sign_in_screen.dart';
 import 'package:flutter_application_1/services/authentication.dart'
     as authentication;
@@ -9,7 +10,17 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pushReplacementNamed(
+              context,
+              HomePage.routeName,
+            );
+          },
+          child: Icon(Icons.arrow_back),
+        ),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -290,35 +301,6 @@ class SettingsPage extends StatelessWidget {
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: kPrimaryColor,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Anasayfa',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/Arturo-Wibawa-Akar-Plus.512.png',
-              width: 24, // Genişlik
-              height: 24, // Yükseklik
-            ),
-            label: '', // Boş label
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Ayarlar',
-          ),
-        ],
-        currentIndex:
-            1, // Ayarlar sayfasında olduğumuzu belirtmek için index'i 1 yapın
-        onTap: (index) {
-          if (index == 0) {
-            // Anasayfaya git
-            Navigator.pop(context);
-          }
-        },
       ),
     );
   }
