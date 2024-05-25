@@ -72,7 +72,10 @@ class SettingsPage extends StatelessWidget {
                 onTap: () {},
               ),
               SizedBox(height: 20),
-              GestureDetector(
+              SettingsItem(
+                iconPath: 'assets/icons/Arturo-Wibawa-Akar-Sign-out.512.png',
+                title: 'Çıkış Yap',
+                description: '',
                 onTap: () {
                   authentication.signOut(context);
                   Navigator.pushReplacementNamed(
@@ -80,12 +83,6 @@ class SettingsPage extends StatelessWidget {
                     SignInScreen.routeName,
                   );
                 },
-                child: SettingsItem(
-                  iconPath: 'assets/icons/Arturo-Wibawa-Akar-Sign-out.512.png',
-                  title: 'Çıkış Yap',
-                  description: '',
-                  onTap: () {},
-                ),
               ),
             ],
           ),
