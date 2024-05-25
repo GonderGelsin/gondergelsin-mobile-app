@@ -21,286 +21,141 @@ class SettingsPage extends StatelessWidget {
           child: Icon(Icons.arrow_back),
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              "Ayarlar",
-              style: TextStyle(
-                fontSize: SizeConfig.screenWidth * 0.12,
-                fontWeight: FontWeight.bold,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Ayarlar",
+                  style: TextStyle(
+                    fontSize: SizeConfig.screenWidth * 0.12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              SettingsItem(
+                iconPath: 'assets/icons/Arturo-Wibawa-Akar-Location.512.png',
+                title: 'Adreslerim',
+                description: 'Buradan adreslerinizi düzenleyebilirsiniz',
+                onTap: () {},
+              ),
+              SizedBox(height: 20),
+              SettingsItem(
+                iconPath: 'assets/icons/money-transfer.png',
+                title: 'Ödeme Yöntemlerim',
+                description: 'Ödeme yöntemlerinizi burdan yönetebilirsiniz',
+                onTap: () {},
+              ),
+              SizedBox(height: 20),
+              SettingsItem(
+                iconPath: 'assets/images/notification.png',
+                title: 'Bildirim Ayarları',
+                description: 'Bildirim ayarlarınızı burdan yönetebilirsiniz',
+                onTap: () {},
+              ),
+              SizedBox(height: 20),
+              SettingsItem(
+                iconPath: 'assets/icons/question.png',
+                title: 'Yardım',
+                description: 'Uygulama içi sorularınız için tıklayabilirsiniz',
+                onTap: () {},
+              ),
+              SizedBox(height: 20),
+              SettingsItem(
+                iconPath: 'assets/icons/language.png',
+                title: 'Language - Dil',
+                description: 'Dili buradan değiştirebilirsiniz',
+                onTap: () {},
+              ),
+              SizedBox(height: 20),
+              SettingsItem(
+                iconPath: 'assets/icons/Arturo-Wibawa-Akar-Sign-out.512.png',
+                title: 'Çıkış Yap',
+                description: '',
+                onTap: () {
+                  authentication.signOut(context);
+                  Navigator.pushReplacementNamed(
+                    context,
+                    SignInScreen.routeName,
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SettingsItem extends StatelessWidget {
+  final String iconPath;
+  final String title;
+  final String description;
+  final VoidCallback onTap;
+
+  const SettingsItem({
+    Key? key,
+    required this.iconPath,
+    required this.title,
+    required this.description,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16.0),
+        margin: const EdgeInsets.symmetric(vertical: 8.0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 6,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Image.asset(
+              iconPath,
+              height: getProportionateScreenHeight(50),
+              width: getProportionateScreenWidth(50),
+            ),
+            const SizedBox(width: 20),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: SizeConfig.screenWidth * 0.07,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  if (description.isNotEmpty)
+                    Text(
+                      description,
+                      style: TextStyle(
+                        fontSize: SizeConfig.screenWidth * 0.034,
+                      ),
+                    ),
+                ],
               ),
             ),
-          ),
-          Container(
-            width: double.infinity,
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/icons/Arturo-Wibawa-Akar-Person.512.png',
-                  height: getProportionateScreenHeight(50),
-                  width: getProportionateScreenWidth(45),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Hesap Ayarları",
-                      style: TextStyle(
-                          fontSize: SizeConfig.screenWidth * 0.07,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(),
-                    Text(
-                      'Buradan hesap ayarlarınızı yönetebilirsiniz',
-                      style:
-                          TextStyle(fontSize: SizeConfig.screenWidth * 0.034),
-                    ),
-                  ],
-                ),
-                Spacer(),
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Image.asset(
-                    'assets/icons/Arturo-Wibawa-Akar-Chevron-right-small.512.png',
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 40),
-          Container(
-            width: double.infinity,
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/icons/money-transfer.png',
-                  height: getProportionateScreenHeight(50),
-                  width: getProportionateScreenWidth(50),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Ödeme Yöntemlerim",
-                      style: TextStyle(
-                          fontSize: SizeConfig.screenWidth * 0.07,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(),
-                    Text(
-                      'Ödeme yöntemlerinizi burdan yönetebilirsiniz',
-                      style:
-                          TextStyle(fontSize: SizeConfig.screenWidth * 0.034),
-                    ),
-                  ],
-                ),
-                Spacer(),
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Image.asset(
-                    'assets/icons/Arturo-Wibawa-Akar-Chevron-right-small.512.png',
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 40),
-          Container(
-            width: double.infinity,
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/images/notification.png',
-                  height: getProportionateScreenHeight(50),
-                  width: getProportionateScreenWidth(43),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Bildirim Ayarları",
-                      style: TextStyle(
-                          fontSize: SizeConfig.screenWidth * 0.07,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(),
-                    Text(
-                      'Bildirim ayarlarınızı burdan yönetebilirsiniz',
-                      style:
-                          TextStyle(fontSize: SizeConfig.screenWidth * 0.034),
-                    ),
-                  ],
-                ),
-                Spacer(),
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Image.asset(
-                    'assets/icons/Arturo-Wibawa-Akar-Chevron-right-small.512.png',
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 40),
-          Container(
-            width: double.infinity,
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/icons/question.png',
-                  height: getProportionateScreenHeight(46),
-                  width: getProportionateScreenWidth(45),
-                ),
-                const SizedBox(
-                  width: 19,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Yardım",
-                      style: TextStyle(
-                          fontSize: SizeConfig.screenWidth * 0.07,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(),
-                    Text(
-                      'Uygulama içi sorularınız için tıklayabilirsiniz',
-                      style:
-                          TextStyle(fontSize: SizeConfig.screenWidth * 0.034),
-                    ),
-                  ],
-                ),
-                Spacer(),
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Image.asset(
-                    'assets/icons/Arturo-Wibawa-Akar-Chevron-right-small.512.png',
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 40),
-          Container(
-            width: double.infinity,
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/icons/language.png',
-                  height: getProportionateScreenHeight(60),
-                  width: getProportionateScreenWidth(50),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Language - Dil",
-                      style: TextStyle(
-                          fontSize: SizeConfig.screenWidth * 0.07,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(),
-                    Text(
-                      'Dili buradan değiştirebilirsiniz',
-                      style:
-                          TextStyle(fontSize: SizeConfig.screenWidth * 0.034),
-                    ),
-                  ],
-                ),
-                Spacer(),
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Image.asset(
-                    'assets/icons/Arturo-Wibawa-Akar-Chevron-right-small.512.png',
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 40),
-          Container(
-            width: double.infinity,
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/icons/Arturo-Wibawa-Akar-Sign-out.512.png',
-                  height: getProportionateScreenHeight(50),
-                  width: getProportionateScreenWidth(50),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        authentication.signOut(context);
-                        Navigator.pushReplacementNamed(
-                          context,
-                          SignInScreen.routeName,
-                        );
-                      },
-                      child: Text(
-                        "Çıkış Yap",
-                        style: TextStyle(
-                            fontSize: SizeConfig.screenWidth * 0.07,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    )
-                  ],
-                ),
-                Spacer(),
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Image.asset(
-                    'assets/icons/Arturo-Wibawa-Akar-Chevron-right-small.512.png',
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+            Icon(Icons.chevron_right, size: 30),
+          ],
+        ),
       ),
     );
   }
