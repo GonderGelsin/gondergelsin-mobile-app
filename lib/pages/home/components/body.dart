@@ -46,34 +46,33 @@ class _BodyState extends State<Body> {
                             'Anasayfa',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: SizeConfig.screenWidth * 0.1,
+                              fontSize: getProportionateScreenWidth(30),
                             ),
                           ),
                         ),
-                        SizedBox(width: 80),
+                        SizedBox(
+                          width: getProportionateScreenWidth(120),
+                        ),
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
                               _navigateToNotificationPage(context);
                             },
                             child: Container(
-                              width: getProportionateScreenWidth(38),
-                              height: getProportionateScreenWidth(38),
+                              height: getProportionateScreenWidth(35),
                               child: Image.asset(
                                 'assets/images/notification.png',
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(width: 0),
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
                               _navigateToProfilePage(context);
                             },
                             child: Container(
-                              width: getProportionateScreenWidth(38),
-                              height: getProportionateScreenWidth(38),
+                              height: getProportionateScreenWidth(35),
                               child: Image.asset(
                                 'assets/images/profile.png',
                               ),
@@ -88,11 +87,11 @@ class _BodyState extends State<Body> {
                         GestureDetector(
                           onTap: () {},
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 11),
+                            padding: const EdgeInsets.only(left: 10),
                             child: Text(
                               'Gönderiler',
                               style: TextStyle(
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w500,
                                 fontSize: SizeConfig.screenWidth * 0.05,
                               ),
                             ),
@@ -103,25 +102,12 @@ class _BodyState extends State<Body> {
                             // Kampanyalar ile ilgili işlem
                           },
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 22),
+                            padding: const EdgeInsets.only(left: 25),
                             child: Text(
                               'Kampanyalar',
                               style: TextStyle(
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w500,
                                 fontSize: SizeConfig.screenWidth * 0.05,
-                              ),
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 40),
-                            child: Container(
-                              width: getProportionateScreenWidth(70),
-                              height: getProportionateScreenWidth(70),
-                              child: Image.asset(
-                                'assets/images/design-1710195127425 (1)-modified (1).png',
                               ),
                             ),
                           ),

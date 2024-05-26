@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/constants.dart';
-
-import 'package:flutter_application_1/size_config.dart';
-
 import 'components/body.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -13,6 +9,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Profile"),
+        centerTitle: true,
       ),
       body: Body(),
       bottomNavigationBar: CustomBottomNavBar(),

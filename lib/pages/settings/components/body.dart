@@ -11,6 +11,8 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        title: Text("Ayarlar"),
         leading: GestureDetector(
           onTap: () {
             Navigator.pushReplacementNamed(
@@ -25,53 +27,55 @@ class SettingsPage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
+                  textAlign: TextAlign.center,
                   "Ayarlar",
                   style: TextStyle(
-                    fontSize: SizeConfig.screenWidth * 0.12,
+                    fontSize: getProportionateScreenHeight(30),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
+              SizedBox(height: getProportionateScreenHeight(10)),
               SettingsItem(
                 iconPath: 'assets/icons/Arturo-Wibawa-Akar-Location.512.png',
                 title: 'Adreslerim',
                 description: 'Buradan adreslerinizi düzenleyebilirsiniz',
                 onTap: () {},
               ),
-              SizedBox(height: 20),
+              SizedBox(height: getProportionateScreenHeight(10)),
               SettingsItem(
                 iconPath: 'assets/icons/money-transfer.png',
                 title: 'Ödeme Yöntemlerim',
                 description: 'Ödeme yöntemlerinizi burdan yönetebilirsiniz',
                 onTap: () {},
               ),
-              SizedBox(height: 20),
+              SizedBox(height: getProportionateScreenHeight(10)),
               SettingsItem(
                 iconPath: 'assets/images/notification.png',
                 title: 'Bildirim Ayarları',
                 description: 'Bildirim ayarlarınızı burdan yönetebilirsiniz',
                 onTap: () {},
               ),
-              SizedBox(height: 20),
+              SizedBox(height: getProportionateScreenHeight(10)),
               SettingsItem(
                 iconPath: 'assets/icons/question.png',
                 title: 'Yardım',
                 description: 'Uygulama içi sorularınız için tıklayabilirsiniz',
                 onTap: () {},
               ),
-              SizedBox(height: 20),
+              SizedBox(height: getProportionateScreenHeight(10)),
               SettingsItem(
                 iconPath: 'assets/icons/language.png',
                 title: 'Language - Dil',
                 description: 'Dili buradan değiştirebilirsiniz',
                 onTap: () {},
               ),
-              SizedBox(height: 20),
+              SizedBox(height: getProportionateScreenHeight(10)),
               SettingsItem(
                 iconPath: 'assets/icons/Arturo-Wibawa-Akar-Sign-out.512.png',
                 title: 'Çıkış Yap',
@@ -128,10 +132,11 @@ class SettingsItem extends StatelessWidget {
           children: [
             Image.asset(
               iconPath,
-              height: getProportionateScreenHeight(50),
-              width: getProportionateScreenWidth(50),
+              height: getProportionateScreenHeight(30),
             ),
-            const SizedBox(width: 20),
+            SizedBox(
+              width: getProportionateScreenWidth(20),
+            ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,16 +144,16 @@ class SettingsItem extends StatelessWidget {
                   Text(
                     title,
                     style: TextStyle(
-                      fontSize: SizeConfig.screenWidth * 0.07,
-                      fontWeight: FontWeight.bold,
+                      fontSize: getProportionateScreenWidth(20),
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                   if (description.isNotEmpty)
                     Text(
                       description,
                       style: TextStyle(
-                        fontSize: SizeConfig.screenWidth * 0.034,
-                      ),
+                          fontSize: getProportionateScreenWidth(12),
+                          fontWeight: FontWeight.w400),
                     ),
                 ],
               ),
