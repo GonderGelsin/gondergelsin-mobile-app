@@ -21,6 +21,7 @@ class _SignFormState extends State<SignForm> {
   String? email = "";
   String? password = "";
   bool? remember = false;
+  bool? showPassword = false;
   final List<String> errors = [];
 
   final TextEditingController _emailController = TextEditingController();
@@ -37,6 +38,20 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(30)),
           buildPasswordField(),
           SizedBox(height: getProportionateScreenHeight(30)),
+          Row(
+            children: [
+              Checkbox(
+                value: showPassword,
+                activeColor: kPrimaryColor,
+                onChanged: (value) {
+                  setState(() {
+                    showPassword = value;
+                  });
+                },
+              ),
+              Text("Şifreyi Göster"),
+            ],
+          ),
           Row(
             children: [
               Checkbox(
@@ -121,7 +136,7 @@ class _SignFormState extends State<SignForm> {
   TextFormField buildPasswordField() {
     return TextFormField(
       controller: _passwordController,
-      obscureText: true,
+      obscureText: !(showPassword ?? false),
       onSaved: (newValue) => password = newValue,
       onChanged: (value) {
         if (value.isNotEmpty && errors.contains(kPassNullError)) {

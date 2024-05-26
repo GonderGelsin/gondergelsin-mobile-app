@@ -65,6 +65,7 @@ class _SignUpFormState extends State<SignUpForm> {
   String? phoneNumber;
   String? tcNumber;
   bool isLoading = false;
+  bool? showPassword = false;
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -83,6 +84,22 @@ class _SignUpFormState extends State<SignUpForm> {
       sum += int.parse(value[i]);
     }
     return (sum % 10 == int.parse(value[10]));
+  }
+
+  Row buildShowPasswordRow() {
+    return Row(
+      children: [
+        Checkbox(
+          value: showPassword,
+          onChanged: (value) {
+            setState(() {
+              showPassword = value;
+            });
+          },
+        ),
+        Text("Şifreyi Göster"),
+      ],
+    );
   }
 
   @override
@@ -106,6 +123,8 @@ class _SignUpFormState extends State<SignUpForm> {
           buildPasswordField(),
           SizedBox(height: getProportionateScreenHeight(20)),
           buildConfirmPasswordField(),
+          SizedBox(height: getProportionateScreenHeight(10)),
+          buildShowPasswordRow(),
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
             text: "Kayıt Ol",
@@ -253,7 +272,7 @@ class _SignUpFormState extends State<SignUpForm> {
   TextFormField buildPasswordField() {
     return TextFormField(
       controller: _passwordController,
-      obscureText: true,
+      obscureText: !(showPassword ?? false),
       onSaved: (newValue) => password = newValue,
       validator: (value) {
         if (value != null && value.isEmpty) {
@@ -277,7 +296,7 @@ class _SignUpFormState extends State<SignUpForm> {
   TextFormField buildConfirmPasswordField() {
     return TextFormField(
       controller: _confirmPasswordController,
-      obscureText: true,
+      obscureText: !(showPassword ?? false),
       onSaved: (newValue) => confirmPassword = newValue,
       validator: (value) {
         if (value == null || value.isEmpty) {
