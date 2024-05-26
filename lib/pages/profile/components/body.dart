@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/profile/components/profile_pic.dart';
 import 'package:flutter_application_1/services/user_profile.dart' as profile;
 import 'package:flutter_application_1/size_config.dart';
@@ -51,32 +52,24 @@ class _BodyState extends State<Body> {
               return Column(
                 children: [
                   ProfileTextField(
-                    leftIcon:
-                        "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "Ad",
                     initialValue: data['first_name'],
                     onChanged: (value) {},
                     enabled: false,
                   ),
                   ProfileTextField(
-                    leftIcon:
-                        "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "Soyad",
                     initialValue: data['last_name'],
                     onChanged: (value) {},
                     enabled: false,
                   ),
                   ProfileTextField(
-                    leftIcon:
-                        "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "TC Kimlik",
                     initialValue: data['turkish_id_number'],
                     onChanged: (value) {},
                     enabled: false,
                   ),
                   ProfileTextField(
-                    leftIcon:
-                        "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "Telefon Numarası",
                     initialValue: data['phone_number'],
                     onChanged: (value) {},
@@ -85,8 +78,6 @@ class _BodyState extends State<Body> {
                     onTapIcon: () => _editUserInfo('phone_number'),
                   ),
                   ProfileTextField(
-                    leftIcon:
-                        "assets/icons/Arturo-Wibawa-Akar-Three-line-horizontal.512.png",
                     text: "Email",
                     initialValue: data['email'],
                     onChanged: (value) {},
@@ -109,7 +100,10 @@ class _BodyState extends State<Body> {
       builder: (BuildContext context) {
         String currentValue = userInfo?[field] ?? "";
         return AlertDialog(
-          title: Text('Bilgiyi Düzenle'),
+          title: Text(
+            'Bilgiyi Düzenle',
+            textAlign: TextAlign.center,
+          ),
           content: TextFormField(
             initialValue: currentValue,
             onChanged: (newValue) {
@@ -117,11 +111,18 @@ class _BodyState extends State<Body> {
             },
           ),
           actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(currentValue);
-              },
-              child: Text('Tamam'),
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(currentValue);
+                },
+                child: Text(
+                  'Tamam',
+                  style: TextStyle(
+                    color: kPrimaryColor,
+                  ),
+                ),
+              ),
             ),
           ],
         );
@@ -142,7 +143,6 @@ class _BodyState extends State<Body> {
 }
 
 class ProfileTextField extends StatelessWidget {
-  final String leftIcon;
   final String text;
   final String initialValue;
   final ValueChanged<String>? onChanged;
@@ -152,7 +152,6 @@ class ProfileTextField extends StatelessWidget {
 
   const ProfileTextField({
     Key? key,
-    required this.leftIcon,
     required this.text,
     required this.initialValue,
     this.onChanged,
@@ -164,15 +163,9 @@ class ProfileTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
       child: Row(
         children: [
-          Image.asset(
-            leftIcon,
-            width: 24,
-            height: 24,
-          ),
-          SizedBox(width: 20),
           Expanded(
             child: TextFormField(
               enabled: enabled,
@@ -180,14 +173,19 @@ class ProfileTextField extends StatelessWidget {
               onChanged: onChanged,
               decoration: InputDecoration(
                 labelText: text,
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50),
+                ),
                 suffixIcon: rightIcon != null
                     ? GestureDetector(
                         onTap: onTapIcon,
-                        child: Image.asset(
-                          rightIcon!,
-                          width: 24,
-                          height: 24,
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Image.asset(
+                            rightIcon!,
+                            height: getProportionateScreenHeight(25),
+                            color: kPrimaryColor,
+                          ),
                         ),
                       )
                     : null,
