@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/createOrder/order_screen.dart';
 import 'package:flutter_application_1/pages/forgot_password/forgot_password_screen.dart';
 import 'package:flutter_application_1/pages/home/components/body.dart';
 import 'package:flutter_application_1/pages/home/home_screen.dart';
@@ -18,6 +19,7 @@ final Map<String, WidgetBuilder> routes = {
   LoginSuccesScreen.routeName: (context) => LoginSuccesScreen(),
   SignUpScreen.routeName: (context) => SignUpScreen(),
   HomePage.routeName: (context) => HomePage(),
+  OrderScreen.routeName: (context) => OrderScreen(),
   Settingspage.routeName: (context) => Settingspage(),
   BodySucces.routeName: (contest) => Body(),
 };
