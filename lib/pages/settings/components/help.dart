@@ -54,8 +54,7 @@ class _HelpPageState extends State<HelpPage> {
                     );
                   },
                   body: Container(
-                    height: getProportionateScreenHeight(
-                        200), // Kaydırılabilir alanın yüksekliği
+                    height: getProportionateScreenHeight(200),
                     child: SingleChildScrollView(
                       child: ListTile(
                         title: Text(
@@ -160,19 +159,24 @@ class _HelpPageState extends State<HelpPage> {
                           'Müşteri Kişisel Verilerinin Korunması Politikası'),
                     );
                   },
-                  body: ListTile(
-                    title: Text(
-                      'Amaç\n\n'
-                      'Kişisel Verileri Saklama ve İmha Politikası (“Politika”), Kişisel Verileri Koruma '
-                      'Kurumunca (“Kurum”) gerçekleştirilmekte olan saklama ve imha faaliyetlerine ilişkin iş ve '
-                      'işlemler konusunda usul ve esasları belirlemek amacıyla hazırlanmıştır.\n\n'
-                      'Kurum; Stratejik Planda belirlenen misyon, vizyon ve temel ilkeler doğrultusunda; Kurum '
-                      'çalışanları, çalışan adayları, hizmet sağlayıcıları, ziyaretçiler ve diğer üçüncü kişilere ait '
-                      'kişisel verilerin T.C. Anayasası, uluslararası sözleşmeler, 6698 sayılı Kişisel Verilerin '
-                      'Korunması Kanunu (“Kanun”) ve diğer ilgili mevzuata uygun olarak işlenmesini ve ilgili '
-                      'kişilerin haklarını etkin bir şekilde kullanmasının sağlanmasını öncelik olarak belirlemiştir.\n\n'
-                      'Kişisel verilerin saklanması ve imhasına ilişkin iş ve işlemler, Kurum tarafından bu '
-                      'doğrultuda hazırlanmış olan Politikaya uygun olarak gerçekleştirilir.',
+                  body: Container(
+                    height: getProportionateScreenHeight(200),
+                    child: SingleChildScrollView(
+                      child: ListTile(
+                        title: Text(
+                          'Amaç\n\n'
+                          'Kişisel Verileri Saklama ve İmha Politikası (“Politika”), Kişisel Verileri Koruma '
+                          'Kurumunca (“Kurum”) gerçekleştirilmekte olan saklama ve imha faaliyetlerine ilişkin iş ve '
+                          'işlemler konusunda usul ve esasları belirlemek amacıyla hazırlanmıştır.\n\n'
+                          'Kurum; Stratejik Planda belirlenen misyon, vizyon ve temel ilkeler doğrultusunda; Kurum '
+                          'çalışanları, çalışan adayları, hizmet sağlayıcıları, ziyaretçiler ve diğer üçüncü kişilere ait '
+                          'kişisel verilerin T.C. Anayasası, uluslararası sözleşmeler, 6698 sayılı Kişisel Verilerin '
+                          'Korunması Kanunu (“Kanun”) ve diğer ilgili mevzuata uygun olarak işlenmesini ve ilgili '
+                          'kişilerin haklarını etkin bir şekilde kullanmasının sağlanmasını öncelik olarak belirlemiştir.\n\n'
+                          'Kişisel verilerin saklanması ve imhasına ilişkin iş ve işlemler, Kurum tarafından bu '
+                          'doğrultuda hazırlanmış olan Politikaya uygun olarak gerçekleştirilir.',
+                        ),
+                      ),
                     ),
                   ),
                   isExpanded: _isExpanded3,
