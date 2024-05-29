@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/home/home_screen.dart';
 import 'package:flutter_application_1/pages/settings/components/help.dart';
+import 'package:flutter_application_1/pages/settings/components/notifications_page.dart';
 import 'package:flutter_application_1/pages/sign_in/sign_in_screen.dart';
 import 'package:flutter_application_1/services/authentication.dart'
     as authentication;
@@ -60,7 +61,14 @@ class SettingsPage extends StatelessWidget {
                 iconPath: 'assets/images/notification.png',
                 title: 'Bildirim Ayarları',
                 description: 'Bildirim ayarlarınızı burdan yönetebilirsiniz',
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                  MaterialPageRoute(builder: (context) => NotificationsPage()),
+                  );
+                  
+
+                },
               ),
               SizedBox(height: getProportionateScreenHeight(10)),
               SettingsItem(
