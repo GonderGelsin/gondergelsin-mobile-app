@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_application_1/constants.dart';
+ Language_Dil
+import 'package:flutter_application_1/routes.dart';
+
 import 'package:flutter_application_1/size_config.dart';
+ main
 
-void main() => runApp(MyApp());
+void main() => runApp(LiveChat());
 
-class MyApp extends StatelessWidget {
+class LiveChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'My App',
+      title: 'LiveSupport',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -22,7 +26,8 @@ class MyApp extends StatelessWidget {
 }
 
 class LiveSupportPage extends StatelessWidget {
-  static String routeName = '/livesupport';
+  static String routeName = '/live_support';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

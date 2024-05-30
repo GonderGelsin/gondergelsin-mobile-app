@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/home/home_screen.dart';
+import 'package:flutter_application_1/pages/settings/components/Language.dart';
 import 'package:flutter_application_1/pages/settings/components/help.dart';
 import 'package:flutter_application_1/pages/settings/components/live_support.dart';
 import 'package:flutter_application_1/pages/settings/components/notifications_page.dart';
@@ -94,7 +95,12 @@ class SettingsPage extends StatelessWidget {
                 iconPath: 'assets/icons/language.png',
                 title: 'Language - Dil',
                 description: 'Dili buradan değiştirebilirsiniz',
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LanguagePage()),
+                  );
+                },
               ),
               SizedBox(height: getProportionateScreenHeight(10)),
               SettingsItem(
