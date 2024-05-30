@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_application_1/constants.dart';
+import 'package:flutter_application_1/routes.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'My App',
+      title: 'LiveSupport',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
 }
 
 class LiveSupportPage extends StatelessWidget {
-  static String routeName = '/livesupport';
+  static String routeName = '/live_support';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
