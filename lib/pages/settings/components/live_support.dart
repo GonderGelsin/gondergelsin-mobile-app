@@ -2,18 +2,40 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_application_1/constants.dart';
 
-void main() => runApp(LiveSupportPage());
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'My App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      initialRoute: LiveSupportPage.routeName,
+      routes: {
+        LiveSupportPage.routeName: (context) => LiveSupportPage(),
+      },
+    );
+  }
+}
 
 class LiveSupportPage extends StatelessWidget {
   static String routeName = '/livesupport';
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Chat App',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Canlı Destek"),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
-      home: ChatScreen(),
+      body: ChatScreen(),
     );
   }
 }
@@ -66,59 +88,47 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("Canlı Destek"),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: ListView.builder(
-              reverse: false,
-              itemCount: _messages.length,
-              itemBuilder: (context, index) {
-                return _buildMessageBubble(_messages[index]);
-              },
-            ),
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: ListView.builder(
+            reverse: false,
+            itemCount: _messages.length,
+            itemBuilder: (context, index) {
+              return _buildMessageBubble(_messages[index]);
+            },
           ),
-          Container(
-            color: Colors.white,
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextField(
-                      controller: _controller,
-                      decoration: InputDecoration(
-                        hintText: 'Mesajınızı buraya yazın...',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
+        ),
+        Container(
+          color: Colors.white,
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: _controller,
+                    decoration: InputDecoration(
+                      hintText: 'Mesajınızı buraya yazın...',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
                       ),
                     ),
                   ),
                 ),
-                IconButton(
-                  icon: Icon(Icons.send),
-                  onPressed: () {
-                    if (_controller.text.isNotEmpty) {
-                      _sendMessage(_controller.text);
-                    }
-                  },
-                ),
-              ],
-            ),
+              ),
+              IconButton(
+                icon: Icon(Icons.send),
+                onPressed: () {
+                  if (_controller.text.isNotEmpty) {
+                    _sendMessage(_controller.text);
+                  }
+                },
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
