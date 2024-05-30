@@ -1,12 +1,7 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
- Language_Dil
-import 'package:flutter_application_1/routes.dart';
-
-import 'package:flutter_application_1/size_config.dart';
- main
-
 void main() => runApp(LiveChat());
 
 class LiveChat extends StatelessWidget {
