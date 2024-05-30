@@ -8,40 +8,42 @@ class BodySucces2 extends StatelessWidget {
   static String routeName = "/body_succes";
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Column(
-        children: [
-          SizedBox(
-            height: SizeConfig.screenHeight * 0.1,
-          ),
-          Image.asset("assets/images/Adsız tasarım (2).png"),
-          SizedBox(
-            height: SizeConfig.screenHeight * 0.1,
-          ),
-          Text(
-            "Siparişiniz Oluşturuldu!",
-            style: TextStyle(
-              fontSize: getProportionateScreenWidth(30),
-              fontWeight: FontWeight.bold,
+    return SingleChildScrollView(
+      child: SizedBox(
+        width: double.infinity,
+        child: Column(
+          children: [
+            SizedBox(
+              height: SizeConfig.screenHeight * 0.1,
             ),
-          ),
-          Spacer(
-            flex: 1,
-          ),
-          SizedBox(
-            width: SizeConfig.screenWidth * 0.6,
-            child: DefaultButton(
-              text: "Ana Sayfaya Dön",
-              press: () {
-                Navigator.pushNamed(context, HomePage.routeName);
-              },
+            Image.asset("assets/images/Adsız tasarım (2).png"),
+            SizedBox(
+              height: SizeConfig.screenHeight * 0.1,
             ),
-          ),
-          Spacer(
-            flex: 2,
-          ),
-        ],
+            Text(
+              "Siparişiniz Oluşturuldu!",
+              style: TextStyle(
+                fontSize: getProportionateScreenWidth(30),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: SizeConfig.screenHeight * 0.1,
+            ),
+            SizedBox(
+              width: SizeConfig.screenWidth * 0.6,
+              child: DefaultButton(
+                text: "Ana Sayfaya Dön",
+                press: () {
+                  Navigator.pushNamed(context, HomePage.routeName);
+                },
+              ),
+            ),
+            SizedBox(
+              height: SizeConfig.screenHeight * 0.2,
+            ),
+          ],
+        ),
       ),
     );
   }
