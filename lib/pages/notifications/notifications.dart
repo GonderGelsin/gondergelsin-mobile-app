@@ -6,10 +6,10 @@ class NotificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Bildirimler'),
-      ),
-      body: NotificationsPage()
-    );
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Bildirimler'),
+        ),
+        body: NotificationsPage());
   }
 }
