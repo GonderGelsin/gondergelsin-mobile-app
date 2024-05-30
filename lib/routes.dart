@@ -13,6 +13,7 @@ import 'package:flutter_application_1/pages/settings/settings_screen.dart';
 import 'package:flutter_application_1/pages/sign_in/sign_in_screen.dart';
 import 'package:flutter_application_1/pages/sign_up/sign_up_screen.dart';
 import 'package:flutter_application_1/pages/splash/splash_screen.dart';
+import 'package:flutter_application_1/pages/settings/components/live_support.dart';
 
 final Map<String, WidgetBuilder> routes = {
   SplashScreen.routeName: (context) => SplashScreen(),
@@ -26,6 +27,7 @@ final Map<String, WidgetBuilder> routes = {
   Settingspage.routeName: (context) => Settingspage(),
   BodySucces.routeName: (context) => BodySucces(),
   BodySucces2.routeName: (context) => BodySucces2(),
+  LiveSupportPage.routeName: (context) => LiveSupportPage(),
   NotificationPage.routeName: (context) => NotificationPage(),
   OrderSuccesScreen.routeName: (context) => OrderSuccesScreen(),
 };
