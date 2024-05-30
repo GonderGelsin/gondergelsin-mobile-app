@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
+import 'package:flutter_application_1/size_config.dart';
 
 class NotificationsPage extends StatefulWidget {
   static String routeName = '/notifications';
@@ -22,31 +23,36 @@ class _NotificationsPageState extends State<NotificationsPage> {
             Navigator.of(context).pop();
           },
         ),
+        centerTitle: true,
         title: Text(
           'Bildirim Ayarları',
           style: TextStyle(
-            fontSize: 20, 
-            color: Colors.black87, 
+            fontSize: 20,
+            color: Colors.black87,
           ),
         ),
-        backgroundColor: kPrimaryColor, // Theme'in primaryColor özelliğini kullanarak arka plan rengini ayarlar
+        backgroundColor:
+            kPrimaryColor, // Theme'in primaryColor özelliğini kullanarak arka plan rengini ayarlar
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            SizedBox(
+              height: getProportionateScreenHeight(20),
+            ),
             Container(
-              padding: EdgeInsets.all(10), 
+              padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                border: Border.all(color: Color.fromARGB(255, 0, 0, 0)), 
-                borderRadius: BorderRadius.circular(10), 
+                border: Border.all(color: Color.fromARGB(255, 0, 0, 0)),
+                borderRadius: BorderRadius.circular(10),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
                     'Email ile Bildirim Almak İstiyorum',
-                    style: TextStyle(fontSize: 16), 
+                    style: TextStyle(fontSize: 16),
                   ),
                   Switch(
                     value: _isEmailNotificationEnabled,
@@ -59,19 +65,19 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 ],
               ),
             ),
-            SizedBox(height: 10), 
+            SizedBox(height: 10),
             Container(
-              padding: EdgeInsets.all(10), 
+              padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 border: Border.all(color: Color.fromARGB(255, 5, 5, 5)),
-                borderRadius: BorderRadius.circular(10), 
+                borderRadius: BorderRadius.circular(10),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
                     'SMS ile Bildirim Almak İstiyorum',
-                    style: TextStyle(fontSize: 16), 
+                    style: TextStyle(fontSize: 16),
                   ),
                   Switch(
                     value: _isSmsNotificationEnabled,

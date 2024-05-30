@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_application_1/constants.dart';
+import 'package:flutter_application_1/size_config.dart';
 
 void main() => runApp(MyApp());
 
