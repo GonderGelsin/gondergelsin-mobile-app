@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/home/home_screen.dart';
 import 'package:flutter_application_1/pages/settings/components/help.dart';
+import 'package:flutter_application_1/pages/settings/components/live_support.dart';
 import 'package:flutter_application_1/pages/settings/components/notifications_page.dart';
 import 'package:flutter_application_1/pages/sign_in/sign_in_screen.dart';
 import 'package:flutter_application_1/services/authentication.dart'
     as authentication;
 import 'package:flutter_application_1/size_config.dart';
+import 'package:flutter_application_1/pages/settings/components/live_support.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
@@ -44,10 +46,16 @@ class SettingsPage extends StatelessWidget {
               ),
               SizedBox(height: getProportionateScreenHeight(10)),
               SettingsItem(
-                iconPath: 'assets/icons/Arturo-Wibawa-Akar-Location.512.png',
-                title: 'Adreslerim',
-                description: 'Buradan adreslerinizi düzenleyebilirsiniz',
-                onTap: () {},
+                iconPath: 'assets/icons/Arturo-Wibawa-Akar-Reciept.512.png',
+                title: 'Canlı Destek',
+                description: 'Buradan canlı destekle iletişime geçebilirsiniz.',
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LiveSupportPage(),
+                      ));
+                },
               ),
               SizedBox(height: getProportionateScreenHeight(10)),
               SettingsItem(
@@ -64,10 +72,9 @@ class SettingsPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                  MaterialPageRoute(builder: (context) => NotificationsPage()),
+                    MaterialPageRoute(
+                        builder: (context) => NotificationsPage()),
                   );
-                  
-
                 },
               ),
               SizedBox(height: getProportionateScreenHeight(10)),
