@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/createOrder/order_screen.dart';
-import 'package:flutter_application_1/pages/home/components/notif_screen.dart';
 import 'package:flutter_application_1/pages/home/home_screen.dart';
+import 'package:flutter_application_1/pages/notifications/notifications.dart';
 import 'package:flutter_application_1/pages/profile/profile_pages.dart';
 import 'package:flutter_application_1/pages/settings/components/body.dart';
 import 'package:flutter_application_1/pages/settings/components/live_support.dart';
