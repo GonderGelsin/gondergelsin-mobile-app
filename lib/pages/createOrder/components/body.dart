@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/components/default_button.dart';
 import 'package:flutter_application_1/constants.dart';
+import 'package:flutter_application_1/pages/order_succes/order_succes.dart';
 import 'package:flutter_application_1/size_config.dart';
 
 class Body extends StatefulWidget {
@@ -26,6 +28,25 @@ class _BodyState extends State<Body> {
   };
 
   List<String> paymentMethods = ['Nakit', 'Kart'];
+  bool isLoading = false;
+
+  void _createOrder() {
+    setState(() {
+      isLoading = true; // Butona basıldığında isLoading true olacak
+    });
+
+    // Simulate a network request or other async operation
+    Future.delayed(Duration(seconds: 2), () {
+      setState(() {
+        isLoading = false; // İşlem tamamlandığında isLoading false olacak
+      });
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => OrderSuccesScreen()),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -351,7 +372,15 @@ class _BodyState extends State<Body> {
             ),
           ),
           SizedBox(height: getProportionateScreenHeight(20)),
-          // Diğer bileşenler buraya eklenebilir
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: DefaultButton(
+              text: "Sipariş Oluştur",
+              press: _createOrder,
+              isLoading: isLoading,
+            ),
+          ),
+          SizedBox(height: getProportionateScreenHeight(40)),
         ],
       ),
     );
