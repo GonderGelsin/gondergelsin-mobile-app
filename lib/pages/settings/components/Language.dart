@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(Language_dil());
 }
 
-class MyApp extends StatelessWidget {
+class Language_dil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,7 +29,7 @@ class LanguagePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GestureDetector(
+            InkWell(
               onTap: () {
                 _changeLanguage('tr', context);
               },
@@ -51,7 +51,7 @@ class LanguagePage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            GestureDetector(
+            InkWell(
               onTap: () {
                 _changeLanguage('en', context);
               },
@@ -82,31 +82,7 @@ class LanguagePage extends StatelessWidget {
     if (languageCode == 'tr') {
       _currentLocale = Locale('tr', 'TR');
     } else if (languageCode == 'en') {
-      _currentLocale = Locale('en', 'US');
+      // İngilizce butonuna tıklanıldığında yapılacak işlemler buraya eklenebilir
     }
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => SecondPage()),
-    );
-  }
-}
-
-class SecondPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Second Page'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-            runApp(MyApp()); // Geriye dönme işlemi
-          },
-          child: Text('Geri Dön'),
-        ),
-      ),
-    );
   }
 }

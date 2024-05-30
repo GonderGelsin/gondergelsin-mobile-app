@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/routes.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(LiveChat());
 
-class MyApp extends StatelessWidget {
+class LiveChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
