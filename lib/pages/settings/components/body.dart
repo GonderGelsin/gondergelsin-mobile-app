@@ -5,6 +5,7 @@ import 'package:flutter_application_1/pages/settings/components/Language.dart';
 import 'package:flutter_application_1/pages/settings/components/help.dart';
 import 'package:flutter_application_1/pages/settings/components/live_support.dart';
 import 'package:flutter_application_1/pages/settings/components/notifications_page.dart';
+import 'package:flutter_application_1/pages/settings/components/payment_page.dart';
 import 'package:flutter_application_1/pages/sign_in/sign_in_screen.dart';
 import 'package:flutter_application_1/services/authentication.dart'
     as authentication;
@@ -63,7 +64,12 @@ class SettingsPage extends StatelessWidget {
                 iconPath: 'assets/icons/money-transfer.png',
                 title: 'Ödeme Yöntemlerim',
                 description: 'Ödeme yöntemlerinizi burdan yönetebilirsiniz',
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                  MaterialPageRoute(builder: (context) => PaymentPage()),
+                  );
+                },
               ),
               SizedBox(height: getProportionateScreenHeight(10)),
               SettingsItem(
