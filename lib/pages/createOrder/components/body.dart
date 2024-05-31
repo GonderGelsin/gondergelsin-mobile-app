@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/default_button.dart';
 import 'package:flutter_application_1/constants.dart';
-import 'package:flutter_application_1/pages/order_succes/order_succes.dart';
+import 'package:flutter_application_1/pages/createOrder/components/order.dart';
 import 'package:flutter_application_1/size_config.dart';
 import 'package:flutter_application_1/translations/locale_keys.g.dart';
 
@@ -20,7 +20,12 @@ class _BodyState extends State<Body> {
   TextEditingController arrivalAddressController = TextEditingController();
 
   Map<String, List<String>> dropdownOptions = {
-    'Motor': [LocaleKeys.up_to_2_kg.tr(), LocaleKeys.up_to_5_kg.tr(), LocaleKeys.up_to_10_kg.tr(), LocaleKeys.up_to_20_kg.tr()],
+    'Motor': [
+      LocaleKeys.up_to_2_kg.tr(),
+      LocaleKeys.up_to_5_kg.tr(),
+      LocaleKeys.up_to_10_kg.tr(),
+      LocaleKeys.up_to_20_kg.tr()
+    ],
     'Ticari': [
       LocaleKeys.up_to_20_kg.tr(),
       LocaleKeys.up_to_50_kg.tr(),
@@ -29,25 +34,39 @@ class _BodyState extends State<Body> {
     ],
   };
 
-  List<String> paymentMethods = [LocaleKeys.payment_type_cash.tr(), LocaleKeys.payment_type_card.tr()];
+  List<String> paymentMethods = [
+    LocaleKeys.payment_type_cash.tr(),
+    LocaleKeys.payment_type_card.tr()
+  ];
   bool isLoading = false;
 
-  void _createOrder() {
+  void _createOrder(BuildContext context) async {
     setState(() {
-      isLoading = true; // Butona basıldığında isLoading true olacak
+      isLoading = true;
     });
 
-    // Simulate a network request or other async operation
-    Future.delayed(Duration(seconds: 2), () {
-      setState(() {
-        isLoading = false; // İşlem tamamlandığında isLoading false olacak
-      });
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => OrderSuccesScreen()),
+    try {
+      final Order order = Order(
+        status: "P",
+        postContent: postContentController.text,
+        departureAddress: departureAddressController.text,
+        arrivalAddress: arrivalAddressController.text,
+        vehicleType: selectedOption1,
+        weightLimit:
+            double.parse(selectedOption2.replaceAll(RegExp(r'\D'), '')),
+        paymentMethod: selectedPaymentMethod,
       );
-    });
+
+      await order.createOrder(context);
+
+      setState(() {
+        isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   @override
@@ -59,7 +78,6 @@ class _BodyState extends State<Body> {
           SizedBox(
             height: getProportionateScreenHeight(40),
           ),
-          // "Gönderi İçeriği" başlığı ve TextField
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
@@ -92,7 +110,7 @@ class _BodyState extends State<Body> {
                     ),
                   ],
                 ),
-                SizedBox(height: 10), // Başlıktan aşağı boşluk
+                SizedBox(height: 10),
                 TextField(
                   controller: postContentController,
                   decoration: InputDecoration(
@@ -104,7 +122,6 @@ class _BodyState extends State<Body> {
             ),
           ),
           SizedBox(height: getProportionateScreenHeight(20)),
-          // "Çıkış Adresi" ve "Varış Adresi" başlıkları ve TextField'lar
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
@@ -185,7 +202,6 @@ class _BodyState extends State<Body> {
             ),
           ),
           SizedBox(height: getProportionateScreenHeight(20)),
-          // "Araç ve Ağırlık Seçimi" başlığı ve Dropdownlar
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
@@ -303,7 +319,6 @@ class _BodyState extends State<Body> {
             ),
           ),
           SizedBox(height: getProportionateScreenHeight(20)),
-          // "Ödeme Yöntemi" başlığı ve Dropdown menü
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
@@ -378,7 +393,7 @@ class _BodyState extends State<Body> {
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: DefaultButton(
               text: LocaleKeys.create_order.tr(),
-              press: _createOrder,
+              press: () => _createOrder(context),
               isLoading: isLoading,
             ),
           ),
