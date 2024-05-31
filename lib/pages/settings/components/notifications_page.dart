@@ -30,7 +30,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
           LocaleKeys.notification_settings.tr(),
           style: TextStyle(
             fontSize: 20,
-            color: Colors.black87,
           ),
         ),
         backgroundColor:
