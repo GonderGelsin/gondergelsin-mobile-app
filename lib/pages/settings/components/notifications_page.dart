@@ -28,7 +28,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
           'Bildirim Ayarları',
           style: TextStyle(
             fontSize: 20,
-            color: Colors.black87,
           ),
         ),
         backgroundColor:
