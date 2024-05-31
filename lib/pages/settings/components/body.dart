@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/home/home_screen.dart';
 import 'package:flutter_application_1/pages/settings/components/Language.dart';
 import 'package:flutter_application_1/pages/settings/components/help.dart';
@@ -11,7 +10,6 @@ import 'package:flutter_application_1/pages/sign_in/sign_in_screen.dart';
 import 'package:flutter_application_1/services/authentication.dart'
     as authentication;
 import 'package:flutter_application_1/size_config.dart';
-import 'package:flutter_application_1/pages/settings/components/live_support.dart';
 import 'package:flutter_application_1/translations/locale_keys.g.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -64,13 +62,8 @@ class SettingsPage extends StatelessWidget {
               SizedBox(height: getProportionateScreenHeight(10)),
               SettingsItem(
                 iconPath: 'assets/icons/money-transfer.png',
-
                 title: LocaleKeys.payment_methods.tr(),
                 description: LocaleKeys.manage_payment_methods.tr(),
-                onTap: () {},
-
-                title: 'Ödeme Yöntemlerim',
-                description: 'Ödeme yöntemlerinizi burdan yönetebilirsiniz',
                 onTap: () {
                   Navigator.push(
                     context,
