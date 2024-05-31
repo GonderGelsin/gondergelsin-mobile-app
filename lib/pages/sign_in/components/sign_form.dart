@@ -51,7 +51,7 @@ class _SignFormState extends State<SignForm> {
                   });
                 },
               ),
-              Text("Şifreyi Göster"),
+              Text(LocaleKeys.show_password.tr()),
             ],
           ),
           Row(
@@ -65,13 +65,13 @@ class _SignFormState extends State<SignForm> {
                   });
                 },
               ),
-              Text("Beni Hatırla"),
+              Text(LocaleKeys.remember_me.tr()),
               Spacer(),
               GestureDetector(
                 onTap: () => Navigator.pushNamed(
                     context, ForgotPasswordScreen.routeName),
                 child: Text(
-                  "Şifremi Unuttum",
+                  LocaleKeys.forgot_password.tr(),
                   style: TextStyle(
                     decoration: TextDecoration.underline,
                   ),
@@ -82,7 +82,7 @@ class _SignFormState extends State<SignForm> {
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
-            text: "Giriş Yap",
+            text: LocaleKeys.login.tr(),
             press:
                 isLoading ? null : _handleSignIn, // isLoading kontrol ediliyor
             isLoading: isLoading, // isLoading durumu geçiriliyor
@@ -110,7 +110,7 @@ class _SignFormState extends State<SignForm> {
           if (value != null && value == true) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Giriş Başarılı.'),
+                content: Text(LocaleKeys.login_successful.tr()),
               ),
             );
           }
@@ -123,7 +123,7 @@ class _SignFormState extends State<SignForm> {
         if (error is authentication.SignInException) {
           errorMessage = error.message;
         } else {
-          errorMessage = 'Bilinmeyen bir hata oluştu.';
+          errorMessage = LocaleKeys.unknown_error.tr();
         }
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -161,8 +161,8 @@ class _SignFormState extends State<SignForm> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Şifre",
-        hintText: "Şifreniz",
+        labelText: LocaleKeys.password.tr(),
+        hintText: LocaleKeys.your_password.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(
           pngIcon: "assets/icons/Arturo-Wibawa-Akar-Lock-on.512.png",
@@ -199,7 +199,7 @@ class _SignFormState extends State<SignForm> {
       },
       decoration: InputDecoration(
         labelText: LocaleKeys.email_label.tr(),
-        hintText: "E-postanız",
+        hintText: LocaleKeys.your_email.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(
           pngIcon: "assets/icons/Arturo-Wibawa-Akar-Envelope.512.png",

@@ -91,8 +91,8 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
               return null;
             },
             decoration: InputDecoration(
-              labelText: "E-mail",
-              hintText: "E-postanız",
+              labelText: LocaleKeys.email.tr(),
+              hintText: LocaleKeys.your_email.tr(),
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixIcon: CustomSurffixIcon(
                 pngIcon: "assets/icons/Arturo-Wibawa-Akar-Envelope.512.png",

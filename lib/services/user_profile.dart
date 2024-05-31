@@ -26,7 +26,7 @@ Future<Map<String, dynamic>> getUserInfo() async {
 Future<void> updateUserInfo(Map<String, dynamic> updatedUserInfo) async {
   String apiUrl = 'https://gondergelsin.pythonanywhere.com/user/';
 
-  String authToken = '51df4ef237575b3b7981f5facc124961c34c2a03';
+  final authToken = await authentication.getStoredData('auth_token');
 
   String requestBody = json.encode(updatedUserInfo);
   print(updatedUserInfo);

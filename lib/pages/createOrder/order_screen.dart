@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/createOrder/components/body.dart';
 import 'package:flutter_application_1/pages/home/home_screen.dart';
+import 'package:flutter_application_1/translations/locale_keys.g.dart';
 
 class OrderScreen extends StatelessWidget {
   static String routeName = "/order";
@@ -18,7 +20,7 @@ class OrderScreen extends StatelessWidget {
           child: Icon(Icons.arrow_back),
         ),
         centerTitle: true,
-        title: Text("Yeni Gönderi"),
+        title: Text(LocaleKeys.new_post.tr()),
       ),
       body: Body(),
     );
