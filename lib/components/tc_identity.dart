@@ -28,7 +28,7 @@ class _TcKimlikFormState extends State<TcKimlikForm> {
                 print("T.C. Kimlik No: $tcNumber");
               }
             },
-            child: Text("Gönder"),
+            child: Text(LocaleKeys.submit.tr()),
           ),
         ],
       ),
@@ -57,7 +57,7 @@ class _TcKimlikFormState extends State<TcKimlikForm> {
       },
       decoration: InputDecoration(
         labelText: LocaleKeys.id_no.tr(),
-        hintText: "T.C. Kimlik Numaranızı girin",
+        hintText: LocaleKeys.enter_id_no.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: Icon(Icons.person), // Kendi ikonunuzu kullanabilirsiniz
       ),

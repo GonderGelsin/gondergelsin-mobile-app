@@ -24,7 +24,7 @@ class Body extends StatelessWidget {
               children: [
                 SizedBox(height: SizeConfig.screenHeight * 0.02),
                 Text(
-                  LocaleKeys.login.tr(),
+                  LocaleKeys.register.tr(),
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: getProportionateScreenWidth(28),
@@ -32,7 +32,7 @@ class Body extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Aşağıda verilen bilgileriniz ile\nveya sosyal medyanız ile kayıt olun.",
+                  LocaleKeys.register_with_email_or_social.tr(),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.04),
@@ -172,7 +172,7 @@ class _SignUpFormState extends State<SignUpForm> {
           });
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Kayıt sırasında bir hata oluştu.'),
+              content: Text(LocaleKeys.registration_error_occurred.tr(),),
             ),
           );
         });
@@ -192,7 +192,7 @@ class _SignUpFormState extends State<SignUpForm> {
       },
       decoration: InputDecoration(
         labelText: LocaleKeys.first_name_label.tr(),
-        hintText: "İsminizi girin",
+        hintText: LocaleKeys.enter_your_name.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(
           pngIcon: "assets/icons/Arturo-Wibawa-Akar-Person.512.png",
@@ -310,7 +310,7 @@ class _SignUpFormState extends State<SignUpForm> {
       },
       decoration: InputDecoration(
         labelText: LocaleKeys.confirm_password.tr(),
-        hintText: "Şifrenizi tekrar girin",
+        hintText: LocaleKeys.re_enter_your_password.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(
           pngIcon: "assets/icons/Arturo-Wibawa-Akar-Double-check.512.png",

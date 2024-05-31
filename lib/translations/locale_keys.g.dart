@@ -23,7 +23,7 @@ abstract class  LocaleKeys {
   static const enter_email_to_recover = 'enter_email_to_recover';
   static const forgot_password = 'forgot_password';
   static const email = 'email';
-  static const continue_ = 'continue';
+  static const continue_ = 'continue_';
   static const homepage = 'homepage';
   static const create_order = 'create_order';
   static const settings = 'settings';
@@ -91,5 +91,28 @@ abstract class  LocaleKeys {
   static const fast_delivery = 'fast_delivery';
   static const go_on = 'go_on';
   static const send_gelsin = 'send_gelsin';
+  static const login_with_email_and_password_or_social = 'login_with_email_and_password_or_social';
+  static const welcome = 'welcome';
+  static const your_email = 'your_email';
+  static const register_with_email_or_social = 'register_with_email_or_social';
+  static const registration_error_occurred = 'registration_error_occurred';
+  static const enter_your_name = 'enter_your_name';
+  static const enter_your_surname = 'enter_your_surname';
+  static const re_enter_your_password = 're_enter_your_password';
+  static const please_enter_email = 'please_enter_email';
+  static const please_enter_valid_email = 'please_enter_valid_email';
+  static const please_enter_password = 'please_enter_password';
+  static const password_too_short = 'password_too_short';
+  static const passwords_do_not_match = 'passwords_do_not_match';
+  static const please_enter_your_name = 'please_enter_your_name';
+  static const please_enter_phone = 'please_enter_phone';
+  static const please_enter_address = 'please_enter_address';
+  static const payment_type_cash = 'payment_type_cash';
+  static const payment_type_card = 'payment_type_card';
+  static const post_content = 'post_content';
+  static const exit_address = 'exit_address';
+  static const arrival_address = 'arrival_address';
+  static const vehicle_and_weight_selection = 'vehicle_and_weight_selection';
+  static const payment_method = 'payment_method';
 
 }

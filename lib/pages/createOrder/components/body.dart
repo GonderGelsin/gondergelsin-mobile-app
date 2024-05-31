@@ -13,23 +13,23 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   String selectedOption1 = LocaleKeys.motor.tr();
-  String selectedOption2 = "2 kg'a kadar";
-  String selectedPaymentMethod = 'Nakit';
+  String selectedOption2 = LocaleKeys.up_to_2_kg.tr();
+  String selectedPaymentMethod = LocaleKeys.payment_type_cash.tr();
   TextEditingController postContentController = TextEditingController();
   TextEditingController departureAddressController = TextEditingController();
   TextEditingController arrivalAddressController = TextEditingController();
 
   Map<String, List<String>> dropdownOptions = {
-    'Motor': ["2 kg'a kadar", "5 kg'a kadar", "10 kg'a kadar", "20 kg'a kadar"],
+    'Motor': [LocaleKeys.up_to_2_kg.tr(), LocaleKeys.up_to_5_kg.tr(), LocaleKeys.up_to_10_kg.tr(), LocaleKeys.up_to_20_kg.tr()],
     'Ticari': [
-      "20 kg'a kadar",
-      "50 kg'a kadar",
-      "75 kg'a kadar",
-      "100 kg'a kadar"
+      LocaleKeys.up_to_20_kg.tr(),
+      LocaleKeys.up_to_50_kg.tr(),
+      LocaleKeys.up_to_75_kg.tr(),
+      LocaleKeys.up_to_100_kg.tr()
     ],
   };
 
-  List<String> paymentMethods = ['Nakit', "Kart"];
+  List<String> paymentMethods = [LocaleKeys.payment_type_cash.tr(), LocaleKeys.payment_type_card.tr()];
   bool isLoading = false;
 
   void _createOrder() {
@@ -84,7 +84,7 @@ class _BodyState extends State<Body> {
                     ),
                     SizedBox(width: getProportionateScreenWidth(10)),
                     Text(
-                      'Gönderi İçeriği',
+                      LocaleKeys.post_content.tr(),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: getProportionateScreenWidth(16),
@@ -96,7 +96,7 @@ class _BodyState extends State<Body> {
                 TextField(
                   controller: postContentController,
                   decoration: InputDecoration(
-                    hintText: 'Gönderi İçeriği',
+                    hintText: LocaleKeys.post_content.tr(),
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -129,7 +129,7 @@ class _BodyState extends State<Body> {
                     ),
                     SizedBox(width: 10),
                     Text(
-                      'Çıkış Adresi',
+                      LocaleKeys.exit_address.tr(),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: getProportionateScreenWidth(16),
@@ -141,7 +141,7 @@ class _BodyState extends State<Body> {
                 TextField(
                   controller: departureAddressController,
                   decoration: InputDecoration(
-                    hintText: 'Çıkış Adresi',
+                    hintText: LocaleKeys.exit_address.tr(),
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -165,7 +165,7 @@ class _BodyState extends State<Body> {
                     ),
                     SizedBox(width: 10),
                     Text(
-                      'Varış Adresi',
+                      LocaleKeys.arrival_address.tr(),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: getProportionateScreenWidth(16),
@@ -177,7 +177,7 @@ class _BodyState extends State<Body> {
                 TextField(
                   controller: arrivalAddressController,
                   decoration: InputDecoration(
-                    hintText: 'Varış Adresi',
+                    hintText: LocaleKeys.arrival_address.tr(),
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -210,7 +210,7 @@ class _BodyState extends State<Body> {
                     ),
                     SizedBox(width: getProportionateScreenWidth(10)),
                     Text(
-                      'Araç ve Ağırlık Seçimi',
+                      LocaleKeys.vehicle_and_weight_selection.tr(),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: getProportionateScreenWidth(16),
@@ -328,7 +328,7 @@ class _BodyState extends State<Body> {
                     ),
                     SizedBox(width: getProportionateScreenWidth(10)),
                     Text(
-                      'Ödeme Yöntemi',
+                      LocaleKeys.payment_method.tr(),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: getProportionateScreenWidth(16),
@@ -377,7 +377,7 @@ class _BodyState extends State<Body> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: DefaultButton(
-              text: "Sipariş Oluştur",
+              text: LocaleKeys.create_order.tr(),
               press: _createOrder,
               isLoading: isLoading,
             ),

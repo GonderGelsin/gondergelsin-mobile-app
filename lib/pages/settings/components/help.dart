@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/size_config.dart';
 import 'package:flutter_application_1/translations/locale_keys.g.dart';
 
@@ -26,7 +25,7 @@ class _HelpPageState extends State<HelpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Yardım'),
+        title: Text(LocaleKeys.help.tr()),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
