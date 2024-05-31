@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/profile/components/profile_pic.dart';
 import 'package:flutter_application_1/services/user_profile.dart' as profile;
 import 'package:flutter_application_1/size_config.dart';
+import 'package:flutter_application_1/translations/locale_keys.g.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -52,25 +54,25 @@ class _BodyState extends State<Body> {
               return Column(
                 children: [
                   ProfileTextField(
-                    text: "Ad",
+                    text: LocaleKeys.first_name.tr(),
                     initialValue: data['first_name'],
                     onChanged: (value) {},
                     enabled: false,
                   ),
                   ProfileTextField(
-                    text: "Soyad",
+                    text: LocaleKeys.last_name.tr(),
                     initialValue: data['last_name'],
                     onChanged: (value) {},
                     enabled: false,
                   ),
                   ProfileTextField(
-                    text: "TC Kimlik",
+                    text: LocaleKeys.id.tr(),
                     initialValue: data['turkish_id_number'],
                     onChanged: (value) {},
                     enabled: false,
                   ),
                   ProfileTextField(
-                    text: "Telefon Numarası",
+                    text: LocaleKeys.phone_number.tr(),
                     initialValue: data['phone_number'],
                     onChanged: (value) {},
                     rightIcon:
@@ -78,7 +80,7 @@ class _BodyState extends State<Body> {
                     onTapIcon: () => _editUserInfo('phone_number'),
                   ),
                   ProfileTextField(
-                    text: "Email",
+                    text: LocaleKeys.email.tr(),
                     initialValue: data['email'],
                     onChanged: (value) {},
                     rightIcon:
@@ -101,7 +103,7 @@ class _BodyState extends State<Body> {
         String currentValue = userInfo?[field] ?? "";
         return AlertDialog(
           title: Text(
-            'Bilgiyi Düzenle',
+            LocaleKeys.edit_info.tr(),
             textAlign: TextAlign.center,
           ),
           content: TextFormField(
@@ -117,7 +119,7 @@ class _BodyState extends State<Body> {
                   Navigator.of(context).pop(currentValue);
                 },
                 child: Text(
-                  'Tamam',
+                  LocaleKeys.done.tr(),
                   style: TextStyle(
                     color: kPrimaryColor,
                   ),

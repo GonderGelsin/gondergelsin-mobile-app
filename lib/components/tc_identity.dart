@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/translations/locale_keys.g.dart';
 
 class TcKimlikForm extends StatefulWidget {
   @override
@@ -41,20 +43,20 @@ class _TcKimlikFormState extends State<TcKimlikForm> {
       onSaved: (newValue) => tcNumber = newValue,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return "Lütfen T.C. Kimlik Numaranızı girin";
+          return LocaleKeys.enter_id_no.tr();
         } else if (value.length != 11) {
-          return "T.C. Kimlik Numarası 11 haneli olmalıdır";
+          return LocaleKeys.id_must_be_11_digits.tr();
         } else if (int.tryParse(value) == null) {
-          return "T.C. Kimlik Numarası sadece rakamlardan oluşmalıdır";
+          return LocaleKeys.id_only_numbers.tr();
         } else if (value[0] == '0') {
-          return "T.C. Kimlik Numarası 0 ile başlayamaz";
+          return LocaleKeys.id_cannot_start_with_0.tr();
         } else if (!validateTCNumber(value)) {
-          return "Geçersiz T.C. Kimlik Numarası";
+          return LocaleKeys.invalid_id.tr();
         }
         return null;
       },
       decoration: InputDecoration(
-        labelText: "T.C. Kimlik No",
+        labelText: LocaleKeys.id_no.tr(),
         hintText: "T.C. Kimlik Numaranızı girin",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: Icon(Icons.person), // Kendi ikonunuzu kullanabilirsiniz

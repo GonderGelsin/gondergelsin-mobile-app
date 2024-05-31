@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/default_button.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/order_succes/order_succes.dart';
 import 'package:flutter_application_1/size_config.dart';
+import 'package:flutter_application_1/translations/locale_keys.g.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -10,7 +12,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  String selectedOption1 = 'Motor';
+  String selectedOption1 = LocaleKeys.motor.tr();
   String selectedOption2 = "2 kg'a kadar";
   String selectedPaymentMethod = 'Nakit';
   TextEditingController postContentController = TextEditingController();
@@ -27,7 +29,7 @@ class _BodyState extends State<Body> {
     ],
   };
 
-  List<String> paymentMethods = ['Nakit', 'Kart'];
+  List<String> paymentMethods = ['Nakit', "Kart"];
   bool isLoading = false;
 
   void _createOrder() {

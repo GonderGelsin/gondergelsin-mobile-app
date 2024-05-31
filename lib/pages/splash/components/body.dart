@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/sign_in/sign_in_screen.dart';
 import 'package:flutter_application_1/pages/splash/components/splash_content.dart';
 import 'package:flutter_application_1/size_config.dart';
+import 'package:flutter_application_1/translations/locale_keys.g.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -18,16 +20,16 @@ class _BodyState extends State<Body> {
 
   List<Map<String, String>> splashData = [
     {
-      "text": "Hoşgeldiniz, Hadi İlerleyelim!",
+      "text": LocaleKeys.welcome_lets_go.tr(),
       "image": "assets/images/design-1710195127425 (1)-modified (1).png"
     },
     {
-      "text": "Kurye Gönder",
+      "text": LocaleKeys.send_courier.tr(),
       "image":
           "assets/images/vecteezy_3d-delivery-man-character-jump-from-phone-screen-with_39557580.png"
     },
     {
-      "text": "Hızlı Teslimat",
+      "text": LocaleKeys.fast_delivery.tr(),
       "image":
           "assets/images/vecteezy_3d-entrega-hombre-personaje-entregando-paquete-con-un-scooter_36876838.png"
     },
@@ -85,7 +87,7 @@ class _BodyState extends State<Body> {
                       Spacer(flex: 2),
                       if (currentPage == splashData.length - 1)
                         DefaultButton(
-                          text: "Devam Et",
+                          text: LocaleKeys.continue_.tr(),
                           press: () {
                             Navigator.pushNamed(
                                 context, SignInScreen.routeName);

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/custom_surfix_icon.dart';
 import 'package:flutter_application_1/components/default_button.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_application_1/pages/home/home_screen.dart';
 import 'package:flutter_application_1/services/authentication.dart'
     as authentication;
 import 'package:flutter_application_1/size_config.dart';
+import 'package:flutter_application_1/translations/locale_keys.g.dart';
 
 class SignForm extends StatefulWidget {
   const SignForm({Key? key});
@@ -196,7 +198,7 @@ class _SignFormState extends State<SignForm> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "E-mail",
+        labelText: LocaleKeys.email_label.tr(),
         hintText: "E-postanız",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(

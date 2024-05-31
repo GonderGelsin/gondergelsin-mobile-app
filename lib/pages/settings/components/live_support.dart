@@ -1,7 +1,10 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
+import 'package:flutter_application_1/translations/locale_keys.g.dart';
+
 void main() => runApp(LiveChat());
 
 class LiveChat extends StatelessWidget {
@@ -28,7 +31,7 @@ class LiveSupportPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Canlı Destek"),
+        title: Text(LocaleKeys.live_support.tr()),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -55,9 +58,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    _addMessage(
-        "Gönder Gelsine Hoşgeldiniz! Yazışmalarımız kalite standartları gereği kayıt altına alınmaktadır. Kişisel verilerinizin işlenmesine yönelik detaylı bilgi için lütfen Aydınlatma Metnimizi inceleyiniz.",
-        false);
+    _addMessage(LocaleKeys.welcome_live_support.tr(), false);
   }
 
   void _addMessage(String text, bool isUserMessage) {
@@ -81,7 +82,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void _startTypingTimer() {
     Timer(Duration(seconds: 1), () {
       setState(() {
-        _addMessage("Size nasıl yardımcı olabilirim?", false);
+        _addMessage(LocaleKeys.how_can_i_help.tr(), false);
         _isTyping = false;
       });
     });
@@ -110,7 +111,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   child: TextField(
                     controller: _controller,
                     decoration: InputDecoration(
-                      hintText: 'Mesajınızı buraya yazın...',
+                      hintText: LocaleKeys.write_message.tr(),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
