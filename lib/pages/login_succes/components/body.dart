@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/components/default_button.dart';
 import 'package:flutter_application_1/pages/sign_in/sign_in_screen.dart';
-import 'package:flutter_application_1/size_config.dart'; // HomePage widget'ının bulunduğu yer
+import 'package:flutter_application_1/size_config.dart';
+import 'package:flutter_application_1/translations/locale_keys.g.dart'; // HomePage widget'ının bulunduğu yer
 
 class BodySucces extends StatelessWidget {
   static String routeName = "/body_succes";
@@ -21,7 +23,7 @@ class BodySucces extends StatelessWidget {
             height: SizeConfig.screenHeight * 0.08,
           ),
           Text(
-            "Kayıt Tamamlandı",
+            LocaleKeys.registration_completed.tr(),
             style: TextStyle(
               fontSize: getProportionateScreenWidth(30),
               fontWeight: FontWeight.bold,
@@ -33,7 +35,7 @@ class BodySucces extends StatelessWidget {
           SizedBox(
             width: SizeConfig.screenWidth * 0.6,
             child: DefaultButton(
-              text: "Giriş Sayfasına Dön",
+              text: LocaleKeys.go_to_login_page.tr(),
               press: () {
                 Navigator.pushNamed(context, SignInScreen.routeName);
               },

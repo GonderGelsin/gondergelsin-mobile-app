@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/components/custom_surfix_icon.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_application_1/pages/login_succes/login_succes_screen.dar
 import 'package:flutter_application_1/services/authentication.dart'
     as authentication;
 import 'package:flutter_application_1/size_config.dart';
+import 'package:flutter_application_1/translations/locale_keys.g.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -22,7 +24,7 @@ class Body extends StatelessWidget {
               children: [
                 SizedBox(height: SizeConfig.screenHeight * 0.02),
                 Text(
-                  "Kayıt Ol",
+                  LocaleKeys.login.tr(),
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: getProportionateScreenWidth(28),
@@ -97,7 +99,7 @@ class _SignUpFormState extends State<SignUpForm> {
             });
           },
         ),
-        Text("Şifreyi Göster"),
+        Text(LocaleKeys.show_password.tr()),
       ],
     );
   }
@@ -127,7 +129,7 @@ class _SignUpFormState extends State<SignUpForm> {
           buildShowPasswordRow(),
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
-            text: "Kayıt Ol",
+            text: LocaleKeys.register.tr(),
             press: isLoading ? null : _handleSignUp,
             isLoading: isLoading,
           ),
@@ -160,7 +162,7 @@ class _SignUpFormState extends State<SignUpForm> {
           ).then((value) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Kayıt Başarılı.'),
+                content: Text(LocaleKeys.register_successful.tr()),
               ),
             );
           });
@@ -184,12 +186,12 @@ class _SignUpFormState extends State<SignUpForm> {
       onSaved: (newValue) => name = newValue,
       validator: (value) {
         if (value != null && value.isEmpty) {
-          return "Lütfen isminizi girin";
+          return LocaleKeys.enter_first_name.tr();
         }
         return null;
       },
       decoration: InputDecoration(
-        labelText: "İsim",
+        labelText: LocaleKeys.first_name_label.tr(),
         hintText: "İsminizi girin",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(
@@ -205,13 +207,13 @@ class _SignUpFormState extends State<SignUpForm> {
       onSaved: (newValue) => surname = newValue,
       validator: (value) {
         if (value != null && value.isEmpty) {
-          return "Lütfen soyisminizi girin";
+          return LocaleKeys.enter_last_name.tr();
         }
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Soyisim",
-        hintText: "Soyisminizi girin",
+        labelText: LocaleKeys.last_name.tr(),
+        hintText: LocaleKeys.enter_last_name.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(
           pngIcon: "assets/icons/Arturo-Wibawa-Akar-Person.512.png",
@@ -231,13 +233,13 @@ class _SignUpFormState extends State<SignUpForm> {
       onSaved: (newValue) => phoneNumber = newValue,
       validator: (value) {
         if (value != null && value.isEmpty) {
-          return "Lütfen telefon numaranızı girin";
+          return LocaleKeys.enter_phone.tr();
         }
         return null;
       },
       decoration: InputDecoration(
-          labelText: "Telefon Numarası",
-          hintText: "Telefon numaranızı girin",
+          labelText: LocaleKeys.phone_number.tr(),
+          hintText: LocaleKeys.enter_phone.tr(),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           suffixIcon: CustomSurffixIcon(
             pngIcon: "assets/icons/Arturo-Wibawa-Akar-Phone.512.png",
@@ -252,15 +254,15 @@ class _SignUpFormState extends State<SignUpForm> {
       onSaved: (newValue) => email = newValue,
       validator: (value) {
         if (value != null && value.isEmpty) {
-          return "Lütfen e-posta adresinizi girin";
+          return LocaleKeys.enter_email.tr();
         } else if (value != null && !emailValidatorRegExp.hasMatch(value)) {
-          return "Geçersiz e-posta adresi";
+          return LocaleKeys.invalid_email.tr();
         }
         return null;
       },
       decoration: InputDecoration(
-        labelText: "E-mail",
-        hintText: "E-posta adresinizi girin",
+        labelText: LocaleKeys.email_label.tr(),
+        hintText: LocaleKeys.enter_email.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(
           pngIcon: "assets/icons/Arturo-Wibawa-Akar-Envelope.512.png",
@@ -276,15 +278,15 @@ class _SignUpFormState extends State<SignUpForm> {
       onSaved: (newValue) => password = newValue,
       validator: (value) {
         if (value != null && value.isEmpty) {
-          return "Lütfen bir şifre girin";
+          return LocaleKeys.enter_password.tr();
         } else if (value != null && value.length < 8) {
-          return "Şifre en az 8 karakter olmalıdır";
+          return LocaleKeys.password_min_length.tr();
         }
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Şifre",
-        hintText: "Şifrenizi girin",
+        labelText: LocaleKeys.password.tr(),
+        hintText: LocaleKeys.enter_password.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(
           pngIcon: "assets/icons/Arturo-Wibawa-Akar-Lock-on.512.png",
@@ -300,14 +302,14 @@ class _SignUpFormState extends State<SignUpForm> {
       onSaved: (newValue) => confirmPassword = newValue,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return "Lütfen şifrenizi onaylayın";
+          return LocaleKeys.confirm_password.tr();
         } else if (value != _passwordController.text) {
-          return "Şifreler eşleşmiyor";
+          return LocaleKeys.passwords_not_matching.tr();
         }
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Şifre Onayla",
+        labelText: LocaleKeys.confirm_password.tr(),
         hintText: "Şifrenizi tekrar girin",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(
@@ -329,17 +331,17 @@ class _SignUpFormState extends State<SignUpForm> {
       onSaved: (newValue) => tcNumber = newValue,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return "Lütfen T.C. Kimlik Numaranızı girin";
+          return LocaleKeys.enter_id_no.tr();
         } else if (value.length != 11) {
-          return "T.C. Kimlik Numarası 11 haneli olmalıdır";
+          return LocaleKeys.id_must_be_11_digits.tr();
         } else if (!validateTCNumber(value)) {
-          return "Geçersiz T.C. Kimlik Numarası";
+          return LocaleKeys.invalid_id.tr();
         }
         return null;
       },
       decoration: InputDecoration(
-        labelText: "T.C. Kimlik No",
-        hintText: "T.C. Kimlik Numaranızı girin",
+        labelText: LocaleKeys.id_no.tr(),
+        hintText: LocaleKeys.enter_id_no.tr(),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(
           pngIcon: "assets/icons/Arturo-Wibawa-Akar-Person.512.png",

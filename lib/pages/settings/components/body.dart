@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/home/home_screen.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_application_1/services/authentication.dart'
     as authentication;
 import 'package:flutter_application_1/size_config.dart';
 import 'package:flutter_application_1/pages/settings/components/live_support.dart';
+import 'package:flutter_application_1/translations/locale_keys.g.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
@@ -17,7 +19,7 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Ayarlar"),
+        title: Text(LocaleKeys.settings.tr()),
         leading: GestureDetector(
           onTap: () {
             Navigator.pushReplacementNamed(
@@ -38,7 +40,7 @@ class SettingsPage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   textAlign: TextAlign.center,
-                  "Ayarlar",
+                  LocaleKeys.settings.tr(),
                   style: TextStyle(
                     fontSize: getProportionateScreenHeight(30),
                     fontWeight: FontWeight.bold,
@@ -48,8 +50,8 @@ class SettingsPage extends StatelessWidget {
               SizedBox(height: getProportionateScreenHeight(10)),
               SettingsItem(
                 iconPath: 'assets/icons/Arturo-Wibawa-Akar-Reciept.512.png',
-                title: 'Canlı Destek',
-                description: 'Buradan canlı destekle iletişime geçebilirsiniz.',
+                title: LocaleKeys.live_support.tr(),
+                description: LocaleKeys.contact_live_support.tr(),
                 onTap: () {
                   Navigator.push(
                       context,
@@ -61,15 +63,15 @@ class SettingsPage extends StatelessWidget {
               SizedBox(height: getProportionateScreenHeight(10)),
               SettingsItem(
                 iconPath: 'assets/icons/money-transfer.png',
-                title: 'Ödeme Yöntemlerim',
-                description: 'Ödeme yöntemlerinizi burdan yönetebilirsiniz',
+                title: LocaleKeys.payment_methods.tr(),
+                description: LocaleKeys.manage_payment_methods.tr(),
                 onTap: () {},
               ),
               SizedBox(height: getProportionateScreenHeight(10)),
               SettingsItem(
                 iconPath: 'assets/images/notification.png',
-                title: 'Bildirim Ayarları',
-                description: 'Bildirim ayarlarınızı burdan yönetebilirsiniz',
+                title: LocaleKeys.notification_settings.tr(),
+                description: LocaleKeys.manage_notification_settings.tr(),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -81,8 +83,8 @@ class SettingsPage extends StatelessWidget {
               SizedBox(height: getProportionateScreenHeight(10)),
               SettingsItem(
                 iconPath: 'assets/icons/question.png',
-                title: 'Yardım',
-                description: 'Uygulama içi sorularınız için tıklayabilirsiniz',
+                title: LocaleKeys.help.tr(),
+                description: LocaleKeys.click_for_app_questions.tr(),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -94,7 +96,7 @@ class SettingsPage extends StatelessWidget {
               SettingsItem(
                 iconPath: 'assets/icons/language.png',
                 title: 'Language - Dil',
-                description: 'Dili buradan değiştirebilirsiniz',
+                description: LocaleKeys.change_language.tr(),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -105,7 +107,7 @@ class SettingsPage extends StatelessWidget {
               SizedBox(height: getProportionateScreenHeight(10)),
               SettingsItem(
                 iconPath: 'assets/icons/Arturo-Wibawa-Akar-Sign-out.512.png',
-                title: 'Çıkış Yap',
+                title: LocaleKeys.logout.tr(),
                 description: '',
                 onTap: () {
                   authentication.signOut(context);
