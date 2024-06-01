@@ -146,5 +146,8 @@ Future<Null> signUserIn(
 Future<bool> signOut(BuildContext context) async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.remove('auth_token');
+  await prefs.remove('full_name',);
+  await prefs.remove('email');
+  await prefs.remove('phone_number');
   return true;
 }
