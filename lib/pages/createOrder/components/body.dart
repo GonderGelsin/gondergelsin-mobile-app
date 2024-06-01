@@ -5,6 +5,9 @@ import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/order_succes/order_succes.dart';
 import 'package:flutter_application_1/size_config.dart';
 import 'package:flutter_application_1/translations/locale_keys.g.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:geocoding/geocoding.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -50,6 +53,23 @@ class _BodyState extends State<Body> {
     });
   }
 
+  Future<void> _showMap() async {
+    Location departureLocation =
+        (await locationFromAddress(departureAddressController.text)).first;
+    Location arrivalLocation =
+        (await locationFromAddress(arrivalAddressController.text)).first;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MapScreen(
+          departureLocation: departureLocation,
+          arrivalLocation: arrivalLocation,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -92,7 +112,7 @@ class _BodyState extends State<Body> {
                     ),
                   ],
                 ),
-                SizedBox(height: 10), // Başlıktan aşağı boşluk
+                SizedBox(height: 10),
                 TextField(
                   controller: postContentController,
                   decoration: InputDecoration(
@@ -104,7 +124,6 @@ class _BodyState extends State<Body> {
             ),
           ),
           SizedBox(height: getProportionateScreenHeight(20)),
-          // "Çıkış Adresi" ve "Varış Adresi" başlıkları ve TextField'lar
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
@@ -303,7 +322,7 @@ class _BodyState extends State<Body> {
             ),
           ),
           SizedBox(height: getProportionateScreenHeight(20)),
-          // "Ödeme Yöntemi" başlığı ve Dropdown menü
+          // "Ödeme Yöntemi" başlığı ve Dropdown
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
@@ -326,7 +345,7 @@ class _BodyState extends State<Body> {
                         ),
                       ),
                     ),
-                    SizedBox(width: getProportionateScreenWidth(10)),
+                    SizedBox(width: 10),
                     Text(
                       'Ödeme Yöntemi',
                       style: TextStyle(
@@ -342,6 +361,7 @@ class _BodyState extends State<Body> {
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey),
                     borderRadius: BorderRadius.circular(8),
+                    color: Colors.white,
                   ),
                   child: DropdownButton<String>(
                     elevation: 4,
@@ -374,16 +394,88 @@ class _BodyState extends State<Body> {
             ),
           ),
           SizedBox(height: getProportionateScreenHeight(20)),
+          // "Haritayı Göster" butonu
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: DefaultButton(
-              text: "Sipariş Oluştur",
-              press: _createOrder,
-              isLoading: isLoading,
+              text: 'Haritayı Göster',
+              press: _showMap,
             ),
           ),
-          SizedBox(height: getProportionateScreenHeight(40)),
+          SizedBox(height: getProportionateScreenHeight(20)),
+          // "Gönder" butonu
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: DefaultButton(
+              text: 'Gönder',
+              press: _createOrder,
+              isLoading: isLoading, // Butonun loading durumunu ayarlayın
+            ),
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class MapScreen extends StatelessWidget {
+  final Location departureLocation;
+  final Location arrivalLocation;
+
+  MapScreen({
+    required this.departureLocation,
+    required this.arrivalLocation,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Harita'),
+      ),
+      body: FlutterMap(
+        options: MapOptions(
+          center:
+              LatLng(departureLocation.latitude, departureLocation.longitude),
+          zoom: 13.0,
+        ),
+        layers: [
+          TileLayerOptions(
+            urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            subdomains: ['a', 'b', 'c'],
+          ),
+          MarkerLayerOptions(
+            markers: [
+              Marker(
+                width: 80.0,
+                height: 80.0,
+                point: LatLng(
+                    departureLocation.latitude, departureLocation.longitude),
+                builder: (ctx) => Container(
+                  child: Icon(
+                    Icons.location_on,
+                    color: Colors.red,
+                    size: 40.0,
+                  ),
+                ),
+              ),
+              Marker(
+                width: 80.0,
+                height: 80.0,
+                point:
+                    LatLng(arrivalLocation.latitude, arrivalLocation.longitude),
+                builder: (ctx) => Container(
+                  child: Icon(
+                    Icons.location_on,
+                    color: Colors.blue,
+                    size: 40.0,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+        children: [],
       ),
     );
   }
