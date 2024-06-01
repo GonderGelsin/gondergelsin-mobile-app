@@ -165,7 +165,7 @@ class _BodyState extends State<Body> {
                               });
                             },
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 25),
+                              padding: EdgeInsets.symmetric(horizontal: 10),
                               child: Text(
                                 'Tamamlanan Gönderiler',
                                 style: TextStyle(
@@ -251,7 +251,7 @@ class _BodyState extends State<Body> {
                                             ),
                                           ),
                                           Text(
-                                            '0-20 kg',
+                                            '20-100 kg',
                                             style: TextStyle(
                                               fontSize: 16,
                                               color: Colors.white,
