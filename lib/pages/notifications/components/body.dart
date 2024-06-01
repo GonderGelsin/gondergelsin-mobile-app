@@ -31,7 +31,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
 
     if (response.statusCode == 200) {
       setState(() {
-        notifications = json.decode(utf8.decode(response.bodyBytes));
+        notifications =
+            json.decode(utf8.decode(response.bodyBytes)).reversed.toList();
       });
     } else {
       throw Exception('Failed to load notifications');
@@ -39,7 +40,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
   }
 
   markAsRead(int id) async {
-    const url = "https://gondergelsin.pythonanywhere.com/user/notification/read/";
+    const url =
+        "https://gondergelsin.pythonanywhere.com/user/notification/read/";
     final authToken = await authentication.getStoredData('auth_token');
 
     http.Response response = await http.post(
