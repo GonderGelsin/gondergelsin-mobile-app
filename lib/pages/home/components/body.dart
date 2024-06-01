@@ -472,20 +472,32 @@ class _BodyState extends State<Body> {
             ),
             SizedBox(
               height: getProportionateScreenHeight(180),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    SizedBox(width: getProportionateScreenWidth(2)),
-                    ...complatedOrders
-                        .map((order) => Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              child: BuildOrderItem(order),
-                            ))
-                        .toList(),
-                  ],
-                ),
-              ),
+              child: complatedOrders.isEmpty
+                  ? Center(
+                      child: Text(
+                        "Tamamlanan gönderi bulunmamaktadır.",
+                        style: TextStyle(
+                          fontSize: getProportionateScreenWidth(16),
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  : SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          SizedBox(width: getProportionateScreenWidth(2)),
+                          ...complatedOrders
+                              .map(
+                                (order) => Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 10),
+                                  child: BuildOrderItem(order),
+                                ),
+                              )
+                              .toList(),
+                        ],
+                      ),
+                    ),
             ),
           ],
         ),
@@ -517,18 +529,28 @@ class _BodyState extends State<Body> {
           ),
           SizedBox(
             height: getProportionateScreenHeight(180),
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                SizedBox(width: getProportionateScreenWidth(2)),
-                ...orders
-                    .map((order) => Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          child: BuildOrderItem(order),
-                        ))
-                    .toList(),
-              ],
-            ),
+            child: orders.isEmpty
+                ? Center(
+                    child: Text(
+                      "Aktif gönderi bulunmamaktadır.",
+                      style: TextStyle(
+                        fontSize: getProportionateScreenWidth(16),
+                        color: Colors.white,
+                      ),
+                    ),
+                  )
+                : ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      SizedBox(width: getProportionateScreenWidth(2)),
+                      ...orders
+                          .map((order) => Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: BuildOrderItem(order),
+                              ))
+                          .toList(),
+                    ],
+                  ),
           ),
         ],
       ),
