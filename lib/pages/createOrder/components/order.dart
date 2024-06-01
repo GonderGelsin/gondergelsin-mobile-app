@@ -46,7 +46,6 @@ class Order {
       };
 
   Future<void> createOrder(BuildContext context) async {
-    print(jsonEncode(toJson()));
     final url = Uri.parse('https://gondergelsin.pythonanywhere.com/order/');
     final authToken = await authentication.getStoredData('auth_token');
 
@@ -60,6 +59,7 @@ class Order {
     );
 
     if (response.statusCode == 201) {
+      sendCreatedNotification();
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => OrderSuccesScreen()),
@@ -67,5 +67,23 @@ class Order {
     } else {
       throw Exception('Failed to create order');
     }
+  }
+
+  Future<void> sendCreatedNotification() async {
+    final url =
+        Uri.parse('https://gondergelsin.pythonanywhere.com/user/notification/');
+    final authToken = await authentication.getStoredData('auth_token');
+
+    await http.post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Token $authToken'
+      },
+      body: jsonEncode({
+          "title": "Gönderi Bildirimi",
+          "message": "Gönderi isteğiniz oluşturulmuştur!"
+        }),
+    );
   }
 }
