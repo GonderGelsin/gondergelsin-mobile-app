@@ -1,7 +1,6 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/createOrder/components/order.dart';
 import 'package:flutter_application_1/pages/createOrder/order_screen.dart';
@@ -13,7 +12,6 @@ import 'package:flutter_application_1/pages/settings/components/body.dart';
 import 'package:flutter_application_1/pages/settings/components/live_support.dart';
 import 'package:flutter_application_1/size_config.dart';
 import 'package:flutter_application_1/translations/locale_keys.g.dart';
-import 'package:flutter_tawkto/flutter_tawk.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -31,13 +29,13 @@ class _BodyState extends State<Body> {
 
   bool showOrders = true; // Başlangıçta Orders gösterilsin
 
-  List imageList = [
+  List<String> imageList = [
     "assets/images/vecteezy_gift-with-golden-ribbon.jpg",
     "assets/images/vecteezy_isometric-style-deliver.jpg",
     "assets/images/vecteezy_mobile-smart-phone-with.jpg",
   ];
 
-  List textTitle = [
+  List<String> textTitle = [
     "Detaylı Bilgi İçin Tıklayınız",
     "Detaylı Bilgi İçin Tıklayınız",
     "Detaylı Bilgi İçin Tıklayınız",
