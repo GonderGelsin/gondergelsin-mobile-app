@@ -15,7 +15,7 @@ Future<Map<String, dynamic>> getUserInfo() async {
   );
 
   if (response.statusCode == 200) {
-    Map<String, dynamic> responseData = json.decode(response.body);
+    Map<String, dynamic> responseData = jsonDecode(utf8.decode(response.bodyBytes));
     Map<String, dynamic> profileData = responseData['data']['profile'];
     return profileData;
   } else {
