@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +24,7 @@ class _BodyState extends State<Body> {
   double _containerWidth = getProportionateScreenWidth(120);
   double _containerHeight = getProportionateScreenHeight(120);
   List<Order> orders = [];
+  List<Order> complatedOrders = [];
 
   List<String> imageList = [
     "assets/images/vecteezy_gift-with-golden-ribbon.jpg",
@@ -43,6 +43,7 @@ class _BodyState extends State<Body> {
     super.initState();
 
     _fetchOrders();
+    _fetchComplatedOrders();
   }
 
   Future<void> _fetchOrders() async {
@@ -51,6 +52,22 @@ class _BodyState extends State<Body> {
 
       setState(() {
         orders = fetchedOrders;
+      });
+    } catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to fetch orders!'),
+        ),
+      );
+    }
+  }
+
+  Future<void> _fetchComplatedOrders() async {
+    try {
+      List<Order> fetchedOrders = await fetchComplatedOrders();
+
+      setState(() {
+        complatedOrders = fetchedOrders;
       });
     } catch (error) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -84,6 +101,9 @@ class _BodyState extends State<Body> {
                   children: [
                     SizedBox(height: getProportionateScreenHeight(10)),
                     BuildNotificationsButton(context),
+                    SizedBox(height: getProportionateScreenHeight(20)),
+                    BuildComplatedOrdersContainer(),
+                    SizedBox(height: getProportionateScreenHeight(20)),
                     BuildOrdersContainer(),
                     SizedBox(height: getProportionateScreenHeight(20)),
                     BuildAnimatedContainers(),
@@ -351,6 +371,38 @@ class _BodyState extends State<Body> {
               SizedBox(height: 10),
               Column(
                 children: orders.map((order) => BuildOrderItem(order)).toList(),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget BuildComplatedOrdersContainer() {
+    return Column(
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 10),
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: kPrimaryColor,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Complated Orders",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(height: 10),
+              Column(
+                children: complatedOrders.map((order) => BuildOrderItem(order)).toList(),
               ),
             ],
           ),
