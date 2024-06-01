@@ -58,7 +58,6 @@ class PaymentPage extends StatelessWidget {
         title: Text(cardNumber),
         subtitle: Text('Son Kullanma Tarihi: $expiryDate'),
         onTap: () {
-          // Kartı seçmek için bir işlem yapabilirsiniz
         },
       ),
     );
@@ -171,10 +170,8 @@ class _ExpirationDateFormatter extends TextInputFormatter {
     } else if (text.length == 3 && text[2] != '/') {
       text = text.replaceRange(2, 3, '/${text[2]}');
     } else if (text.length > 5) {
-      // İki rakamdan fazla girildiğinde, son girilen rakamları sil
       text = text.substring(0, 5);
     } else if (text.length == 5 && !text.endsWith('/')) {
-      // Son kullanma tarihi 'MM/YY' formatında olmalı
       text = '${text.substring(0, 2)}/${text.substring(2)}';
     }
     return TextEditingValue(
@@ -191,7 +188,6 @@ class _SecurityCodeInputFormatter extends TextInputFormatter {
     var text = newValue.text;
 
     if (text.length > 3) {
-      // Daha fazla karakter girildiyse, son girilenleri sil
       text = text.substring(0, 3);
     }
 

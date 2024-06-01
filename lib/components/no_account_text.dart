@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/sign_up/sign_up_screen.dart';
 import 'package:flutter_application_1/size_config.dart';
+import 'package:flutter_application_1/translations/locale_keys.g.dart';
 
 class NoAccountText extends StatelessWidget {
   const NoAccountText({
@@ -14,7 +16,7 @@ class NoAccountText extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "Hesabınız Yok Mu?",
+          LocaleKeys.no_account.tr(),
           style: TextStyle(
               fontSize: getProportionateScreenWidth(16), fontFamily: "Mali"),
         ),
@@ -24,7 +26,7 @@ class NoAccountText extends StatelessWidget {
         GestureDetector(
           onTap: () => Navigator.pushNamed(context, SignUpScreen.routeName),
           child: Text(
-            "Kayıt Ol",
+            LocaleKeys.register.tr(),
             style: TextStyle(
                 fontSize: getProportionateScreenWidth(16),
                 color: kPrimaryColor,

@@ -1,12 +1,21 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/splash/splash_screen.dart';
 import 'package:flutter_application_1/routes.dart';
 import 'package:flutter_application_1/size_config.dart';
 import 'package:flutter_application_1/theme.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  await EasyLocalization.ensureInitialized();
+
+  runApp(
+    EasyLocalization(
+        supportedLocales: [Locale('en', 'US'), Locale('tr', 'TR')],
+        path: 'assets/translations',
+        fallbackLocale: Locale('en', 'US'),
+        child: MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -15,9 +24,12 @@ class MyApp extends StatelessWidget {
     SizeConfig().init(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: theme(),
-      initialRoute: SplashScreen.routeName,
+      localizationsDelegates: context.localizationDelegates,
       routes: routes,
+      initialRoute: SplashScreen.routeName,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      theme: theme(),
     );
   }
 }

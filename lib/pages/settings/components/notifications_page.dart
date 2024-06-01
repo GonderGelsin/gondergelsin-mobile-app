@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/size_config.dart';
+import 'package:flutter_application_1/translations/locale_keys.g.dart';
 
 class NotificationsPage extends StatefulWidget {
   static String routeName = '/notifications';
@@ -25,7 +27,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         ),
         centerTitle: true,
         title: Text(
-          'Bildirim Ayarları',
+          LocaleKeys.notification_settings.tr(),
           style: TextStyle(
             fontSize: 20,
           ),
@@ -50,7 +52,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    'Email ile Bildirim Almak İstiyorum',
+                    LocaleKeys.receive_notifications_by_email.tr(),
                     style: TextStyle(fontSize: 16),
                   ),
                   Switch(
@@ -75,7 +77,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    'SMS ile Bildirim Almak İstiyorum',
+                    LocaleKeys.receive_notifications_by_sms.tr(),
                     style: TextStyle(fontSize: 16),
                   ),
                   Switch(

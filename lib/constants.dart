@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/size_config.dart';
+import 'package:flutter_application_1/translations/locale_keys.g.dart';
 
 const kPrimaryColor = Color(0xFF86151D + 0x0F0F0F);
 const kPrimaryLightColor = Color(0xFFFFECDF);
@@ -25,14 +27,15 @@ const defaultDuration = Duration(milliseconds: 250);
 // Form Error
 final RegExp emailValidatorRegExp =
     RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-const String kEmailNullError = "Lütfen Bir E-posta Girin";
-const String kInvalidEmailError = "Lütfen Geçerli Bir E-posta Adresi Girin";
-const String kPassNullError = "Lütfen Bir Şifre Girin";
-const String kShortPassError = " Şifre Çok Kısa";
-const String kMatchPassError = "Şifreler Eşleşmiyor";
-const String kNamelNullError = "Lütfen Adınızı Girin";
-const String kPhoneNumberNullError = "Lütfen Telefon Numaranızı Girin";
-const String kAddressNullError = "Please Enter your address";
+final String kEmailNullError = LocaleKeys.please_enter_email.tr();
+final String kInvalidEmailError = LocaleKeys.please_enter_valid_email.tr();
+final String kPassNullError = LocaleKeys.please_enter_password.tr();
+final String kShortPassError = LocaleKeys.password_too_short.tr();
+final String kMatchPassError = LocaleKeys.passwords_do_not_match.tr();
+final String kNamelNullError = LocaleKeys.please_enter_your_name.tr();
+final String kPhoneNumberNullError = LocaleKeys.please_enter_phone.tr();
+final String kAddressNullError = LocaleKeys.please_enter_address.tr();
+
 
 final errorIcon = Icon(
   Icons.close,

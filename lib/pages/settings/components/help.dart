@@ -1,6 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/size_config.dart';
+import 'package:flutter_application_1/translations/locale_keys.g.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -24,7 +25,7 @@ class _HelpPageState extends State<HelpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Yardım'),
+        title: Text(LocaleKeys.help.tr()),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -49,7 +50,7 @@ class _HelpPageState extends State<HelpPage> {
                   headerBuilder: (BuildContext context, bool isExpanded) {
                     return Container(
                       child: ListTile(
-                        title: Text('Hakkımızda'),
+                        title: Text(LocaleKeys.about_us.tr()),
                       ),
                     );
                   },
@@ -83,7 +84,7 @@ class _HelpPageState extends State<HelpPage> {
                 ExpansionPanel(
                   headerBuilder: (BuildContext context, bool isExpanded) {
                     return ListTile(
-                      title: Text('Sıkça Sorulan Sorular'),
+                      title: Text(LocaleKeys.faq.tr()),
                     );
                   },
                   body: Column(
@@ -103,7 +104,8 @@ class _HelpPageState extends State<HelpPage> {
                             headerBuilder:
                                 (BuildContext context, bool isExpanded) {
                               return ListTile(
-                                title: Text('Nasıl sipariş oluşturabilirim?'),
+                                title:
+                                    Text(LocaleKeys.how_to_create_order.tr()),
                               );
                             },
                             body: Container(
@@ -137,12 +139,12 @@ class _HelpPageState extends State<HelpPage> {
                                 (BuildContext context, bool isExpanded) {
                               return ListTile(
                                 title:
-                                    Text('Ödeme yöntemini nasıl seçebilirim?'),
+                                    Text(LocaleKeys.select_payment_method.tr()),
                               );
                             },
                             body: ListTile(
                               title: Text(
-                                  'Gönderi oluştur sayfasından veya ayarlar sayfasındaki ödeme yöntemlerim kısmından size uygun olan ödeme yöntemini seçebilirsiniz.'),
+                                  LocaleKeys.select_payment_method_detail.tr()),
                             ),
                             isExpanded: _isExpanded1_2,
                           ),
@@ -155,8 +157,7 @@ class _HelpPageState extends State<HelpPage> {
                 ExpansionPanel(
                   headerBuilder: (BuildContext context, bool isExpanded) {
                     return ListTile(
-                      title: Text(
-                          'Müşteri Kişisel Verilerinin Korunması Politikası'),
+                      title: Text(LocaleKeys.data_protection_policy.tr()),
                     );
                   },
                   body: Container(

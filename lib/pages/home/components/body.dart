@@ -1,10 +1,10 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/createOrder/order_screen.dart';
 import 'package:flutter_application_1/pages/home/home_screen.dart';
@@ -13,6 +13,7 @@ import 'package:flutter_application_1/pages/profile/profile_pages.dart';
 import 'package:flutter_application_1/pages/settings/components/body.dart';
 import 'package:flutter_application_1/pages/settings/components/live_support.dart';
 import 'package:flutter_application_1/size_config.dart';
+import 'package:flutter_application_1/translations/locale_keys.g.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -21,7 +22,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   int _selectedIndex = 0;
-  String _selectedText = 'Gönderiler';
+  String _selectedText = LocaleKeys.posts.tr();
   double _containerWidth = getProportionateScreenWidth(120);
   double _containerHeight = getProportionateScreenHeight(120);
 
@@ -65,7 +66,7 @@ class _BodyState extends State<Body> {
                         Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            'Anasayfa',
+                            LocaleKeys.homepage.tr(),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: getProportionateScreenWidth(30),
@@ -156,7 +157,7 @@ class _BodyState extends State<Body> {
                                                   getProportionateScreenHeight(
                                                       10)),
                                           Text(
-                                            "Motorsiklet",
+                                            LocaleKeys.motor.tr(),
                                             style: TextStyle(
                                               fontSize: 18,
                                               fontWeight: FontWeight.w500,

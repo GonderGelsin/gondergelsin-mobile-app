@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/custom_surfix_icon.dart';
 import 'package:flutter_application_1/components/default_button.dart';
@@ -5,6 +6,8 @@ import 'package:flutter_application_1/components/form_error.dart';
 import 'package:flutter_application_1/components/no_account_text.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/size_config.dart';
+
+import '../../../translations/locale_keys.g.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -19,7 +22,7 @@ class Body extends StatelessWidget {
             children: [
               SizedBox(height: getProportionateScreenHeight(100)),
               Text(
-                "Şifremi Unuttum",
+                LocaleKeys.forgot_password.tr(),
                 style: TextStyle(
                   fontSize: getProportionateScreenWidth(28),
                   color: Colors.black,
@@ -27,7 +30,7 @@ class Body extends StatelessWidget {
                 ),
               ),
               Text(
-                "Lütfen E-postanızı girin hesabınıza \ngeri dönmeniz için size bir kod göndereceğiz",
+                LocaleKeys.enter_email_to_recover.tr(),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: SizeConfig.screenHeight * 0.08),
@@ -88,8 +91,8 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
               return null;
             },
             decoration: InputDecoration(
-              labelText: "E-mail",
-              hintText: "E-postanız",
+              labelText: LocaleKeys.email.tr(),
+              hintText: LocaleKeys.your_email.tr(),
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixIcon: CustomSurffixIcon(
                 pngIcon: "assets/icons/Arturo-Wibawa-Akar-Envelope.512.png",
@@ -100,7 +103,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           FormError(errors: errors),
           SizedBox(height: SizeConfig.screenHeight * 0.04),
           DefaultButton(
-            text: "Devam Et",
+            text: LocaleKeys.continue_.tr(),
             press: () {
               final form = _formKey.currentState;
               if (form != null) {
