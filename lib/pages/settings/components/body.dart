@@ -6,6 +6,7 @@ import 'package:flutter_application_1/pages/settings/components/help.dart';
 import 'package:flutter_application_1/pages/settings/components/live_support.dart';
 import 'package:flutter_application_1/pages/settings/components/notifications_page.dart';
 import 'package:flutter_application_1/pages/settings/components/payment_page.dart';
+import 'package:flutter_application_1/pages/settings/components/support_page.dart';
 import 'package:flutter_application_1/pages/sign_in/sign_in_screen.dart';
 import 'package:flutter_application_1/services/authentication.dart'
     as authentication;
@@ -67,7 +68,7 @@ class SettingsPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                  MaterialPageRoute(builder: (context) => PaymentPage()),
+                  MaterialPageRoute(builder: (context) => supportpage()),
                   );
                 },
 
