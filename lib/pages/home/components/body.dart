@@ -1,6 +1,7 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/createOrder/components/order.dart';
 import 'package:flutter_application_1/pages/createOrder/order_screen.dart';
@@ -25,14 +26,17 @@ class _BodyState extends State<Body> {
   double _containerHeight = getProportionateScreenHeight(120);
   List<Order> orders = [];
   List<Order> complatedOrders = [];
+  bool showCompletedOrders = false;
 
-  List<String> imageList = [
+  bool showOrders = true; // Başlangıçta Orders gösterilsin
+
+  List imageList = [
     "assets/images/vecteezy_gift-with-golden-ribbon.jpg",
     "assets/images/vecteezy_isometric-style-deliver.jpg",
     "assets/images/vecteezy_mobile-smart-phone-with.jpg",
   ];
 
-  List<String> textTitle = [
+  List textTitle = [
     "Detaylı Bilgi İçin Tıklayınız",
     "Detaylı Bilgi İçin Tıklayınız",
     "Detaylı Bilgi İçin Tıklayınız",
@@ -102,10 +106,10 @@ class _BodyState extends State<Body> {
                     SizedBox(height: getProportionateScreenHeight(10)),
                     BuildNotificationsButton(context),
                     SizedBox(height: getProportionateScreenHeight(20)),
-                    BuildComplatedOrdersContainer(),
+                    buildOrderTitleField(),
                     SizedBox(height: getProportionateScreenHeight(20)),
-                    BuildOrdersContainer(),
-                    SizedBox(height: getProportionateScreenHeight(20)),
+                    buildVehiclesTitle(),
+                    SizedBox(height: getProportionateScreenHeight(10)),
                     BuildAnimatedContainers(),
                     SizedBox(height: getProportionateScreenHeight(20)),
                     BuildCampaignField(context),
@@ -116,6 +120,89 @@ class _BodyState extends State<Body> {
         bottomNavigationBar: BuildBottomNavigationBar(),
         floatingActionButton: BuildFloatingLiveSupportButton(context),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      ),
+    );
+  }
+
+  Widget buildVehiclesTitle() {
+    return Padding(
+      padding: EdgeInsets.only(left: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Vehicles',
+            style: TextStyle(
+              fontSize: getProportionateScreenWidth(20),
+              fontWeight: FontWeight.bold,
+              color: kPrimaryColor,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding buildOrderTitleField() {
+    return Padding(
+      padding: EdgeInsets.only(left: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Orders',
+            style: TextStyle(
+              fontSize: getProportionateScreenWidth(20),
+              fontWeight: FontWeight.bold,
+              color: kPrimaryColor,
+            ),
+          ),
+          SizedBox(height: getProportionateScreenHeight(10)),
+          Row(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    showOrders = true; // Orders gösterilsin
+                    showCompletedOrders = false;
+                  });
+                },
+                child: Text(
+                  "Active Orders",
+                  style: TextStyle(
+                    fontWeight: showOrders ? FontWeight.bold : FontWeight.w400,
+                    fontSize: getProportionateScreenHeight(18),
+                    color: showOrders ? kPrimaryColor : kSecondaryColor,
+                  ),
+                ),
+              ),
+              SizedBox(width: 10), // Orders ve Completed Orders arasında boşluk
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    showOrders = false; // Completed Orders gösterilsin
+                    showCompletedOrders = true;
+                  });
+                },
+                child: Text(
+                  "Completed Orders",
+                  style: TextStyle(
+                    fontSize: getProportionateScreenHeight(18),
+                    fontWeight:
+                        showCompletedOrders ? FontWeight.bold : FontWeight.w400,
+                    color:
+                        showCompletedOrders ? kPrimaryColor : kSecondaryColor,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: getProportionateScreenHeight(10)),
+          if (showOrders)
+            BuildOrdersContainer()
+          else if (showCompletedOrders)
+            BuildCompletedOrdersContainer(),
+        ],
       ),
     );
   }
@@ -348,66 +435,85 @@ class _BodyState extends State<Body> {
   }
 
   Widget BuildOrdersContainer() {
-    return Column(
-      children: [
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 10),
-          padding: EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: kPrimaryColor,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Orders",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+    return Container(
+      margin: EdgeInsets.only(right: 8),
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: kPrimaryColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(left: 15.0),
+            child: Text(
+              "Active Orders",
+              style: TextStyle(
+                fontSize: getProportionateScreenWidth(18),
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
-              SizedBox(height: 10),
-              Column(
-                children: orders.map((order) => BuildOrderItem(order)).toList(),
-              ),
-            ],
+            ),
           ),
-        ),
-      ],
+          SizedBox(
+            height: getProportionateScreenHeight(180),
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                SizedBox(width: getProportionateScreenWidth(2)),
+                ...orders
+                    .map((order) => Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: BuildOrderItem(order),
+                        ))
+                    .toList(),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
-  Widget BuildComplatedOrdersContainer() {
-    return Column(
-      children: [
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 10),
-          padding: EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: kPrimaryColor,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Complated Orders",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+  Widget BuildCompletedOrdersContainer() {
+    return Container(
+      margin: EdgeInsets.only(right: 8),
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: kPrimaryColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(left: 15.0),
+            child: Text(
+              "Completed Orders",
+              style: TextStyle(
+                fontSize: getProportionateScreenWidth(18),
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
-              SizedBox(height: 10),
-              Column(
-                children: complatedOrders.map((order) => BuildOrderItem(order)).toList(),
-              ),
-            ],
+            ),
           ),
-        ),
-      ],
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                SizedBox(width: getProportionateScreenWidth(2)),
+                ...complatedOrders
+                    .map((order) => Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: BuildOrderItem(order),
+                        ))
+                    .toList(),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -418,7 +524,7 @@ class _BodyState extends State<Body> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Kampanyalar',
+            'Campaigns',
             style: TextStyle(
               fontSize: getProportionateScreenWidth(18),
               fontWeight: FontWeight.bold,
