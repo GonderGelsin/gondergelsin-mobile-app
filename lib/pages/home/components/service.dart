@@ -13,7 +13,8 @@ Future<List<Order>> fetchOrders() async {
   );
 
   if (response.statusCode == 200) {
-    final List<dynamic> responseData = jsonDecode(response.body);
+    final List<dynamic> responseData =
+        jsonDecode(utf8.decode(response.bodyBytes));
 
     List<Order> orders =
         responseData.map((json) => Order.fromJson(json)).toList();
