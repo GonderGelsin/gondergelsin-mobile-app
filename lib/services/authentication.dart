@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/services/user_profile.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -122,6 +123,12 @@ Future<Null> signUserIn(
         if (token != null) {
           final prefs = await SharedPreferences.getInstance();
           await prefs.setString('auth_token', token);
+          
+          final user_datas = await getUserInfo();
+          await prefs.setString('full_name', user_datas['full_name']);
+          await prefs.setString('email', user_datas['email']);
+          await prefs.setString('phone_number', user_datas['phone_number']);
+        
         } else {
           throw SignInException('Token alınamadı.');
         }
@@ -139,5 +146,8 @@ Future<Null> signUserIn(
 Future<bool> signOut(BuildContext context) async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.remove('auth_token');
+  await prefs.remove('full_name',);
+  await prefs.remove('email');
+  await prefs.remove('phone_number');
   return true;
 }

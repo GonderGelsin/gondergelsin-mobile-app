@@ -13,6 +13,7 @@ import 'package:flutter_application_1/pages/settings/components/body.dart';
 import 'package:flutter_application_1/pages/settings/components/live_support.dart';
 import 'package:flutter_application_1/size_config.dart';
 import 'package:flutter_application_1/translations/locale_keys.g.dart';
+import 'package:flutter_tawkto/flutter_tawk.dart';
 
 class Body extends StatefulWidget {
   @override
