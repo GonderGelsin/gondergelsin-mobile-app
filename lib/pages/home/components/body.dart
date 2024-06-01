@@ -13,7 +13,6 @@ import 'package:flutter_application_1/pages/settings/components/body.dart';
 import 'package:flutter_application_1/pages/settings/components/live_support.dart';
 import 'package:flutter_application_1/size_config.dart';
 import 'package:flutter_application_1/translations/locale_keys.g.dart';
-import 'package:flutter_tawkto/flutter_tawk.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -291,9 +290,10 @@ class _BodyState extends State<Body> {
         GestureDetector(
           onTap: () {
             setState(() {
-              _containerWidth = _containerWidth == 400.0
-                  ? getProportionateScreenWidth(120)
-                  : 400.0;
+              _containerWidth =
+                  _containerWidth == getProportionateScreenWidth(350)
+                      ? getProportionateScreenWidth(120)
+                      : getProportionateScreenWidth(350);
             });
           },
           child: AnimatedContainer(
@@ -307,66 +307,76 @@ class _BodyState extends State<Body> {
             duration: Duration(milliseconds: 500),
             curve: Curves.easeInOut,
             alignment: Alignment.centerLeft,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: getProportionateScreenWidth(100),
-                  child: Image.asset(
-                    'assets/images/vecteezy_3d-delivery-man-character-deivering-package-with-a-scooter_36876803 (2).png',
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                Visibility(
-                  visible: _containerWidth == 400.0,
-                  child: Expanded(
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: getProportionateScreenHeight(10)),
-                          Text(
-                            LocaleKeys.motor.tr(),
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
-                          ),
-                          Text(
-                            'Çabucak ve güvenilir teslimatlar \niçin moto kurye hazır! ',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),
-                          ),
-                          Text(
-                            '0-20 kg',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
+            child: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: getProportionateScreenWidth(100),
+                      child: Image.asset(
+                        'assets/images/vecteezy_3d-delivery-man-character-deivering-package-with-a-scooter_36876803 (2).png',
+                        fit: BoxFit.contain,
                       ),
                     ),
-                  ),
-                ),
-              ],
+                    Visibility(
+                      visible:
+                          _containerWidth == getProportionateScreenWidth(350),
+                      child: Expanded(
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                  height: getProportionateScreenHeight(10)),
+                              Text(
+                                LocaleKeys.motor.tr(),
+                                style: TextStyle(
+                                  fontSize: constraints.maxWidth *
+                                      0.06, // Metin boyutunu container boyutuna bağlı olarak ayarla
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text(
+                                'Çabucak ve güvenilir teslimatlar \niçin moto kurye hazır! ',
+                                style: TextStyle(
+                                  fontSize: constraints.maxWidth *
+                                      0.04, // Metin boyutunu container boyutuna bağlı olarak ayarla
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text(
+                                '0-20 kg',
+                                style: TextStyle(
+                                  fontSize: constraints.maxWidth *
+                                      0.04, // Metin boyutunu container boyutuna bağlı olarak ayarla
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         ),
         GestureDetector(
           onTap: () {
             setState(() {
-              _containerWidth = _containerWidth == 400.0
-                  ? getProportionateScreenWidth(100)
-                  : 400.0;
+              _containerWidth =
+                  _containerWidth == getProportionateScreenWidth(350)
+                      ? getProportionateScreenWidth(100)
+                      : getProportionateScreenWidth(350);
             });
           },
           child: AnimatedContainer(
-            margin: EdgeInsets.only(left: 10),
+            margin: EdgeInsets.only(left: 10, bottom: 10),
             decoration: BoxDecoration(
               color: kPrimaryColor,
               borderRadius: BorderRadius.circular(20),
@@ -376,58 +386,61 @@ class _BodyState extends State<Body> {
             duration: Duration(milliseconds: 500),
             curve: Curves.easeInOut,
             alignment: Alignment.centerLeft,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: getProportionateScreenWidth(100),
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 15.0),
+            child: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: getProportionateScreenWidth(100),
                       child: Image.asset(
                         'assets/images/vecteezy_delivery-truck-with-parcel-box-transport-vehicle-3d-rendering_24830514 (1).png',
-                        fit: BoxFit.contain,
                       ),
                     ),
-                  ),
-                  Visibility(
-                    visible: _containerWidth == 400.0,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: getProportionateScreenHeight(20),
-                        ),
-                        Center(
-                          child: Text(
-                            "Kamyon",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
+                    Visibility(
+                      visible:
+                          _containerWidth == getProportionateScreenWidth(350),
+                      child: Expanded(
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                  height: getProportionateScreenHeight(10)),
+                              Text(
+                                "Kamyon",
+                                style: TextStyle(
+                                  fontSize: constraints.maxWidth *
+                                      0.06, // Metin boyutunu container boyutuna bağlı olarak ayarla
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text(
+                                'Hacimce büyük veya sayıca fazla\ngönderileriniz için oto kurye hazır! ',
+                                style: TextStyle(
+                                  fontSize: constraints.maxWidth *
+                                      0.04, // Metin boyutunu container boyutuna bağlı olarak ayarla
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text(
+                                '20-100 kg',
+                                style: TextStyle(
+                                  fontSize: constraints.maxWidth *
+                                      0.04, // Metin boyutunu container boyutuna bağlı olarak ayarla
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        Text(
-                          'Hacimce büyük veya sayıca fazla\ngönderileriniz için oto kurye hazır! ',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          '0-20 kg',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                );
+              },
             ),
           ),
         ),
@@ -435,10 +448,56 @@ class _BodyState extends State<Body> {
     );
   }
 
+  Widget BuildCompletedOrdersContainer() {
+    return Container(
+      margin: EdgeInsets.only(right: 8),
+      padding: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: kPrimaryColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 12.0),
+              child: Text(
+                "Completed Orders",
+                style: TextStyle(
+                  fontSize: getProportionateScreenWidth(18),
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: getProportionateScreenHeight(180),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    SizedBox(width: getProportionateScreenWidth(2)),
+                    ...complatedOrders
+                        .map((order) => Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: BuildOrderItem(order),
+                            ))
+                        .toList(),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget BuildOrdersContainer() {
     return Container(
       margin: EdgeInsets.only(right: 8),
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: kPrimaryColor,
         borderRadius: BorderRadius.circular(20),
@@ -464,47 +523,6 @@ class _BodyState extends State<Body> {
               children: [
                 SizedBox(width: getProportionateScreenWidth(2)),
                 ...orders
-                    .map((order) => Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          child: BuildOrderItem(order),
-                        ))
-                    .toList(),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget BuildCompletedOrdersContainer() {
-    return Container(
-      margin: EdgeInsets.only(right: 8),
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: kPrimaryColor,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(left: 15.0),
-            child: Text(
-              "Completed Orders",
-              style: TextStyle(
-                fontSize: getProportionateScreenWidth(18),
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                SizedBox(width: getProportionateScreenWidth(2)),
-                ...complatedOrders
                     .map((order) => Padding(
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           child: BuildOrderItem(order),
@@ -625,47 +643,141 @@ Widget BuildOrderItem(Order order) {
       color: Colors.grey[200],
       borderRadius: BorderRadius.circular(10),
     ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Status: ${order.status}",
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+    child: SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Status: ${order.status}",
+            style: TextStyle(
+              fontSize: getProportionateScreenWidth(14),
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        SizedBox(height: 5),
-        Text(
-          "Post Content: ${order.postContent}",
-          style: TextStyle(fontSize: 14),
-        ),
-        SizedBox(height: 5),
-        Text(
-          "Departure Address: ${order.departureAddress}",
-          style: TextStyle(fontSize: 14),
-        ),
-        SizedBox(height: 5),
-        Text(
-          "Arrival Address: ${order.arrivalAddress}",
-          style: TextStyle(fontSize: 14),
-        ),
-        SizedBox(height: 5),
-        Text(
-          "Vehicle Type: ${order.vehicleType}",
-          style: TextStyle(fontSize: 14),
-        ),
-        SizedBox(height: 5),
-        Text(
-          "Weight Limit: ${order.weightLimit}",
-          style: TextStyle(fontSize: 14),
-        ),
-        SizedBox(height: 5),
-        Text(
-          "Payment Method: ${order.paymentMethod}",
-          style: TextStyle(fontSize: 14),
-        ),
-      ],
+          SizedBox(height: getProportionateScreenHeight(5)),
+          Row(
+            children: [
+              Text(
+                "• Post Content: ",
+                style: TextStyle(
+                  fontSize: getProportionateScreenWidth(12),
+                  fontWeight: FontWeight.w500,
+                  decoration: TextDecoration.underline, // Altını çizgili yapar
+                ),
+              ),
+              Text(
+                "${order.postContent}",
+                style: TextStyle(
+                  fontSize: getProportionateScreenWidth(12),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: getProportionateScreenHeight(5)),
+          Row(
+            children: [
+              Text(
+                "• Departure Address: ",
+                style: TextStyle(
+                  fontSize: getProportionateScreenWidth(12),
+                  fontWeight: FontWeight.w500,
+                  decoration: TextDecoration.underline, // Altını çizgili yapar
+                ),
+              ),
+              Text(
+                "${order.departureAddress}",
+                style: TextStyle(
+                  fontSize: getProportionateScreenWidth(12),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: getProportionateScreenHeight(5)),
+          Row(
+            children: [
+              Text(
+                "• Arrival Address: ",
+                style: TextStyle(
+                  fontSize: getProportionateScreenWidth(12),
+                  fontWeight: FontWeight.w500,
+                  decoration: TextDecoration.underline, // Altını çizgili yapar
+                ),
+              ),
+              Text(
+                "${order.arrivalAddress}",
+                style: TextStyle(
+                  fontSize: getProportionateScreenWidth(12),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: getProportionateScreenHeight(5)),
+          Row(
+            children: [
+              Text(
+                "• Vehicle Type: ",
+                style: TextStyle(
+                  fontSize: getProportionateScreenWidth(12),
+                  fontWeight: FontWeight.w500,
+                  decoration: TextDecoration.underline, // Altını çizgili yapar
+                ),
+              ),
+              Text(
+                "${order.vehicleType}",
+                style: TextStyle(
+                  fontSize: getProportionateScreenWidth(12),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: getProportionateScreenHeight(5)),
+          Row(
+            children: [
+              Text(
+                "• Weight Limit: ",
+                style: TextStyle(
+                  fontSize: getProportionateScreenWidth(12),
+                  fontWeight: FontWeight.w500,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+              Text(
+                "${order.weightLimit}",
+                style: TextStyle(
+                  fontSize: getProportionateScreenWidth(12),
+                  fontWeight: FontWeight.w500,
+                  // Altını çizgili yapar
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: getProportionateScreenHeight(5)),
+          Row(
+            children: [
+              Text(
+                "• Payment Method: ",
+                style: TextStyle(
+                  fontSize: getProportionateScreenWidth(12),
+                  fontWeight: FontWeight.w500,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+              Text(
+                "${order.paymentMethod}",
+                style: TextStyle(
+                  fontSize: getProportionateScreenWidth(12),
+                  fontWeight: FontWeight.w500,
+                  // Altını çizgili yapar
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     ),
   );
 }
