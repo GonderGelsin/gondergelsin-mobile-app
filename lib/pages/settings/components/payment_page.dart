@@ -2,27 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/constants.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'My App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: PaymentPage(),
-    );
-  }
-}
-
 class PaymentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Ödeme Yöntemlerim'),
+        centerTitle: true,
         backgroundColor: kPrimaryColor,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -71,8 +57,7 @@ class PaymentPage extends StatelessWidget {
         leading: Icon(Icons.credit_card),
         title: Text(cardNumber),
         subtitle: Text('Son Kullanma Tarihi: $expiryDate'),
-        onTap: () {
-        },
+        onTap: () {},
       ),
     );
   }
@@ -128,7 +113,8 @@ class AddCardScreen extends StatelessWidget {
                     ),
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(3), // Güvenlik kodu maksimum 3 rakam olmalı
+                      LengthLimitingTextInputFormatter(
+                          3), // Güvenlik kodu maksimum 3 rakam olmalı
                       _SecurityCodeInputFormatter(),
                     ],
                     keyboardType: TextInputType.number,
