@@ -1,5 +1,9 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/pages/createOrder/order_screen.dart';
@@ -32,6 +36,18 @@ class _BodyState extends State<Body> {
       _selectedIndex = index;
     });
   }
+
+  List imageList = [
+    "assets/images/vecteezy_gift-with-golden-ribbon.jpg",
+    "assets/images/vecteezy_isometric-style-deliver.jpg",
+    "assets/images/vecteezy_mobile-smart-phone-with.jpg",
+  ];
+
+  List textTitle = [
+    "Detaylı Bilgi İçin Tıklayınız",
+    "Detaylı Bilgi İçin Tıklayınız",
+    "Detaylı Bilgi İçin Tıklayınız",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -88,103 +104,7 @@ class _BodyState extends State<Body> {
                       ],
                     ),
                     SizedBox(height: getProportionateScreenHeight(20)),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _selectedText = 'Gönderiler';
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Text(
-                                'Gönderiler',
-                                style: TextStyle(
-                                  fontWeight: _selectedText == 'Gönderiler'
-                                      ? FontWeight.bold
-                                      : FontWeight.w400,
-                                  fontSize: SizeConfig.screenWidth * 0.05,
-                                  color: _selectedText == 'Gönderiler'
-                                      ? kPrimaryColor
-                                      : kSecondaryColor,
-                                ),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _selectedText = 'Kampanyalar';
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 25),
-                              child: Text(
-                                'Kampanyalar',
-                                style: TextStyle(
-                                  fontWeight: _selectedText == 'Kampanyalar'
-                                      ? FontWeight.bold
-                                      : FontWeight.w400,
-                                  fontSize: SizeConfig.screenWidth * 0.05,
-                                  color: _selectedText == 'Kampanyalar'
-                                      ? kPrimaryColor
-                                      : kSecondaryColor,
-                                ),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _selectedText = 'Adreslerim';
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 25),
-                              child: Text(
-                                'Adreslerim',
-                                style: TextStyle(
-                                  fontWeight: _selectedText == 'Adreslerim'
-                                      ? FontWeight.bold
-                                      : FontWeight.w400,
-                                  fontSize: SizeConfig.screenWidth * 0.05,
-                                  color: _selectedText == 'Adreslerim'
-                                      ? kPrimaryColor
-                                      : kSecondaryColor,
-                                ),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _selectedText = 'Tamamlanan Gönderiler';
-                              });
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              child: Text(
-                                'Tamamlanan Gönderiler',
-                                style: TextStyle(
-                                  fontWeight:
-                                      _selectedText == 'Tamamlanan Gönderiler'
-                                          ? FontWeight.bold
-                                          : FontWeight.w400,
-                                  fontSize: SizeConfig.screenWidth * 0.05,
-                                  color:
-                                      _selectedText == 'Tamamlanan Gönderiler'
-                                          ? kPrimaryColor
-                                          : kSecondaryColor,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+
                     SizedBox(height: getProportionateScreenHeight(20)),
 
                     //Animated Containers
@@ -251,7 +171,7 @@ class _BodyState extends State<Body> {
                                             ),
                                           ),
                                           Text(
-                                            '20-100 kg',
+                                            '0-20 kg',
                                             style: TextStyle(
                                               fontSize: 16,
                                               color: Colors.white,
@@ -328,7 +248,7 @@ class _BodyState extends State<Body> {
                                           ),
                                         ),
                                         Text(
-                                          '0-20 kg',
+                                          '20-100 kg',
                                           style: TextStyle(
                                             fontSize: 16,
                                             color: Colors.white,
@@ -344,6 +264,104 @@ class _BodyState extends State<Body> {
                         ),
                       ],
                     ),
+                    SizedBox(height: getProportionateScreenHeight(10)),
+
+                    //KAMPANYALAR
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Kampanyalar',
+                            style: TextStyle(
+                              fontSize: getProportionateScreenWidth(18),
+                              fontWeight: FontWeight.bold,
+                              color: kPrimaryColor,
+                            ),
+                          ),
+                          SizedBox(height: getProportionateScreenHeight(10)),
+                          Container(
+                            height: getProportionateScreenHeight(200),
+                            child: ListView.builder(
+                              itemCount: imageList.length,
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  margin: EdgeInsets.only(right: 15),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height:
+                                            getProportionateScreenHeight(150),
+                                        child: Stack(
+                                          children: [
+                                            InkWell(
+                                              onTap: () {},
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                child: Image.asset(
+                                                  width:
+                                                      getProportionateScreenWidth(
+                                                          200),
+                                                  imageList[index],
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height:
+                                            getProportionateScreenHeight(10),
+                                      ),
+                                      Container(
+                                        child: Padding(
+                                          padding: EdgeInsets.only(left: 10.0),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                textTitle[index],
+                                                style: TextStyle(
+                                                  fontSize:
+                                                      getProportionateScreenWidth(
+                                                          13),
+                                                  fontWeight: FontWeight.bold,
+                                                  color: kSecondaryColor,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width:
+                                                    getProportionateScreenWidth(
+                                                        10),
+                                              ),
+                                              Image.asset(
+                                                'assets/icons/Arturo-Wibawa-Akar-Chevron-right-small.512.png',
+                                                width:
+                                                    getProportionateScreenWidth(
+                                                        16),
+                                                color: kSecondaryColor,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                    //KAMPANYALAR
+                    //
                   ],
                 ),
               )
