@@ -45,6 +45,7 @@ dependencies:
   flutter_tawkto: ^0.0.3
 
   flutter_tawk: ^0.1.0
+  firebase_core: ^2.32.0
 
 dev_dependencies:
   flutter_test:
