@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/services/authentication.dart';
 import 'package:flutter_tawkto/flutter_tawk.dart';
 
 class LiveSupportPage extends StatelessWidget {
   static String routeName = '/live_support';
+  final name =  getStoredData("full_name");
+  final email = getStoredData("email");
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +24,8 @@ class LiveSupportPage extends StatelessWidget {
         directChatLink:
             'https://tawk.to/chat/665b0a3f9a809f19fb37aad9/1hv9q01v7',
         visitor: TawkVisitor(
-          name: 'Zortingen',
-          email: 'Emregurses06@gmail.com',
+          name:  name.toString(),
+          email:  email.toString(),
         ),
         onLoad: () {
           print('Tawk.to loaded!');
