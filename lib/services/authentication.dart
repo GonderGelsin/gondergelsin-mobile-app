@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/main.dart';
 import 'package:flutter_application_1/services/user_profile.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -128,6 +129,7 @@ Future<Null> signUserIn(
           await prefs.setString('full_name', user_datas['full_name']);
           await prefs.setString('email', user_datas['email']);
           await prefs.setString('phone_number', user_datas['phone_number']);
+          InitFirebaseMessaging();
         
         } else {
           throw SignInException('Token alınamadı.');

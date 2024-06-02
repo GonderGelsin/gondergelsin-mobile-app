@@ -1,31 +1,42 @@
+import 'dart:convert';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/firebase_options.dart';
 import 'package:flutter_application_1/pages/splash/splash_screen.dart';
 import 'package:flutter_application_1/routes.dart';
+import 'package:flutter_application_1/services/authentication.dart';
 import 'package:flutter_application_1/size_config.dart';
 import 'package:flutter_application_1/theme.dart';
+import 'package:http/http.dart' as http;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
   runApp(
     EasyLocalization(
-        supportedLocales: [Locale('tr', 'TR'), Locale('en', 'US')],
-        path: 'assets/translations',
-        fallbackLocale: Locale('tr', 'TR'),
-        child: MyApp()),
+      supportedLocales: [Locale('tr', 'TR'), Locale('en', 'US')],
+      path: 'assets/translations',
+      fallbackLocale: Locale('tr', 'TR'),
+      child: MyApp(),
+    ),
   );
+}
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print("Handling a background message: ${message.messageId}");
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print("Message received: ${message.notification?.title}");
+    });
+
     SizeConfig().init(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -36,5 +47,47 @@ class MyApp extends StatelessWidget {
       locale: context.locale,
       theme: theme(),
     );
+  }
+}
+
+void InitFirebaseMessaging() async {
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+  String? token = await messaging.getToken();
+
+  if (token != null) {
+    _sendTokenToServer(token);
+    print("------> token varrrrr");
+    FirebaseMessaging.instance.onTokenRefresh.listen((newToken) {
+      _sendTokenToServer(newToken);
+    });
+  }
+
+  print("token yooooookkk");
+}
+
+void _sendTokenToServer(String token) async {
+  final authToken = await getStoredData('auth_token');
+  final response = await http.post(
+    Uri.parse(
+        'https://gondergelsin.pythonanywhere.com/authentication/device-token/'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': 'Token $authToken'
+    },
+    body: jsonEncode(<String, String>{
+      'device_token': token,
+    }),
+  );
+  print(response.body);
+
+  if (response.statusCode == 200) {
+    print("Token successfully sent to the server");
+  } else {
+    print("Failed to send token to the server");
   }
 }
