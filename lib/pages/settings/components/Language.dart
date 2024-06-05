@@ -48,8 +48,9 @@ class LanguagePage extends StatelessWidget {
       final response =
           await http.put(Uri.parse(url), headers: headers, body: body);
       if (response.statusCode == 204) {
-        // Bu kısımda setState kullanımıyla widget güncelleniyor olabilir.
-        await context.setLocale(Locale(languageCode.toLowerCase()));
+        await context.setLocale(Locale("en-US"));
+        await context.resetLocale();
+
       } else {
         // Handle error
       }

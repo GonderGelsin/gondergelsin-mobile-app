@@ -27,7 +27,7 @@ class _BodyState extends State<Body> {
   List<Order> complatedOrders = [];
   bool showCompletedOrders = false;
 
-  bool showOrders = true; // Başlangıçta Orders gösterilsin
+  bool showOrders = true;
 
   List<String> imageList = [
     "assets/images/vecteezy_gift-with-golden-ribbon.jpg",
@@ -36,9 +36,9 @@ class _BodyState extends State<Body> {
   ];
 
   List<String> textTitle = [
-    "Detaylı Bilgi İçin Tıklayınız",
-    "Detaylı Bilgi İçin Tıklayınız",
-    "Detaylı Bilgi İçin Tıklayınız",
+    LocaleKeys.click_for_more_info.tr(),
+    LocaleKeys.click_for_more_info.tr(),
+    LocaleKeys.click_for_more_info.tr(),
   ];
 
   @override
@@ -130,7 +130,7 @@ class _BodyState extends State<Body> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Vehicles',
+            LocaleKeys.vehicles.tr(),
             style: TextStyle(
               fontSize: getProportionateScreenWidth(20),
               fontWeight: FontWeight.bold,
@@ -149,7 +149,7 @@ class _BodyState extends State<Body> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Orders',
+            LocaleKeys.orders.tr(),
             style: TextStyle(
               fontSize: getProportionateScreenWidth(20),
               fontWeight: FontWeight.bold,
@@ -167,7 +167,7 @@ class _BodyState extends State<Body> {
                   });
                 },
                 child: Text(
-                  "Active Orders",
+                  LocaleKeys.active_orders.tr(),
                   style: TextStyle(
                     fontWeight: showOrders ? FontWeight.bold : FontWeight.w400,
                     fontSize: getProportionateScreenHeight(18),
@@ -184,7 +184,7 @@ class _BodyState extends State<Body> {
                   });
                 },
                 child: Text(
-                  "Completed Orders",
+                  LocaleKeys.completed_orders.tr(),
                   style: TextStyle(
                     fontSize: getProportionateScreenHeight(18),
                     fontWeight:
@@ -273,9 +273,9 @@ class _BodyState extends State<Body> {
       backgroundColor: kPrimaryColor,
       height: SizeConfig.screenWidth * 0.17,
       items: [
-        TabItem(icon: Icons.home, title: 'Anasayfa'),
-        TabItem(icon: Icons.add, title: 'Sipariş Oluştur'),
-        TabItem(icon: Icons.settings, title: 'Ayarlar'),
+        TabItem(icon: Icons.home, title: LocaleKeys.homepage.tr()),
+        TabItem(icon: Icons.add, title: LocaleKeys.create_order.tr()),
+        TabItem(icon: Icons.settings, title: LocaleKeys.settings.tr()),
       ],
       initialActiveIndex: _selectedIndex,
       onTap: _onItemTapped,
@@ -339,7 +339,7 @@ class _BodyState extends State<Body> {
                                 ),
                               ),
                               Text(
-                                'Çabucak ve güvenilir teslimatlar \niçin moto kurye hazır! ',
+                                LocaleKeys.moto_courier.tr(),
                                 style: TextStyle(
                                   fontSize: constraints.maxWidth *
                                       0.04, // Metin boyutunu container boyutuna bağlı olarak ayarla
@@ -408,7 +408,7 @@ class _BodyState extends State<Body> {
                               SizedBox(
                                   height: getProportionateScreenHeight(10)),
                               Text(
-                                "Kamyon",
+                                LocaleKeys.campaigns.tr(),
                                 style: TextStyle(
                                   fontSize: constraints.maxWidth *
                                       0.06, // Metin boyutunu container boyutuna bağlı olarak ayarla
@@ -417,7 +417,7 @@ class _BodyState extends State<Body> {
                                 ),
                               ),
                               Text(
-                                'Hacimce büyük veya sayıca fazla\ngönderileriniz için oto kurye hazır! ',
+                                LocaleKeys.truck.tr(),
                                 style: TextStyle(
                                   fontSize: constraints.maxWidth *
                                       0.04, // Metin boyutunu container boyutuna bağlı olarak ayarla
@@ -462,7 +462,7 @@ class _BodyState extends State<Body> {
             Padding(
               padding: EdgeInsets.only(left: 12.0),
               child: Text(
-                "Completed Orders",
+                LocaleKeys.completed_orders.tr(),
                 style: TextStyle(
                   fontSize: getProportionateScreenWidth(18),
                   fontWeight: FontWeight.bold,
@@ -475,7 +475,7 @@ class _BodyState extends State<Body> {
               child: complatedOrders.isEmpty
                   ? Center(
                       child: Text(
-                        "Tamamlanan gönderi bulunmamaktadır.",
+                        LocaleKeys.no_completed_orders.tr(),
                         style: TextStyle(
                           fontSize: getProportionateScreenWidth(16),
                           color: Colors.white,
@@ -519,7 +519,7 @@ class _BodyState extends State<Body> {
           Padding(
             padding: EdgeInsets.only(left: 15.0),
             child: Text(
-              "Active Orders",
+              LocaleKeys.active_orders.tr(),
               style: TextStyle(
                 fontSize: getProportionateScreenWidth(18),
                 fontWeight: FontWeight.bold,
@@ -532,7 +532,7 @@ class _BodyState extends State<Body> {
             child: orders.isEmpty
                 ? Center(
                     child: Text(
-                      "Aktif gönderi bulunmamaktadır.",
+                      LocaleKeys.no_active_orders.tr(),
                       style: TextStyle(
                         fontSize: getProportionateScreenWidth(16),
                         color: Colors.white,
@@ -564,7 +564,7 @@ class _BodyState extends State<Body> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Campaigns',
+            LocaleKeys.campaigns.tr(),
             style: TextStyle(
               fontSize: getProportionateScreenWidth(18),
               fontWeight: FontWeight.bold,

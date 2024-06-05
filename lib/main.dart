@@ -24,7 +24,8 @@ void main() async {
     EasyLocalization(
       supportedLocales: [Locale('tr', 'TR'), Locale('en', 'US')],
       path: 'assets/translations',
-      fallbackLocale: Locale('tr-TR'),
+      startLocale: Locale('tr-TR'),
+      useOnlyLangCode:true,
       child: MyApp(),
     ),
   );
