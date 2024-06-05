@@ -14,12 +14,17 @@ import 'package:http/http.dart' as http;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await EasyLocalization.ensureInitialized();
+  InitFirebaseMessaging();
+
   runApp(
     EasyLocalization(
       supportedLocales: [Locale('tr', 'TR'), Locale('en', 'US')],
       path: 'assets/translations',
-      fallbackLocale: Locale('tr', 'TR'),
+      fallbackLocale: Locale('tr-TR'),
       child: MyApp(),
     ),
   );
