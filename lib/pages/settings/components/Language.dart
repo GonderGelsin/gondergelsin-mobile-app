@@ -1,24 +1,11 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/services/authentication.dart'
     as authentication;
 import 'package:http/http.dart' as http;
-
-void main() {
-  runApp(Language_dil());
-}
-
-class Language_dil extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LanguagePage(),
-    );
-  }
-}
 
 class LanguagePage extends StatelessWidget {
   Locale? _currentLocale;
@@ -44,7 +31,8 @@ class LanguagePage extends StatelessWidget {
     }
   }
 
-  Future<void> _updateUserLanguage(String languageCode) async {
+  Future<void> _updateUserLanguage(
+      String languageCode, BuildContext context) async {
     final url = 'https://gondergelsin.pythonanywhere.com/user/language/';
     final authToken = await authentication.getStoredData('auth_token');
     final headers = {
@@ -60,6 +48,8 @@ class LanguagePage extends StatelessWidget {
       final response =
           await http.put(Uri.parse(url), headers: headers, body: body);
       if (response.statusCode == 204) {
+        // Bu kısımda setState kullanımıyla widget güncelleniyor olabilir.
+        await context.setLocale(Locale(languageCode.toLowerCase()));
       } else {
         // Handle error
       }
@@ -79,19 +69,20 @@ class LanguagePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            BuildTRButton(),
+            _buildLanguageButton(context, 'tr', 'Türkçe'),
             SizedBox(height: 20),
-            BuildENButton(),
+            _buildLanguageButton(context, 'en', 'English'),
           ],
         ),
       ),
     );
   }
 
-  InkWell BuildENButton() {
+  InkWell _buildLanguageButton(
+      BuildContext context, String languageCode, String languageName) {
     return InkWell(
       onTap: () {
-        _updateUserLanguage('en');
+        _updateUserLanguage(languageCode, context);
       },
       child: Container(
         width: 200,
@@ -105,31 +96,7 @@ class LanguagePage extends StatelessWidget {
           children: [
             Icon(Icons.language, color: kPrimaryColor),
             SizedBox(width: 10),
-            Text('English', style: TextStyle(fontSize: 18)),
-          ],
-        ),
-      ),
-    );
-  }
-
-  InkWell BuildTRButton() {
-    return InkWell(
-      onTap: () {
-        _updateUserLanguage("tr");
-      },
-      child: Container(
-        width: 200,
-        padding: EdgeInsets.symmetric(vertical: 10),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.language, color: kPrimaryColor),
-            SizedBox(width: 10),
-            Text('Türkçe', style: TextStyle(fontSize: 18)),
+            Text(languageName, style: TextStyle(fontSize: 18)),
           ],
         ),
       ),
