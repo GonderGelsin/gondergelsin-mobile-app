@@ -105,12 +105,22 @@
   "please_enter_your_name": "Please Enter Your Name",
   "please_enter_phone": "Please Enter Your Phone Number",
   "please_enter_address": "Please Enter Your Address",
-  "payment_type_cash" : "Cash",
-  "payment_type_card" : "Card",
-  "post_content" : "Post Content",
+  "payment_type_cash": "Cash",
+  "payment_type_card": "Card",
+  "post_content": "Post Content",
   "exit_address": "Exit Address",
   "arrival_address": "Arrival Address",
   "vehicle_and_weight_selection": "Vehicle and Weight Selection",
-  "payment_method": "Payment Method"
-  
+  "payment_method": "Payment Method",
+  "active_orders": "Active Orders",
+  "completed_orders": "Completed Orders",
+  "campaigns": "Campaigns",
+  "vehicles": "Vehicles",
+  "orders": "Orders",
+  "home": "Home",
+  "moto_courier": "Quick and reliable deliveries\nwith moto courier ready!",
+  "truck": "For large or numerous\nshipments, car courier is ready!",
+  "no_completed_orders": "No completed orders found.",
+  "no_active_orders": "No active orders found.",
+  "click_for_more_info": "Click for more info"
 }

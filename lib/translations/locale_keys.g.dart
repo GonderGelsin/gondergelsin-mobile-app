@@ -114,5 +114,16 @@ abstract class  LocaleKeys {
   static const arrival_address = 'arrival_address';
   static const vehicle_and_weight_selection = 'vehicle_and_weight_selection';
   static const payment_method = 'payment_method';
+  static const active_orders = 'active_orders';
+  static const completed_orders = 'completed_orders';
+  static const campaigns = 'campaigns';
+  static const vehicles = 'vehicles';
+  static const orders = 'orders';
+  static const home = 'home';
+  static const moto_courier = 'moto_courier';
+  static const truck = 'truck';
+  static const no_completed_orders = 'no_completed_orders';
+  static const no_active_orders = 'no_active_orders';
+  static const click_for_more_info = 'click_for_more_info';
 
 }
