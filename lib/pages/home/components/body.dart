@@ -29,13 +29,13 @@ class _BodyState extends State<Body> {
 
   bool showOrders = true;
 
-  List imageList = [
+  List<String> imageList = [
     "assets/images/vecteezy_gift-with-golden-ribbon.jpg",
     "assets/images/vecteezy_isometric-style-deliver.jpg",
     "assets/images/vecteezy_mobile-smart-phone-with.jpg",
   ];
 
-  List textTitle = [
+  List<String> textTitle = [
     LocaleKeys.click_for_more_info.tr(),
     LocaleKeys.click_for_more_info.tr(),
     LocaleKeys.click_for_more_info.tr(),
