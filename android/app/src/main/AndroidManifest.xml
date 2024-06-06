@@ -21,11 +21,9 @@
         </service>
 
         <service
-    android:name=".NotificationGenie">
-    <intent-filter>
-        <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-    </intent-filter>
-</service>
+            android:name="com.example.flutter_application_1.NotificationGenie"
+            android:exported="false">
+        </service>
         
         <activity
             android:name=".MainActivity"
