@@ -29,13 +29,13 @@ class _BodyState extends State<Body> {
 
   bool showOrders = true;
 
-  List<String> imageList = [
+  List imageList = [
     "assets/images/vecteezy_gift-with-golden-ribbon.jpg",
     "assets/images/vecteezy_isometric-style-deliver.jpg",
     "assets/images/vecteezy_mobile-smart-phone-with.jpg",
   ];
 
-  List<String> textTitle = [
+  List textTitle = [
     LocaleKeys.click_for_more_info.tr(),
     LocaleKeys.click_for_more_info.tr(),
     LocaleKeys.click_for_more_info.tr(),
@@ -408,7 +408,7 @@ class _BodyState extends State<Body> {
                               SizedBox(
                                   height: getProportionateScreenHeight(10)),
                               Text(
-                                LocaleKeys.campaigns.tr(),
+                                LocaleKeys.commercial.tr(),
                                 style: TextStyle(
                                   fontSize: constraints.maxWidth *
                                       0.06, // Metin boyutunu container boyutuna bağlı olarak ayarla
