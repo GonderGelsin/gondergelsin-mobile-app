@@ -133,10 +133,90 @@ class _SignUpFormState extends State<SignUpForm> {
             press: isLoading ? null : _handleSignUp,
             isLoading: isLoading,
           ),
+          // googleSignInButton(),
+
         ],
       ),
     );
   }
+
+//   Row googleSignInButton() {
+//     return Row(
+// mainAxisAlignment: MainAxisAlignment.center,
+// children: [
+//   GestureDetector(
+//     onTap: _handleGoogleSignIn,
+//     child: Container(
+//       padding: EdgeInsets.all(8.0),
+//       decoration: BoxDecoration(
+//         borderRadius: BorderRadius.circular(4),
+//         color: Colors.white,
+//         border: Border.all(color: Colors.grey),
+//       ),
+//       child: Row(
+//         children: [
+//           Image.asset(
+//             'assets/images/search.png',
+//             height: 20,
+//           ),
+//           SizedBox(width: 10),
+//           Text(
+//             "Deneme",
+//             style: TextStyle(fontSize: 16),
+//           ),
+//         ],
+//       ),
+//     ),
+//   ),
+// ],
+// );
+//   }
+
+//   Future<void> _handleGoogleSignIn() async {
+//   try {
+//     setState(() {
+//       isLoading = true;
+//     });
+
+//     final googleUser = await GoogleSignIn().signIn();
+//     if (googleUser == null) {
+//       // The user canceled the sign-in
+//       setState(() {
+//         isLoading = false;
+//       });
+//       return;
+//     }
+
+//     final googleAuth = await googleUser.authentication;
+//     final credential = GoogleAuthProvider.credential(
+//       accessToken: googleAuth.accessToken,
+//       idToken: googleAuth.idToken,
+//     );
+
+//     await FirebaseAuth.instance.signInWithCredential(credential);
+
+//     // After successful sign-in, navigate to the success screen
+//     Navigator.pushReplacementNamed(
+//       context,
+//       LoginSuccesScreen.routeName,
+//     ).then((value) {
+//       ScaffoldMessenger.of(context).showSnackBar(
+//         SnackBar(
+//           content: Text(LocaleKeys.register_successful.tr()),
+//         ),
+//       );
+//     });
+//   } catch (e) {
+//     setState(() {
+//       isLoading = false;
+//     });
+//     ScaffoldMessenger.of(context).showSnackBar(
+//       SnackBar(
+//         content: Text(LocaleKeys.registration_error_occurred.tr()),
+//       ),
+//     );
+//   }
+// }
 
   void _handleSignUp() {
     final form = _formKey.currentState;
