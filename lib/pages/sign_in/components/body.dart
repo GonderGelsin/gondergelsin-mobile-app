@@ -1,11 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/no_account_text.dart';
+import 'package:flutter_application_1/pages/login_succes/login_succes_screen.dart';
 import 'package:flutter_application_1/pages/sign_in/components/social_card.dart';
 import 'package:flutter_application_1/services/authentication.dart'
     as authentication;
 import 'package:flutter_application_1/size_config.dart';
 import 'package:flutter_application_1/translations/locale_keys.g.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'sign_form.dart';
 
@@ -33,6 +36,52 @@ class _BodyState extends State<Body> {
       setState(() {
         isLoading = false;
       });
+    }
+  }
+
+  Future<void> _handleGoogleSignIn() async {
+    try {
+      setState(() {
+        isLoading = true;
+      });
+
+      final googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) {
+        // The user canceled the sign-in
+        setState(() {
+          isLoading = false;
+        });
+        return;
+      }
+
+      final googleAuth = await googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      await FirebaseAuth.instance.signInWithCredential(credential);
+
+      // After successful sign-in, navigate to the success screen
+      Navigator.pushReplacementNamed(
+        context,
+        LoginSuccesScreen.routeName,
+      ).then((value) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(LocaleKeys.register_successful.tr()),
+          ),
+        );
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(LocaleKeys.registration_error_occurred.tr()),
+        ),
+      );
     }
   }
 
@@ -68,7 +117,7 @@ class _BodyState extends State<Body> {
                   children: [
                     SocialCard(
                       icon: "assets/images/search.png",
-                      press: () {},
+                      press: _handleGoogleSignIn,
                     ),
                     SocialCard(
                       icon: "assets/images/facebook.png",
