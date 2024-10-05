@@ -5,12 +5,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/firebase_options.dart';
-import 'package:flutter_application_1/pages/splash/splash_screen.dart';
-import 'package:flutter_application_1/routes.dart';
-import 'package:flutter_application_1/services/authentication.dart';
-import 'package:flutter_application_1/size_config.dart';
-import 'package:flutter_application_1/theme.dart';
+import 'package:gonder_gelsin_application/firebase_options.dart';
+import 'package:gonder_gelsin_application/pages/splash/splash_screen.dart';
+import 'package:gonder_gelsin_application/routes.dart';
+import 'package:gonder_gelsin_application/services/authentication.dart';
+import 'package:gonder_gelsin_application/size_config.dart';
+import 'package:gonder_gelsin_application/theme.dart';
 import 'package:http/http.dart' as http;
 
 void main() async {

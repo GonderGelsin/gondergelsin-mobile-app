@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/constants.dart';
-import 'package:flutter_application_1/pages/profile/components/profile_pic.dart';
-import 'package:flutter_application_1/services/user_profile.dart' as profile;
-import 'package:flutter_application_1/size_config.dart';
-import 'package:flutter_application_1/translations/locale_keys.g.dart';
+import 'package:gonder_gelsin_application/constants.dart';
+import 'package:gonder_gelsin_application/pages/profile/components/profile_pic.dart';
+import 'package:gonder_gelsin_application/services/user_profile.dart' as profile;
+import 'package:gonder_gelsin_application/size_config.dart';
+import 'package:gonder_gelsin_application/translations/locale_keys.g.dart';
 
 class Body extends StatefulWidget {
   @override

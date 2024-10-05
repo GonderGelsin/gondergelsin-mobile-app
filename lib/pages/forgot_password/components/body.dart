@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/components/custom_surfix_icon.dart';
-import 'package:flutter_application_1/components/default_button.dart';
-import 'package:flutter_application_1/components/form_error.dart';
-import 'package:flutter_application_1/components/no_account_text.dart';
-import 'package:flutter_application_1/constants.dart';
-import 'package:flutter_application_1/size_config.dart';
+import 'package:gonder_gelsin_application/components/custom_surfix_icon.dart';
+import 'package:gonder_gelsin_application/components/default_button.dart';
+import 'package:gonder_gelsin_application/components/form_error.dart';
+import 'package:gonder_gelsin_application/components/no_account_text.dart';
+import 'package:gonder_gelsin_application/constants.dart';
+import 'package:gonder_gelsin_application/size_config.dart';
 
 import '../../../translations/locale_keys.g.dart';
 

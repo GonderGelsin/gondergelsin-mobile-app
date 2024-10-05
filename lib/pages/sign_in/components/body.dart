@@ -2,13 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/components/no_account_text.dart';
-import 'package:flutter_application_1/pages/login_succes/login_succes_screen.dart';
-import 'package:flutter_application_1/pages/sign_in/components/social_card.dart';
-import 'package:flutter_application_1/services/authentication.dart'
+import 'package:gonder_gelsin_application/components/no_account_text.dart';
+import 'package:gonder_gelsin_application/pages/login_succes/login_succes_screen.dart';
+import 'package:gonder_gelsin_application/pages/sign_in/components/social_card.dart';
+import 'package:gonder_gelsin_application/services/authentication.dart'
     as authentication;
-import 'package:flutter_application_1/size_config.dart';
-import 'package:flutter_application_1/translations/locale_keys.g.dart';
+import 'package:gonder_gelsin_application/size_config.dart';
+import 'package:gonder_gelsin_application/translations/locale_keys.g.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'sign_form.dart';

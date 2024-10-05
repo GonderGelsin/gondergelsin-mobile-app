@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/constants.dart';
-import 'package:flutter_application_1/services/authentication.dart'
+import 'package:gonder_gelsin_application/constants.dart';
+import 'package:gonder_gelsin_application/services/authentication.dart'
     as authentication;
-import 'package:flutter_application_1/size_config.dart';
-import 'package:flutter_application_1/translations/locale_keys.g.dart';
+import 'package:gonder_gelsin_application/size_config.dart';
+import 'package:gonder_gelsin_application/translations/locale_keys.g.dart';
 import 'package:http/http.dart' as http;
 
 class NotificationsPage extends StatefulWidget {

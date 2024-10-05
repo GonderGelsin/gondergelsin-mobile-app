@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/order_succes/order_succes.dart';
-import 'package:flutter_application_1/services/authentication.dart'
+import 'package:gonder_gelsin_application/pages/order_succes/order_succes.dart';
+import 'package:gonder_gelsin_application/services/authentication.dart'
     as authentication;
 import 'package:http/http.dart' as http;
 

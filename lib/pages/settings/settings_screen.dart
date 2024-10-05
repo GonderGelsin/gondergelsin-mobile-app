@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/forgot_password/components/body.dart';
+import 'package:gonder_gelsin_application/pages/forgot_password/components/body.dart';
 
 class Settingspage extends StatelessWidget {
   Settingspage({super.key});

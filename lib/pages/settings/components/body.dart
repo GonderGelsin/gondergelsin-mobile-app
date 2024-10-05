@@ -1,17 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/home/home_screen.dart';
-import 'package:flutter_application_1/pages/settings/components/Language.dart';
-import 'package:flutter_application_1/pages/settings/components/help.dart';
-import 'package:flutter_application_1/pages/settings/components/live_support.dart';
-import 'package:flutter_application_1/pages/settings/components/notifications_page.dart';
-import 'package:flutter_application_1/pages/settings/components/payment_page.dart';
+import 'package:gonder_gelsin_application/pages/home/home_screen.dart';
+import 'package:gonder_gelsin_application/pages/settings/components/Language.dart';
+import 'package:gonder_gelsin_application/pages/settings/components/help.dart';
+import 'package:gonder_gelsin_application/pages/settings/components/live_support.dart';
+import 'package:gonder_gelsin_application/pages/settings/components/notifications_page.dart';
+import 'package:gonder_gelsin_application/pages/settings/components/payment_page.dart';
 
-import 'package:flutter_application_1/pages/sign_in/sign_in_screen.dart';
-import 'package:flutter_application_1/services/authentication.dart'
+import 'package:gonder_gelsin_application/pages/sign_in/sign_in_screen.dart';
+import 'package:gonder_gelsin_application/services/authentication.dart'
     as authentication;
-import 'package:flutter_application_1/size_config.dart';
-import 'package:flutter_application_1/translations/locale_keys.g.dart';
+import 'package:gonder_gelsin_application/size_config.dart';
+import 'package:gonder_gelsin_application/translations/locale_keys.g.dart';
 
 class SettingsPage extends StatelessWidget {
   @override

@@ -21,7 +21,7 @@
         </service>
 
         <service
-            android:name="com.example.flutter_application_1.NotificationGenie"
+            android:name="com.example.gonder_gelsin_application.NotificationGenie"
             android:exported="false">
         </service>
         
