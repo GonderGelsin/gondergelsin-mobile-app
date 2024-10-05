@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/firebase_options.dart';
@@ -17,6 +18,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
   await EasyLocalization.ensureInitialized();
   InitFirebaseMessaging();
 
@@ -83,7 +86,7 @@ void _sendTokenToServer(String token) async {
         'https://gondergelsin.pythonanywhere.com/authentication/device-token/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': 'Token $authToken'
+      'Authorization': 'Bearer $authToken'
     },
     body: jsonEncode(<String, String>{
       'device_token': token,

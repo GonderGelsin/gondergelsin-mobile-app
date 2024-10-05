@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/no_account_text.dart';
 import 'package:flutter_application_1/pages/login_succes/login_succes_screen.dart';
@@ -62,7 +63,9 @@ class _BodyState extends State<Body> {
 
       await FirebaseAuth.instance.signInWithCredential(credential);
 
-      // After successful sign-in, navigate to the success screen
+      FirebaseCrashlytics.instance
+          .log('Kullanıcı Google ile başarılı şekilde giriş yaptı.');
+
       Navigator.pushReplacementNamed(
         context,
         LoginSuccesScreen.routeName,
@@ -73,10 +76,14 @@ class _BodyState extends State<Body> {
           ),
         );
       });
-    } catch (e) {
+    } catch (e, stackTrace) {
+      await FirebaseCrashlytics.instance
+          .recordError(e, stackTrace, reason: 'Google Sign-In başarısız');
+
       setState(() {
         isLoading = false;
       });
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(LocaleKeys.registration_error_occurred.tr()),

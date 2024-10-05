@@ -9,7 +9,7 @@ Future<List<Order>> fetchOrders() async {
   final authToken = await authentication.getStoredData('auth_token');
   final response = await http.get(
     Uri.parse('https://gondergelsin.pythonanywhere.com/order/active/'),
-    headers: {'Authorization': 'Token $authToken'},
+    headers: {'Authorization': 'Bearer $authToken'},
   );
 
   if (response.statusCode == 200) {
@@ -28,7 +28,7 @@ Future<List<Order>> fetchComplatedOrders() async {
   final authToken = await authentication.getStoredData('auth_token');
   final response = await http.get(
     Uri.parse('https://gondergelsin.pythonanywhere.com/order/complated/'),
-    headers: {'Authorization': 'Token $authToken'},
+    headers: {'Authorization': 'Bearer $authToken'},
   );
 
   if (response.statusCode == 200) {

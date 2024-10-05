@@ -14,7 +14,7 @@ class LanguagePage extends StatelessWidget {
     final url = 'https://gondergelsin.pythonanywhere.com/user/language/';
     final authToken = await authentication.getStoredData('auth_token');
     final headers = {
-      'Authorization': 'Token $authToken',
+      'Authorization': 'Bearer $authToken',
       'Content-Type': 'application/json',
     };
 
@@ -36,7 +36,7 @@ class LanguagePage extends StatelessWidget {
     final url = 'https://gondergelsin.pythonanywhere.com/user/language/';
     final authToken = await authentication.getStoredData('auth_token');
     final headers = {
-      'Authorization': 'Token $authToken',
+      'Authorization': 'Bearer $authToken',
       'Content-Type': 'application/json',
     };
 
