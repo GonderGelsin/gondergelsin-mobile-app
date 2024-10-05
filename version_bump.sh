@@ -15,8 +15,8 @@ new_version_patch=$((version_patch + 1))
 # Yeni versiyonu ayarla
 new_version="$version_major.$version_minor.$new_version_patch+$version_build"
 
-# pubspec.yaml dosyasındaki versiyonu güncelle
-sed -i '' "s/version: .*/version: $new_version/" pubspec.yaml
+# pubspec.yaml dosyasındaki versiyonu güncelle (Linux'ta sed için -i '' gerekli değil)
+sed -i "s/version: .*/version: $new_version/" pubspec.yaml
 
 # Yeni versiyonu ekrana yazdır
 echo "Yeni versiyon: $new_version"
