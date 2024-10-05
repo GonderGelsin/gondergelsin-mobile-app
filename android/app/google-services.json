@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "474577649316",
-    "project_id": "gonder-gelsin-cf201",
-    "storage_bucket": "gonder-gelsin-cf201.appspot.com"
+    "project_number": "1078539395990",
+    "project_id": "gonder-gelsin-mobile",
+    "storage_bucket": "gonder-gelsin-mobile.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:474577649316:android:286e11a4751e86574ef031",
+        "mobilesdk_app_id": "1:1078539395990:android:f12b9f915bb2c01c1cf3b7",
         "android_client_info": {
           "package_name": "com.example.gonder_gelsin_application"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC2SV-62aTQ8XJruFn4A5k9DlR6Un43Nec"
+          "current_key": "AIzaSyCfxrGwGaN9hDOfyNULBfEJrfc7fByImIM"
         }
       ],
       "services": {

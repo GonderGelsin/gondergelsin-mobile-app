@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyBJ0MfscSYA_Zh0Iq1wxlWzoc9vjbAb1qs</string>
+	<string>AIzaSyBBikhJUL4QsxU8VCopVFgIxIqpTZTCmAg</string>
 	<key>GCM_SENDER_ID</key>
-	<string>474577649316</string>
+	<string>1078539395990</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.flutterApplication1</string>
 	<key>PROJECT_ID</key>
-	<string>gonder-gelsin-cf201</string>
+	<string>gonder-gelsin-mobile</string>
 	<key>STORAGE_BUCKET</key>
-	<string>gonder-gelsin-cf201.appspot.com</string>
+	<string>gonder-gelsin-mobile.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:474577649316:ios:ac485715c696bd304ef031</string>
+	<string>1:1078539395990:ios:cc572652b0ac14811cf3b7</string>
 </dict>
 </plist>

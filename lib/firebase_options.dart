@@ -41,46 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBaEfdtq2C3MB3Cy7PGDcODb4doqSdWw-E',
-    appId: '1:474577649316:web:e8a2c70cde62398f4ef031',
-    messagingSenderId: '474577649316',
-    projectId: 'gonder-gelsin-cf201',
-    authDomain: 'gonder-gelsin-cf201.firebaseapp.com',
-    storageBucket: 'gonder-gelsin-cf201.appspot.com',
+    apiKey: 'AIzaSyC_cmdPc75PIeTeDl3okbYh8eLydaGZrLc',
+    appId: '1:1078539395990:web:fce9ce041f7bc9871cf3b7',
+    messagingSenderId: '1078539395990',
+    projectId: 'gonder-gelsin-mobile',
+    authDomain: 'gonder-gelsin-mobile.firebaseapp.com',
+    storageBucket: 'gonder-gelsin-mobile.appspot.com',
+    measurementId: 'G-LYBTC8KQT7',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC2SV-62aTQ8XJruFn4A5k9DlR6Un43Nec',
-    appId: '1:474577649316:android:286e11a4751e86574ef031',
-    messagingSenderId: '474577649316',
-    projectId: 'gonder-gelsin-cf201',
-    storageBucket: 'gonder-gelsin-cf201.appspot.com',
+    apiKey: 'AIzaSyCfxrGwGaN9hDOfyNULBfEJrfc7fByImIM',
+    appId: '1:1078539395990:android:f12b9f915bb2c01c1cf3b7',
+    messagingSenderId: '1078539395990',
+    projectId: 'gonder-gelsin-mobile',
+    storageBucket: 'gonder-gelsin-mobile.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBJ0MfscSYA_Zh0Iq1wxlWzoc9vjbAb1qs',
-    appId: '1:474577649316:ios:ac485715c696bd304ef031',
-    messagingSenderId: '474577649316',
-    projectId: 'gonder-gelsin-cf201',
-    storageBucket: 'gonder-gelsin-cf201.appspot.com',
+    apiKey: 'AIzaSyBBikhJUL4QsxU8VCopVFgIxIqpTZTCmAg',
+    appId: '1:1078539395990:ios:cc572652b0ac14811cf3b7',
+    messagingSenderId: '1078539395990',
+    projectId: 'gonder-gelsin-mobile',
+    storageBucket: 'gonder-gelsin-mobile.appspot.com',
     iosBundleId: 'com.example.flutterApplication1',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBJ0MfscSYA_Zh0Iq1wxlWzoc9vjbAb1qs',
-    appId: '1:474577649316:ios:ac485715c696bd304ef031',
-    messagingSenderId: '474577649316',
-    projectId: 'gonder-gelsin-cf201',
-    storageBucket: 'gonder-gelsin-cf201.appspot.com',
+    apiKey: 'AIzaSyBBikhJUL4QsxU8VCopVFgIxIqpTZTCmAg',
+    appId: '1:1078539395990:ios:cc572652b0ac14811cf3b7',
+    messagingSenderId: '1078539395990',
+    projectId: 'gonder-gelsin-mobile',
+    storageBucket: 'gonder-gelsin-mobile.appspot.com',
     iosBundleId: 'com.example.flutterApplication1',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyBaEfdtq2C3MB3Cy7PGDcODb4doqSdWw-E',
-    appId: '1:474577649316:web:a424b48812ec0fa34ef031',
-    messagingSenderId: '474577649316',
-    projectId: 'gonder-gelsin-cf201',
-    authDomain: 'gonder-gelsin-cf201.firebaseapp.com',
-    storageBucket: 'gonder-gelsin-cf201.appspot.com',
+    apiKey: 'AIzaSyC_cmdPc75PIeTeDl3okbYh8eLydaGZrLc',
+    appId: '1:1078539395990:web:40538e07e7bd9c0d1cf3b7',
+    messagingSenderId: '1078539395990',
+    projectId: 'gonder-gelsin-mobile',
+    authDomain: 'gonder-gelsin-mobile.firebaseapp.com',
+    storageBucket: 'gonder-gelsin-mobile.appspot.com',
+    measurementId: 'G-LG6MTX2SCX',
   );
+
 }
