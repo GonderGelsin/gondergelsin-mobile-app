@@ -8,6 +8,7 @@ import 'package:flutter_application_1/pages/forgot_password/forgot_password_scre
 import 'package:flutter_application_1/pages/home/home_screen.dart';
 import 'package:flutter_application_1/services/authentication.dart'
     as authentication;
+import 'package:flutter_application_1/services/authentication.dart';
 import 'package:flutter_application_1/size_config.dart';
 import 'package:flutter_application_1/translations/locale_keys.g.dart';
 
@@ -120,7 +121,9 @@ class _SignFormState extends State<SignForm> {
           isLoading = false;
         });
         String errorMessage;
-        if (error is authentication.SignInException) {
+        print(error);
+
+        if (error is SignInException) {
           errorMessage = error.message;
         } else {
           errorMessage = LocaleKeys.unknown_error.tr();

@@ -53,7 +53,7 @@ class Order {
       url,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Token $authToken'
+        'Authorization': 'Bearer $authToken'
       },
       body: jsonEncode(toJson()),
     );
@@ -78,7 +78,7 @@ class Order {
       url,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Token $authToken'
+        'Authorization': 'Bearer $authToken'
       },
       body: jsonEncode({
           "title": "Gönderi Bildirimi",

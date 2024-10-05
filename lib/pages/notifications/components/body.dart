@@ -26,7 +26,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
 
     http.Response response = await http.get(
       Uri.parse(url),
-      headers: {'Authorization': 'Token $authToken'},
+      headers: {'Authorization': 'Bearer $authToken'},
     );
 
     if (response.statusCode == 200) {
@@ -47,7 +47,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
     http.Response response = await http.post(
       Uri.parse(url),
       headers: {
-        'Authorization': 'Token $authToken',
+        'Authorization': 'Bearer $authToken',
         'Content-Type': 'application/json',
       },
       body: jsonEncode({'id': id}),

@@ -32,7 +32,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'https://gondergelsin.pythonanywhere.com/user/notification/preferences/';
     final authToken = await authentication.getStoredData('auth_token');
     final headers = {
-      'Authorization': 'Token $authToken',
+      'Authorization': 'Bearer $authToken',
       'Content-Type': 'application/json',
     };
 
@@ -62,7 +62,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'https://gondergelsin.pythonanywhere.com/user/notification/preferences/';
     final authToken = await authentication.getStoredData('auth_token');
     final headers = {
-      'Authorization': 'Token $authToken',
+      'Authorization': 'Bearer $authToken',
       'Content-Type': 'application/json',
     };
 

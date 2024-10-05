@@ -11,7 +11,7 @@ Future<Map<String, dynamic>> getUserInfo() async {
 
   http.Response response = await http.get(
     Uri.parse(apiUrl),
-    headers: {'Authorization': 'Token $authToken'},
+    headers: {'Authorization': 'Bearer $authToken'},
   );
 
   if (response.statusCode == 200) {
@@ -34,7 +34,7 @@ Future<void> updateUserInfo(Map<String, dynamic> updatedUserInfo) async {
   http.Response response = await http.put(
     Uri.parse(apiUrl),
     headers: {
-      'Authorization': 'Token $authToken',
+      'Authorization': 'Bearer $authToken',
       'Content-Type': 'application/json',
     },
     body: requestBody,
