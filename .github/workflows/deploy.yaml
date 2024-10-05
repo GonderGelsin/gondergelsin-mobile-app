@@ -41,8 +41,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "$(grep 'version:' pubspec.yaml | cut -d' ' -f2 | tr -d '\n')"
-          release_name: "v$(grep 'version:' pubspec.yaml | cut -d' ' -f2 | tr -d '\n')"
+          tag_name: "v$(grep -oP 'version:\s*\K[0-9]+\.[0-9]+\.[0-9]+' pubspec.yaml)"
+          release_name: "v$(grep -oP 'version:\s*\K[0-9]+\.[0-9]+\.[0-9]+' pubspec.yaml)"
           body: "Yeni bir sürüm yayınlandı."
           draft: false
           prerelease: false
