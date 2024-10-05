@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/constants.dart';
+import 'package:gonder_gelsin_application/constants.dart';
 
 ThemeData theme() {
   return ThemeData(

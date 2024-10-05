@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_application_1/services/authentication.dart' as authentication;
+import 'package:gonder_gelsin_application/services/authentication.dart' as authentication;
 import 'package:http/http.dart' as http;
 
 Future<Map<String, dynamic>> getUserInfo() async {

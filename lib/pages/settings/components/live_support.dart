@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/services/authentication.dart';
+import 'package:gonder_gelsin_application/services/authentication.dart';
 import 'package:flutter_tawkto/flutter_tawk.dart';
 
 class LiveSupportPage extends StatelessWidget {

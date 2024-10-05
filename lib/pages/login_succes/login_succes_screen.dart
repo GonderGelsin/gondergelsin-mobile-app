@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_application_1/pages/login_succes/components/body.dart';
-import 'package:flutter_application_1/size_config.dart';
-import 'package:flutter_application_1/translations/locale_keys.g.dart';
+import 'package:gonder_gelsin_application/pages/login_succes/components/body.dart';
+import 'package:gonder_gelsin_application/size_config.dart';
+import 'package:gonder_gelsin_application/translations/locale_keys.g.dart';
 
 class LoginSuccesScreen extends StatelessWidget {
   static String routeName = "/login_succes";

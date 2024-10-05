@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/constants.dart';
-import 'package:flutter_application_1/size_config.dart';
+import 'package:gonder_gelsin_application/constants.dart';
+import 'package:gonder_gelsin_application/size_config.dart';
 
 class ProfilePic extends StatelessWidget {
   const ProfilePic({

@@ -1,17 +1,17 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/constants.dart';
-import 'package:flutter_application_1/pages/createOrder/components/order.dart';
-import 'package:flutter_application_1/pages/createOrder/order_screen.dart';
-import 'package:flutter_application_1/pages/home/components/service.dart';
-import 'package:flutter_application_1/pages/home/home_screen.dart';
-import 'package:flutter_application_1/pages/notifications/notifications.dart';
-import 'package:flutter_application_1/pages/profile/profile_pages.dart';
-import 'package:flutter_application_1/pages/settings/components/body.dart';
-import 'package:flutter_application_1/pages/settings/components/live_support.dart';
-import 'package:flutter_application_1/size_config.dart';
-import 'package:flutter_application_1/translations/locale_keys.g.dart';
+import 'package:gonder_gelsin_application/constants.dart';
+import 'package:gonder_gelsin_application/pages/createOrder/components/order.dart';
+import 'package:gonder_gelsin_application/pages/createOrder/order_screen.dart';
+import 'package:gonder_gelsin_application/pages/home/components/service.dart';
+import 'package:gonder_gelsin_application/pages/home/home_screen.dart';
+import 'package:gonder_gelsin_application/pages/notifications/notifications.dart';
+import 'package:gonder_gelsin_application/pages/profile/profile_pages.dart';
+import 'package:gonder_gelsin_application/pages/settings/components/body.dart';
+import 'package:gonder_gelsin_application/pages/settings/components/live_support.dart';
+import 'package:gonder_gelsin_application/size_config.dart';
+import 'package:gonder_gelsin_application/translations/locale_keys.g.dart';
 
 class Body extends StatefulWidget {
   @override
