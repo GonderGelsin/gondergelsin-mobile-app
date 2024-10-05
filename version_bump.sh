@@ -7,15 +7,14 @@ current_version=$(grep 'version:' pubspec.yaml | sed 's/version: //')
 version_major=$(echo $current_version | cut -d. -f1)
 version_minor=$(echo $current_version | cut -d. -f2)
 version_patch=$(echo $current_version | cut -d. -f3 | cut -d+ -f1)
-version_build=$(echo $current_version | cut -d+ -f2)
 
 # Patch versiyonunu artır
 new_version_patch=$((version_patch + 1))
 
-# Yeni versiyonu ayarla
-new_version="$version_major.$version_minor.$new_version_patch+$version_build"
+# Yeni versiyonu ayarla (build numarası olmadan)
+new_version="$version_major.$version_minor.$new_version_patch"
 
-# pubspec.yaml dosyasındaki versiyonu güncelle (Linux'ta sed için -i '' gerekli değil)
+# pubspec.yaml dosyasındaki versiyonu güncelle
 sed -i "s/version: .*/version: $new_version/" pubspec.yaml
 
 # Yeni versiyonu ekrana yazdır
