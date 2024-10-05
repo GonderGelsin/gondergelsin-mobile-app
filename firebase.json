@@ -1,1 +1,33 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"gonder-gelsin-mobile","appId":"1:1078539395990:android:f12b9f915bb2c01c1cf3b7","fileOutput":"android/app/google-services.json"}},"ios":{"default":{"projectId":"gonder-gelsin-mobile","appId":"1:1078539395990:ios:cc572652b0ac14811cf3b7","uploadDebugSymbols":true,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"macos":{"default":{"projectId":"gonder-gelsin-mobile","appId":"1:1078539395990:ios:cc572652b0ac14811cf3b7","uploadDebugSymbols":true,"fileOutput":"macos/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"gonder-gelsin-mobile","configurations":{"android":"1:1078539395990:android:f12b9f915bb2c01c1cf3b7","ios":"1:1078539395990:ios:cc572652b0ac14811cf3b7","macos":"1:1078539395990:ios:cc572652b0ac14811cf3b7","web":"1:1078539395990:web:fce9ce041f7bc9871cf3b7","windows":"1:1078539395990:web:40538e07e7bd9c0d1cf3b7"}}}}}}
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "gonder-gelsin-mobile",
+                    "appId": "1:1078539395990:android:f12b9f915bb2c01c1cf3b7",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "macos": {
+                "default": {
+                    "projectId": "gonder-gelsin-mobile",
+                    "appId": "1:1078539395990:ios:cc572652b0ac14811cf3b7",
+                    "uploadDebugSymbols": true,
+                    "fileOutput": "macos/Runner/GoogleService-Info.plist"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "gonder-gelsin-mobile",
+                    "configurations": {
+                        "android": "1:1078539395990:android:f12b9f915bb2c01c1cf3b7",
+                        "ios": "1:1078539395990:ios:cc572652b0ac14811cf3b7",
+                        "macos": "1:1078539395990:ios:cc572652b0ac14811cf3b7",
+                        "web": "1:1078539395990:web:fce9ce041f7bc9871cf3b7",
+                        "windows": "1:1078539395990:web:40538e07e7bd9c0d1cf3b7"
+                    }
+                }
+            }
+        }
+    }
+}
