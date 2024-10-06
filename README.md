@@ -1,4 +1,4 @@
-# gonder_gelsin_application
+# gondergelsin_mobile_app
 
 A new Flutter project.
 
