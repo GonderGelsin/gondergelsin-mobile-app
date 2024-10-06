@@ -1,11 +1,9 @@
-import 'dart:async';
 import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gonder_gelsin_application/firebase_options.dart';
 import 'package:gonder_gelsin_application/pages/splash/splash_screen.dart';
@@ -16,30 +14,24 @@ import 'package:gonder_gelsin_application/theme.dart';
 import 'package:http/http.dart' as http;
 
 void main() async {
-  BindingBase.debugZoneErrorsAreFatal = true;  // Zone hatalarını fatal hale getir
-
-  WidgetsFlutterBinding.ensureInitialized();   // Binding'leri zone'da başlat
-  
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
   await EasyLocalization.ensureInitialized();
+  await InitFirebaseMessaging();
 
-  runZonedGuarded(() {
-    runApp(
-      EasyLocalization(
-        supportedLocales: [Locale('tr', 'TR'), Locale('en', 'US')],
-        path: 'assets/translations',
-        startLocale: Locale('tr', 'TR'),
-        useOnlyLangCode: true,
-        child: MyApp(),
-      ),
-    );
-  }, (error, stackTrace) {
-    FirebaseCrashlytics.instance.recordError(error, stackTrace);
-  });
+  runApp(
+    EasyLocalization(
+      supportedLocales: [Locale('tr', 'TR'), Locale('en', 'US')],
+      path: 'assets/translations',
+      startLocale: Locale('tr-TR'),
+      useOnlyLangCode: true,
+      child: MyApp(),
+    ),
+  );
 }
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
