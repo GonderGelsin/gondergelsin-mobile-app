@@ -18,17 +18,17 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
   await EasyLocalization.ensureInitialized();
-  InitFirebaseMessaging();
+  await InitFirebaseMessaging(); // await ile asenkron çağrı
 
   runApp(
     EasyLocalization(
       supportedLocales: [Locale('tr', 'TR'), Locale('en', 'US')],
       path: 'assets/translations',
       startLocale: Locale('tr-TR'),
-      useOnlyLangCode:true,
+      useOnlyLangCode: true,
       child: MyApp(),
     ),
   );
@@ -59,24 +59,18 @@ class MyApp extends StatelessWidget {
   }
 }
 
-void InitFirebaseMessaging() async {
+Future<void> InitFirebaseMessaging() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  FirebaseMessaging messaging = FirebaseMessaging.instance;
 
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
   String? token = await messaging.getToken();
 
   if (token != null) {
     _sendTokenToServer(token);
-    print("------> token varrrrr");
     FirebaseMessaging.instance.onTokenRefresh.listen((newToken) {
       _sendTokenToServer(newToken);
     });
   }
-
-  print("token yooooookkk");
 }
 
 void _sendTokenToServer(String token) async {
