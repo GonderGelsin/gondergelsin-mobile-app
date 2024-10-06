@@ -12,7 +12,20 @@
           "package_name": "com.example.gonder_gelsin_application"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1078539395990-atd50a6u10ibnqsvh1o6m5rb49qrlj7q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gonder_gelsin_application",
+            "certificate_hash": "c2de2ed9bacb26585ca2a7f63a2e635bfef1c79b"
+          }
+        },
+        {
+          "client_id": "1078539395990-cjc7ajd8j7ikkbvl7g8t94u5n8745cht.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCfxrGwGaN9hDOfyNULBfEJrfc7fByImIM"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1078539395990-cjc7ajd8j7ikkbvl7g8t94u5n8745cht.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1078539395990-cadchrs8qicm0n5oo152k18hsv7os9t7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterApplication1"
+              }
+            }
+          ]
         }
       }
     }

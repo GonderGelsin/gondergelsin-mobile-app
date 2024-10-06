@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:gonder_gelsin_application/components/no_account_text.dart';
-import 'package:gonder_gelsin_application/pages/login_succes/login_succes_screen.dart';
 import 'package:gonder_gelsin_application/pages/sign_in/components/social_card.dart';
 import 'package:gonder_gelsin_application/services/authentication.dart'
     as authentication;
@@ -46,49 +45,57 @@ class _BodyState extends State<Body> {
         isLoading = true;
       });
 
-      final googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       if (googleUser == null) {
-        // The user canceled the sign-in
         setState(() {
           isLoading = false;
         });
         return;
       }
 
-      final googleAuth = await googleUser.authentication;
-      final credential = GoogleAuthProvider.credential(
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
+      final UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      final User? user = userCredential.user;
 
-      await FirebaseAuth.instance.signInWithCredential(credential);
-
-      FirebaseCrashlytics.instance
-          .log('Kullanıcı Google ile başarılı şekilde giriş yaptı.');
-
-      Navigator.pushReplacementNamed(
-        context,
-        LoginSuccesScreen.routeName,
-      ).then((value) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(LocaleKeys.register_successful.tr()),
-          ),
-        );
-      });
+      if (user != null) {
+        final checkResult = await authentication.checkUser(user.email);
+        if (checkResult == true) {
+          final tokenResult =
+              await authentication.signInWithGoogle(googleAuth.idToken);
+          if (tokenResult == true) {
+            Navigator.pushReplacementNamed(context, '/home');
+          } else {
+            throw Exception('Google Sign-In sırasında bir hata oluştu');
+          }
+        } else {
+          Navigator.pushReplacementNamed(
+            context,
+            '/complate_google_sign_up',
+            arguments: {
+              'email': user.email,
+              'displayName': user.displayName,
+            },
+          );
+        }
+      }
     } catch (e, stackTrace) {
       await FirebaseCrashlytics.instance
           .recordError(e, stackTrace, reason: 'Google Sign-In başarısız');
-
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Google Sign-In sırasında bir hata oluştu.'),
+        ),
+      );
+    } finally {
       setState(() {
         isLoading = false;
       });
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(LocaleKeys.registration_error_occurred.tr()),
-        ),
-      );
     }
   }
 
