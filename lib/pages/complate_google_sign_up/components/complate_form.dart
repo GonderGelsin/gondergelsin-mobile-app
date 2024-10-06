@@ -15,7 +15,6 @@ class CompleteProfileScreen extends StatefulWidget {
 class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  // Controller'ları tanımlayın
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController tcController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -95,14 +94,13 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   SizedBox(height: 40),
 
                   DefaultButton(
-                    text: "Kaydı Tamamla",
-                    press: () {
-                      if (_formKey.currentState!.validate()) {
+                      text: "Kaydı Tamamla",
+                      press: () {
+                        if (_formKey.currentState!.validate()) {
                           // Eksik bilgiler tamamlandı, backend'e kaydedin
                           completeRegistration();
                         }
-                      }
-                    ),
+                      }),
                 ],
               ),
             ),
@@ -135,10 +133,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   }
 
   void completeRegistration() {
-    // Eğer isim soyisim Google'dan geliyorsa
     var nameParts = _getFirstAndLastName(widget.name ?? "");
 
-    // Diğer alanlar kullanıcıdan alınıyor
     String firstName = nameParts['firstName']!;
     String lastName = nameParts['lastName']!;
     String email = widget.email ?? '';
@@ -146,7 +142,6 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     String password = passwordController.text;
     String tcNumber = tcController.text;
 
-    // Register fonksiyonunu çağır
     registerGoogleUser(
       email: email,
       firstName: firstName,
@@ -155,9 +150,12 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
       password: password,
       tcNumber: tcNumber,
     ).then((response) {
-      print("Kayıt başarılı: ${response}");
+      Navigator.pushReplacementNamed(context, "/home");
     }).catchError((error) {
       print("Kayıt sırasında hata oluştu: $error");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Kayıt sırasında bir hata oluştu: $error")),
+      );
     });
   }
 
