@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -21,17 +22,20 @@ void main() async {
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
   await EasyLocalization.ensureInitialized();
-  await InitFirebaseMessaging(); // await ile asenkron çağrı
-
-  runApp(
-    EasyLocalization(
-      supportedLocales: [Locale('tr', 'TR'), Locale('en', 'US')],
-      path: 'assets/translations',
-      startLocale: Locale('tr-TR'),
-      useOnlyLangCode: true,
-      child: MyApp(),
-    ),
-  );
+  await InitFirebaseMessaging();
+  runZonedGuarded(() {
+    runApp(
+      EasyLocalization(
+        supportedLocales: [Locale('tr', 'TR'), Locale('en', 'US')],
+        path: 'assets/translations',
+        startLocale: Locale('tr-TR'),
+        useOnlyLangCode: true,
+        child: MyApp(),
+      ),
+    );
+  }, (error, stackTrace) {
+    FirebaseCrashlytics.instance.recordError(error, stackTrace);
+  });
 }
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
