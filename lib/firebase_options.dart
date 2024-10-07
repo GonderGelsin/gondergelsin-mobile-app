@@ -51,20 +51,23 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCfxrGwGaN9hDOfyNULBfEJrfc7fByImIM',
-    appId: '1:1078539395990:android:f12b9f915bb2c01c1cf3b7',
-    messagingSenderId: '1078539395990',
-    projectId: 'gonder-gelsin-mobile',
-    storageBucket: 'gonder-gelsin-mobile.appspot.com',
+    apiKey: 'AIzaSyDVs3izAzZtob4hnVf1IoDqlZS6GRJvAUU',
+    appId: '1:197601339687:android:b6470da296e7c09fdb2102',
+    messagingSenderId: '197601339687',
+    projectId: 'gondergelsin-mobile-app',
+    databaseURL: 'https://gondergelsin-mobile-app-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'gondergelsin-mobile-app.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBBikhJUL4QsxU8VCopVFgIxIqpTZTCmAg',
-    appId: '1:1078539395990:ios:cc572652b0ac14811cf3b7',
-    messagingSenderId: '1078539395990',
-    projectId: 'gonder-gelsin-mobile',
-    storageBucket: 'gonder-gelsin-mobile.appspot.com',
-    iosBundleId: 'com.example.flutterApplication1',
+    apiKey: 'AIzaSyCI1CWKiJC3Nky_gy7SrSRH9KAvS02xCoM',
+    appId: '1:197601339687:ios:4efd557d6d0952eddb2102',
+    messagingSenderId: '197601339687',
+    projectId: 'gondergelsin-mobile-app',
+    databaseURL: 'https://gondergelsin-mobile-app-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'gondergelsin-mobile-app.appspot.com',
+    iosClientId: '197601339687-rjfo1vmb04i1hdsch5jvroh15ksrg5k6.apps.googleusercontent.com',
+    iosBundleId: 'com.example.gondergelsinMobileApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -77,13 +80,13 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyC_cmdPc75PIeTeDl3okbYh8eLydaGZrLc',
-    appId: '1:1078539395990:web:40538e07e7bd9c0d1cf3b7',
-    messagingSenderId: '1078539395990',
-    projectId: 'gonder-gelsin-mobile',
-    authDomain: 'gonder-gelsin-mobile.firebaseapp.com',
-    storageBucket: 'gonder-gelsin-mobile.appspot.com',
-    measurementId: 'G-LG6MTX2SCX',
+    apiKey: 'AIzaSyDynjBXNZ1j9DxqOmCGUhbX4liDeF-vruY',
+    appId: '1:197601339687:web:ded20019ffb3bd5ddb2102',
+    messagingSenderId: '197601339687',
+    projectId: 'gondergelsin-mobile-app',
+    authDomain: 'gondergelsin-mobile-app.firebaseapp.com',
+    databaseURL: 'https://gondergelsin-mobile-app-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'gondergelsin-mobile-app.appspot.com',
   );
 
 }
