@@ -1,6 +1,5 @@
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.gondergelsin_mobile_app">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <queries>
         <!-- Required to query activities that can process text -->
