@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -13,12 +14,14 @@ import 'package:gondergelsin_mobile_app/size_config.dart';
 import 'package:gondergelsin_mobile_app/theme.dart';
 import 'package:http/http.dart' as http;
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
   await EasyLocalization.ensureInitialized();
   await InitFirebaseMessaging();

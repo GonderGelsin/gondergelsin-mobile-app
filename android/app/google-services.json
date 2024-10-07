@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "197601339687-jva2eo69qrlms6lot0o6ev6052gfaicb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gondergelsin_mobile_app",
+            "certificate_hash": "c2de2ed9bacb26585ca2a7f63a2e635bfef1c79b"
+          }
+        },
+        {
           "client_id": "197601339687-nlkorg9pnsdbqdce06h3l47m9n7lm8c3.apps.googleusercontent.com",
           "client_type": 3
         }
