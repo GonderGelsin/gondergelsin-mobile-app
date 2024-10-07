@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart'; // Add this import
 import 'package:gondergelsin_mobile_app/firebase_options.dart';
 import 'package:gondergelsin_mobile_app/pages/splash/splash_screen.dart';
 import 'package:gondergelsin_mobile_app/routes.dart';
@@ -14,17 +15,25 @@ import 'package:gondergelsin_mobile_app/size_config.dart';
 import 'package:gondergelsin_mobile_app/theme.dart';
 import 'package:http/http.dart' as http;
 
+FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin(); // Add this initialization
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // Initialize Firebase Messaging
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
   await EasyLocalization.ensureInitialized();
-  await InitFirebaseMessaging();
+
+  // Setup notification channel
+  setupNotificationChannel();
 
   runApp(
     EasyLocalization(
@@ -37,9 +46,25 @@ void main() async {
   );
 }
 
+// Function to handle background messages
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   print("Handling a background message: ${message.messageId}");
+}
+
+// Setup notification channel for Android 8.0+ devices
+void setupNotificationChannel() async {
+  const AndroidNotificationChannel channel = AndroidNotificationChannel(
+    'default_channel_id',
+    'High Importance Notifications',
+    description: 'This channel is used for important notifications.',
+    importance: Importance.high,
+  );
+
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
 }
 
 class MyApp extends StatelessWidget {
@@ -63,8 +88,6 @@ class MyApp extends StatelessWidget {
 }
 
 Future<void> InitFirebaseMessaging() async {
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-
   FirebaseMessaging messaging = FirebaseMessaging.instance;
   String? token = await messaging.getToken();
 
