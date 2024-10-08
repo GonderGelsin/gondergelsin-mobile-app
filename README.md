@@ -1,6 +1,6 @@
 # gondergelsin_mobile_app
 
-A new Flutter project.
+Gonder Gelsin
 
 ## Getting Started
 
