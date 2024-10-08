@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gondergelsin_mobile_app/main.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -162,18 +163,34 @@ Future<bool> checkUser(email) async {
 
   if (response.statusCode == 200) {
     final responseData = json.decode(response.body);
+    print(responseData);
     return responseData['data'];
   }
   return false;
 }
 
+
+
+Future<String> getClientId() async {
+  const platform = MethodChannel('com.example.gondergelsin_mobile_app/client_id');
+  try {
+    final String clientId = await platform.invokeMethod('getClientId');
+    return clientId;
+  } on PlatformException catch (e) {
+    print("Failed to get client_id: '${e.message}'.");
+    return '';
+  }
+}
+
 Future<bool> signInWithGoogle(idToken) async {
   try {
+    final String clientId = await getClientId();
+    print(clientId);
     final prefs = await SharedPreferences.getInstance();
     final response = await http.post(
       Uri.parse('https://gondergelsin.pythonanywhere.com/authentication/google/login/'),
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({'id_token': idToken}),
+      body: jsonEncode({'id_token': idToken, 'client_id' : clientId }),
     );
     if (response.statusCode == 200) {
       final responseData = jsonDecode(response.body);
