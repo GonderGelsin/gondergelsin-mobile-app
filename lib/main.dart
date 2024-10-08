@@ -19,6 +19,7 @@ FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin(); // Add this initialization
 
 void main() async {
+  print(DefaultFirebaseOptions.currentPlatform);
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

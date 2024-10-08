@@ -39,65 +39,79 @@ class _BodyState extends State<Body> {
     }
   }
 
-  Future<void> _handleGoogleSignIn() async {
-    try {
-      setState(() {
-        isLoading = true;
-      });
+Future<void> _handleGoogleSignIn() async {
+  try {
+    // Kullanıcıya yükleniyor durumu göstermek için
+    setState(() {
+      isLoading = true;
+    });
 
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      if (googleUser == null) {
-        setState(() {
-          isLoading = false;
-        });
-        return;
-      }
-
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-      final UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithCredential(credential);
-      final User? user = userCredential.user;
-
-      if (user != null) {
-        final checkResult = await authentication.checkUser(user.email);
-        if (checkResult == true) {
-          final tokenResult =
-              await authentication.signInWithGoogle(googleAuth.idToken);
-          if (tokenResult == true) {
-            Navigator.pushReplacementNamed(context, '/home');
-          } else {
-            throw Exception('Google Sign-In sırasında bir hata oluştu');
-          }
-        } else {
-          Navigator.pushReplacementNamed(
-            context,
-            '/complate_google_sign_up',
-            arguments: {
-              'email': user.email,
-              'displayName': user.displayName,
-            },
-          );
-        }
-      }
-    } catch (e, stackTrace) {
-      await FirebaseCrashlytics.instance
-          .recordError(e, stackTrace, reason: 'Google Sign-In başarısız');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Google Sign-In sırasında bir hata oluştu.'),
-        ),
-      );
-    } finally {
+    // Google kullanıcı oturumunu açma işlemi
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    if (googleUser == null) {
+      // Kullanıcı oturum açma işlemini iptal etti
       setState(() {
         isLoading = false;
       });
+      return;
     }
+
+    // Google Kimlik Doğrulama Bilgilerini Al
+    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    final AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    // Firebase'de oturum aç
+    final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+    final User? user = userCredential.user;
+
+    if (user != null) {
+      // Kullanıcı daha önce kayıtlı mı kontrol et
+      final checkResult = await authentication.checkUser(user.email);
+      if (checkResult == true) {
+        // Eğer kullanıcı kayıtlı ise Google Sign-In tokenını doğrula
+        final tokenResult = await authentication.signInWithGoogle(googleAuth.idToken);
+        if (tokenResult == true) {
+          // Başarılıysa anasayfaya yönlendir
+          Navigator.pushReplacementNamed(context, '/home');
+        } else {
+          throw Exception('Google Sign-In sırasında bir hata oluştu');
+        }
+      } else {
+        // Kullanıcı kayıtlı değilse kayıt tamamlama sayfasına yönlendir
+        Navigator.pushReplacementNamed(
+          context,
+          '/complate_google_sign_up',
+          arguments: {
+            'email': user.email,
+            'displayName': user.displayName,
+          },
+        );
+      }
+    }
+  } catch (e, stackTrace) {
+    // Hata olduğunda Crashlytics'e rapor gönder
+    await FirebaseCrashlytics.instance.recordError(
+      e,
+      stackTrace,
+      reason: 'Google Sign-In başarısız',
+    );
+
+    // Kullanıcıya hata mesajı göster
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Google Sign-In sırasında bir hata oluştu: ${e.toString()}'),
+      ),
+    );
+  } finally {
+    // İşlem bitince yükleniyor durumunu kapat
+    setState(() {
+      isLoading = false;
+    });
   }
+}
 
   @override
   Widget build(BuildContext context) {
